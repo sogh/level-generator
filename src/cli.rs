@@ -5,6 +5,7 @@ use std::path::PathBuf;
 pub enum ModeArg {
     Classic,
     Marble,
+    Wfc,
 }
 
 impl std::str::FromStr for ModeArg {
@@ -13,6 +14,7 @@ impl std::str::FromStr for ModeArg {
         match s.to_ascii_lowercase().as_str() {
             "classic" | "dungeon" => Ok(ModeArg::Classic),
             "marble" | "marbles" => Ok(ModeArg::Marble),
+            "wfc" | "wave" => Ok(ModeArg::Wfc),
             other => Err(format!("invalid mode: {} (expected classic|marble)", other)),
         }
     }

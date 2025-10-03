@@ -20,6 +20,7 @@ fn main() {
         mode: match args.mode {
             ModeArg::Classic => GenerationMode::Classic,
             ModeArg::Marble => GenerationMode::Marble,
+            ModeArg::Wfc => GenerationMode::Wfc,
         },
         channel_width: args.channel_width,
         corner_radius: args.corner_radius,

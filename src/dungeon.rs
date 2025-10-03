@@ -16,6 +16,7 @@
 use rand::rngs::StdRng;
 use rand::{Rng, SeedableRng};
 use serde::Serialize;
+use std::collections::VecDeque;
 
 /// 2D tile grid stored row-major as characters.
 pub type Grid = Vec<Vec<char>>;
@@ -108,6 +109,7 @@ pub struct GeneratorParams {
 pub enum GenerationMode {
     Classic,
     Marble,
+    Wfc,
 }
 
 /// Generate a new `Level` using basic room placement and corridor connectivity.
@@ -123,6 +125,12 @@ pub fn generate(params: &GeneratorParams) -> Level {
         tr.random()
     });
     let mut rng = StdRng::seed_from_u64(seed);
+
+    // Early exit for WFC mode: generate a tilemap entirely via WFC
+    if matches!(params.mode, GenerationMode::Wfc) {
+        let tiles = generate_wfc_tilemap(width as usize, height as usize, &mut rng);
+        return Level { width, height, seed, rooms: Vec::new(), tiles };
+    }
 
     let mut grid: Grid = vec![vec![TILE_WALL; width as usize]; height as usize];
     let mut rooms: Vec<Room> = Vec::new();
@@ -181,6 +189,7 @@ pub fn generate(params: &GeneratorParams) -> Level {
                 }
             }
         }
+        GenerationMode::Wfc => unreachable!("handled earlier"),
     }
 
     let tiles: Vec<String> = grid
@@ -230,6 +239,172 @@ fn set_floor(grid: &mut [Vec<char>], x: i32, y: i32) {
             row[x as usize] = TILE_FLOOR;
         }
     }
+}
+
+// ========================= WFC IMPLEMENTATION ========================= //
+
+#[derive(Clone, Copy)]
+struct WfcTile {
+    ch: char,
+    // edges: [up, right, down, left]; true = connection, false = no connection
+    edges: [bool; 4],
+}
+
+fn wfc_tileset() -> Vec<WfcTile> {
+    vec![
+        WfcTile { ch: ' ', edges: [false, false, false, false] },
+        WfcTile { ch: '─', edges: [false, true,  false, true  ] },
+        WfcTile { ch: '│', edges: [true,  false, true,  false ] },
+        WfcTile { ch: '┌', edges: [false, true,  true,  false ] },
+        WfcTile { ch: '┐', edges: [false, false, true,  true  ] },
+        WfcTile { ch: '└', edges: [true,  true,  false, false ] },
+        WfcTile { ch: '┘', edges: [true,  false, false, true  ] },
+        WfcTile { ch: '├', edges: [true,  true,  true,  false ] },
+        WfcTile { ch: '┤', edges: [true,  false, true,  true  ] },
+        WfcTile { ch: '┬', edges: [false, true,  true,  true  ] },
+        WfcTile { ch: '┴', edges: [true,  true,  false, true  ] },
+        WfcTile { ch: '┼', edges: [true,  true,  true,  true  ] },
+    ]
+}
+
+fn opposite(dir: usize) -> usize { (dir + 2) % 4 }
+
+fn generate_wfc_tilemap(width: usize, height: usize, rng: &mut StdRng) -> Vec<String> {
+    let tiles = wfc_tileset();
+    let num_tiles = tiles.len();
+    let all_mask: u32 = if num_tiles >= 32 { u32::MAX } else { (1u32 << num_tiles) - 1 };
+
+    // Precompute compatibility: compat[t][dir] = bitmask of neighbor tiles allowed
+    let mut compat: Vec<[u32; 4]> = vec![[0; 4]; num_tiles];
+    for (i, t) in tiles.iter().enumerate() {
+        for dir in 0..4 {
+            let mut mask = 0u32;
+            for (j, n) in tiles.iter().enumerate() {
+                if t.edges[dir] == n.edges[opposite(dir)] {
+                    mask |= 1u32 << j;
+                }
+            }
+            compat[i][dir] = mask;
+        }
+    }
+
+    let idx = |x: usize, y: usize| -> usize { y * width + x };
+
+    let mut attempts = 0;
+    while attempts < 10 {
+        attempts += 1;
+        let mut domains: Vec<u32> = vec![all_mask; width * height];
+
+        // Border constraints: disallow tiles whose connections go off-grid
+        for y in 0..height {
+            for x in 0..width {
+                let mut mask = all_mask;
+                if y == 0 {
+                    // up must be false
+                    mask &= allowed_without_connection(&tiles, 0);
+                }
+                if x + 1 == width {
+                    // right must be false
+                    mask &= allowed_without_connection(&tiles, 1);
+                }
+                if y + 1 == height {
+                    // down must be false
+                    mask &= allowed_without_connection(&tiles, 2);
+                }
+                if x == 0 {
+                    // left must be false
+                    mask &= allowed_without_connection(&tiles, 3);
+                }
+                domains[idx(x, y)] &= mask;
+            }
+        }
+
+        let mut queue: VecDeque<usize> = VecDeque::new();
+
+        loop {
+            // Pick cell with lowest entropy > 1
+            let mut best_i = None;
+            let mut best_count = usize::MAX;
+            for i in 0..domains.len() {
+                let d = domains[i];
+                let c = d.count_ones() as usize;
+                if c > 1 && c < best_count {
+                    best_count = c;
+                    best_i = Some(i);
+                }
+            }
+
+            if let Some(i) = best_i {
+                // Collapse: choose random tile from domain
+                let d = domains[i];
+                if d == 0 { break; }
+                let mut options: Vec<usize> = Vec::new();
+                for t in 0..num_tiles { if (d & (1u32 << t)) != 0 { options.push(t); } }
+                let choice = options[rng.random_range(0..options.len())];
+                domains[i] = 1u32 << choice;
+                queue.push_back(i);
+            } else {
+                // No cells with entropy >1: finished or contradiction
+                if domains.iter().any(|&d| d == 0) {
+                    break;
+                }
+                // Success
+                let mut out: Vec<String> = Vec::with_capacity(height);
+                for y in 0..height {
+                    let mut row = String::with_capacity(width);
+                    for x in 0..width {
+                        let d = domains[idx(x, y)];
+                        let tile_id = (0..num_tiles).find(|t| (d & (1u32 << t)) != 0).unwrap_or(0);
+                        row.push(tiles[tile_id].ch);
+                    }
+                    out.push(row);
+                }
+                return out;
+            }
+
+            // Propagate constraints
+            while let Some(i0) = queue.pop_front() {
+                let x0 = i0 % width;
+                let y0 = i0 / width;
+                let d0 = domains[i0];
+                if d0 == 0 { break; }
+
+                for dir in 0..4 {
+                    let nx = match dir { 1 => x0 + 1, 3 => x0.wrapping_sub(1), _ => x0 };
+                    let ny = match dir { 0 => y0.wrapping_sub(1), 2 => y0 + 1, _ => y0 };
+                    if nx >= width || ny >= height { continue; }
+                    let ni = idx(nx, ny);
+
+                    // Allowed neighbor set from current domain
+                    let mut allowed = 0u32;
+                    for t in 0..num_tiles { if (d0 & (1u32 << t)) != 0 { allowed |= compat[t][dir]; } }
+
+                    let before = domains[ni];
+                    let after = before & allowed;
+                    if after != before {
+                        domains[ni] = after;
+                        // Early contradiction; continue to allow restart
+                        if after == 0 { break; }
+                        queue.push_back(ni);
+                    }
+                }
+            }
+            // If any domain zeroed, restart
+            if domains.iter().any(|&d| d == 0) { break; }
+        }
+        // restart on failure
+    }
+
+    // Fallback: empty grid if all attempts failed
+    vec![" ".repeat(width); height]
+}
+
+fn allowed_without_connection(tiles: &[WfcTile], dir: usize) -> u32 {
+    let mut mask = 0u32;
+    for (i, t) in tiles.iter().enumerate() {
+        if !t.edges[dir] { mask |= 1u32 << i; }
+    }
+    mask
 }
 
 /// Carve a horizontal channel of width `width_tiles` centered on `y`.

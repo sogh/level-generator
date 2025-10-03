@@ -31,6 +31,9 @@ cargo run -- --seed 42 --print-json --no-ascii
 
 # Marble mode with rounded channels (width=3, radius=3)
 cargo run -- --mode marble --channel-width 3 --corner-radius 3 --width 60 --height 25 --rooms 10 --print-json --no-ascii
+
+# Wave Function Collapse (WFC) mode with a simple pipe tileset
+cargo run -- --mode wfc --width 60 --height 25 --print-json --no-ascii
 ```
 
 ### Options
@@ -41,7 +44,7 @@ cargo run -- --mode marble --channel-width 3 --corner-radius 3 --width 60 --heig
 - `--min-room, -m` minimum room side length
 - `--max-room, -M` maximum room side length
 - `--seed, -s` RNG seed for reproducibility
-- `--mode` generation mode: `classic` (default) or `marble`
+- `--mode` generation mode: `classic` (default), `marble`, or `wfc`
 - `--channel-width` marble mode: channel width in tiles
 - `--corner-radius` marble mode: corner radius in tiles
 - `--no-ascii` disable ASCII preview
