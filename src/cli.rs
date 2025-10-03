@@ -1,6 +1,23 @@
 use clap::Parser;
 use std::path::PathBuf;
 
+#[derive(Debug, Clone, Copy)]
+pub enum ModeArg {
+    Classic,
+    Marble,
+}
+
+impl std::str::FromStr for ModeArg {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s.to_ascii_lowercase().as_str() {
+            "classic" | "dungeon" => Ok(ModeArg::Classic),
+            "marble" | "marbles" => Ok(ModeArg::Marble),
+            other => Err(format!("invalid mode: {} (expected classic|marble)", other)),
+        }
+    }
+}
+
 /// Command-line arguments for the level generator.
 #[derive(Debug, Parser, Clone)]
 #[command(name = "level-generator", version, about = "Roguelike dungeon level generator")] 
@@ -29,6 +46,18 @@ pub struct Args {
     /// RNG seed for reproducible dungeons
     #[arg(long = "seed", short = 's', help = "RNG seed for reproducible dungeons")] 
     pub seed: Option<u64>,
+
+    /// Generation mode: classic (rooms+tunnels) or marble (rounded channels)
+    #[arg(long = "mode", default_value = "classic", help = "Generation mode: classic|marble")] 
+    pub mode: ModeArg,
+
+    /// Marble: channel width in tiles (ignored for classic)
+    #[arg(long = "channel-width", default_value_t = 2, help = "Marble: channel width in tiles")] 
+    pub channel_width: u32,
+
+    /// Marble: corner radius in tiles for rounded turns (ignored for classic)
+    #[arg(long = "corner-radius", default_value_t = 2, help = "Marble: corner radius in tiles")] 
+    pub corner_radius: u32,
 
     /// File path to write the generated level as JSON
     #[arg(long = "json-path", short = 'o', help = "Write level to JSON file path")] 

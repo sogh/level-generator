@@ -1,6 +1,6 @@
 # level-generator
 
-A simple Nethack-style dungeon generator written in Rust. It places non-overlapping rectangular rooms and connects them with L-shaped tunnels, exporting the result as ASCII and JSON.
+A simple Nethack-style dungeon generator written in Rust. It places non-overlapping rectangular rooms and connects them with L-shaped tunnels, exporting the result as ASCII and JSON. It now also supports a "marble" mode for wide, rounded channels suitable for marble runs.
 
 ## Overview
 
@@ -28,6 +28,9 @@ cargo run -- --width 60 --height 25 --rooms 10 --no-ascii --print-json --json-pa
 
 # Reproducible output
 cargo run -- --seed 42 --print-json --no-ascii
+
+# Marble mode with rounded channels (width=3, radius=3)
+cargo run -- --mode marble --channel-width 3 --corner-radius 3 --width 60 --height 25 --rooms 10 --print-json --no-ascii
 ```
 
 ### Options
@@ -38,6 +41,9 @@ cargo run -- --seed 42 --print-json --no-ascii
 - `--min-room, -m` minimum room side length
 - `--max-room, -M` maximum room side length
 - `--seed, -s` RNG seed for reproducibility
+- `--mode` generation mode: `classic` (default) or `marble`
+- `--channel-width` marble mode: channel width in tiles
+- `--corner-radius` marble mode: corner radius in tiles
 - `--no-ascii` disable ASCII preview
 - `--print-json` also print JSON to stdout
 - `--json-path, -o` path to write JSON

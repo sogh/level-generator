@@ -93,6 +93,21 @@ pub struct GeneratorParams {
     pub max_room: u32,
     /// Optional RNG seed for reproducible results
     pub seed: Option<u64>,
+
+    /// High-level generation mode
+    pub mode: GenerationMode,
+
+    /// Marble mode: channel width in tiles
+    pub channel_width: u32,
+
+    /// Marble mode: corner radius in tiles
+    pub corner_radius: u32,
+}
+
+#[derive(Debug, Clone, Copy)]
+pub enum GenerationMode {
+    Classic,
+    Marble,
 }
 
 /// Generate a new `Level` using basic room placement and corridor connectivity.
@@ -135,17 +150,36 @@ pub fn generate(params: &GeneratorParams) -> Level {
         rooms.push(candidate);
     }
 
-    // connect rooms in order of x-coordinate of center to ensure connectivity
+    // connect rooms depending on the chosen mode
     rooms.sort_by_key(|r| r.center().0);
-    for i in 1..rooms.len() {
-        let (x1, y1) = rooms[i - 1].center();
-        let (x2, y2) = rooms[i].center();
-        if rng.random_bool(0.5) {
-            carve_horizontal_tunnel(&mut grid, x1, x2, y1);
-            carve_vertical_tunnel(&mut grid, y1, y2, x2);
-        } else {
-            carve_vertical_tunnel(&mut grid, y1, y2, x1);
-            carve_horizontal_tunnel(&mut grid, x1, x2, y2);
+    match params.mode {
+        GenerationMode::Classic => {
+            for i in 1..rooms.len() {
+                let (x1, y1) = rooms[i - 1].center();
+                let (x2, y2) = rooms[i].center();
+                if rng.random_bool(0.5) {
+                    carve_horizontal_tunnel(&mut grid, x1, x2, y1);
+                    carve_vertical_tunnel(&mut grid, y1, y2, x2);
+                } else {
+                    carve_vertical_tunnel(&mut grid, y1, y2, x1);
+                    carve_horizontal_tunnel(&mut grid, x1, x2, y2);
+                }
+            }
+        }
+        GenerationMode::Marble => {
+            let w = params.channel_width.max(1) as i32;
+            let r = params.corner_radius.max(0) as i32;
+            for i in 1..rooms.len() {
+                let (x1, y1) = rooms[i - 1].center();
+                let (x2, y2) = rooms[i].center();
+                if rng.random_bool(0.5) {
+                    carve_wide_horizontal_with_rounded_turn(&mut grid, x1, x2, y1, w, r, true);
+                    carve_wide_vertical(&mut grid, y1, y2, x2, w);
+                } else {
+                    carve_wide_vertical_with_rounded_turn(&mut grid, y1, y2, x1, w, r, true);
+                    carve_wide_horizontal(&mut grid, x1, x2, y2, w);
+                }
+            }
         }
     }
 
@@ -194,6 +228,98 @@ fn set_floor(grid: &mut [Vec<char>], x: i32, y: i32) {
         let row = &mut grid[y as usize];
         if x >= 0 && (x as usize) < row.len() {
             row[x as usize] = TILE_FLOOR;
+        }
+    }
+}
+
+/// Carve a horizontal channel of width `width_tiles` centered on `y`.
+fn carve_wide_horizontal(grid: &mut [Vec<char>], x1: i32, x2: i32, y: i32, width_tiles: i32) {
+    let (start, end) = if x1 <= x2 { (x1, x2) } else { (x2, x1) };
+    let half = width_tiles / 2;
+    for x in start..=end {
+        for dy in -half..=half {
+            set_floor(grid, x, y + dy);
+        }
+    }
+}
+
+/// Carve a vertical channel of width `width_tiles` centered on `x`.
+fn carve_wide_vertical(grid: &mut [Vec<char>], y1: i32, y2: i32, x: i32, width_tiles: i32) {
+    let (start, end) = if y1 <= y2 { (y1, y2) } else { (y2, y1) };
+    let half = width_tiles / 2;
+    for y in start..=end {
+        for dx in -half..=half {
+            set_floor(grid, x + dx, y);
+        }
+    }
+}
+
+/// Carve a rounded quarter-circle at the L-turn from horizontal to vertical.
+/// If `turn_right` is true, the horizontal moves to the right before turning; otherwise to the left.
+fn carve_wide_horizontal_with_rounded_turn(
+    grid: &mut [Vec<char>], x1: i32, x2: i32, y: i32, width_tiles: i32, radius: i32, turn_down: bool,
+) {
+    carve_wide_horizontal(grid, x1, x2, y, width_tiles);
+    // Draw a quarter disk at the corner (center near (x2, y))
+    carve_quarter_disk(grid, x2, y, radius.max(width_tiles / 2), width_tiles, if turn_down { Quadrant::Down } else { Quadrant::Up });
+}
+
+/// Carve a rounded quarter-circle at the L-turn from vertical to horizontal.
+fn carve_wide_vertical_with_rounded_turn(
+    grid: &mut [Vec<char>], y1: i32, y2: i32, x: i32, width_tiles: i32, radius: i32, turn_right: bool,
+) {
+    carve_wide_vertical(grid, y1, y2, x, width_tiles);
+    carve_quarter_disk(grid, x, y2, radius.max(width_tiles / 2), width_tiles, if turn_right { Quadrant::Right } else { Quadrant::Left });
+}
+
+#[derive(Clone, Copy)]
+enum Quadrant { Up, Down, Left, Right }
+
+/// Approximate a quarter disk for rounding corners, thickened by channel width.
+fn carve_quarter_disk(grid: &mut [Vec<char>], cx: i32, cy: i32, radius: i32, width_tiles: i32, quad: Quadrant) {
+    if radius <= 0 { return; }
+    let inner = (radius - width_tiles / 2).max(0);
+    let outer = radius + width_tiles / 2;
+    match quad {
+        Quadrant::Down => {
+            for dy in 0..=outer {
+                for dx in -outer..=outer {
+                    let d2 = dx*dx + dy*dy;
+                    if d2 <= outer*outer && d2 >= inner*inner {
+                        set_floor(grid, cx + dx, cy + dy);
+                    }
+                }
+            }
+        }
+        Quadrant::Up => {
+            for dy in -outer..=0 {
+                for dx in -outer..=outer {
+                    let d2 = dx*dx + dy*dy;
+                    if d2 <= outer*outer && d2 >= inner*inner {
+                        set_floor(grid, cx + dx, cy + dy);
+                    }
+                }
+            }
+        }
+        Quadrant::Right => {
+            for dx in 0..=outer {
+                for dy in -outer..=outer {
+                    let d2 = dx*dx + dy*dy;
+                    if d2 <= outer*outer && d2 >= inner*inner {
+                        set_floor(grid, cx + dx, cy + dy);
+                    }
+                }
+            }
+        }
+        Quadrant::Left => {
+            for dx in -outer..=0 {
+                for dy in -outer..=outer {
+                    let d2 = dx*dx + dy*dy;
+                    if d2 <= outer*outer && d2 >= inner*inner {
+                        set_floor(grid, cx + dx, cy + dy);
+                    }
+                }
+            }
         }
     }
 }

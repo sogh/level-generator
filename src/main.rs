@@ -3,7 +3,8 @@ use std::fs;
 use std::path::Path;
 
 use level_generator::cli::Args;
-use level_generator::dungeon::{generate, GeneratorParams};
+use level_generator::cli::ModeArg;
+use level_generator::dungeon::{generate, GenerationMode, GeneratorParams};
 use level_generator::visualize::to_ascii;
 
 fn main() {
@@ -16,6 +17,12 @@ fn main() {
         min_room: args.min_room,
         max_room: args.max_room,
         seed: args.seed,
+        mode: match args.mode {
+            ModeArg::Classic => GenerationMode::Classic,
+            ModeArg::Marble => GenerationMode::Marble,
+        },
+        channel_width: args.channel_width,
+        corner_radius: args.corner_radius,
     };
 
     let level = generate(&params);
