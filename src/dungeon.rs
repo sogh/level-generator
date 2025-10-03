@@ -500,3 +500,154 @@ fn carve_quarter_disk(grid: &mut [Vec<char>], cx: i32, cy: i32, radius: i32, wid
 }
 
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn params_base() -> GeneratorParams {
+        GeneratorParams {
+            width: 60,
+            height: 25,
+            rooms: 10,
+            min_room: 4,
+            max_room: 10,
+            seed: Some(42),
+            mode: GenerationMode::Classic,
+            channel_width: 2,
+            corner_radius: 2,
+        }
+    }
+
+    fn count_chars(tiles: &[String], target: char) -> usize {
+        tiles.iter().map(|row| row.chars().filter(|&c| c == target).count()).sum()
+    }
+
+    fn all_chars_in_set(tiles: &[String], allowed: &[char]) -> bool {
+        let mut ok = true;
+        for row in tiles {
+            for ch in row.chars() {
+                if !allowed.contains(&ch) { ok = false; break; }
+            }
+        }
+        ok
+    }
+
+    #[test]
+    fn classic_deterministic_with_seed() {
+        let mut p = params_base();
+        p.mode = GenerationMode::Classic;
+        p.seed = Some(123);
+        let a = generate(&p);
+        let b = generate(&p);
+        assert_eq!(a.tiles, b.tiles);
+        assert!(all_chars_in_set(&a.tiles, &[TILE_WALL, TILE_FLOOR]));
+    }
+
+    #[test]
+    fn marble_deterministic_with_seed() {
+        let mut p = params_base();
+        p.mode = GenerationMode::Marble;
+        p.channel_width = 3;
+        p.corner_radius = 3;
+        p.seed = Some(999);
+        let a = generate(&p);
+        let b = generate(&p);
+        assert_eq!(a.tiles, b.tiles);
+        assert!(all_chars_in_set(&a.tiles, &[TILE_WALL, TILE_FLOOR]));
+    }
+
+    fn parse_grid(tiles: &[String]) -> Vec<Vec<char>> {
+        tiles.iter().map(|r| r.chars().collect::<Vec<char>>()).collect::<Vec<_>>()
+    }
+
+    #[test]
+    fn classic_connectivity_of_floors() {
+        let mut p = params_base();
+        p.mode = GenerationMode::Classic;
+        p.seed = Some(7);
+        let lvl = generate(&p);
+        let grid = parse_grid(&lvl.tiles);
+        let h = grid.len();
+        let w = grid[0].len();
+        // Find first floor
+        let mut start: Option<(usize, usize)> = None;
+        for y in 0..h {
+            for x in 0..w {
+                if grid[y][x] == TILE_FLOOR { start = Some((x, y)); break; }
+            }
+            if start.is_some() { break; }
+        }
+        if start.is_none() { return; }
+        let (sx, sy) = start.unwrap();
+        let mut visited = vec![vec![false; w]; h];
+        let mut q = std::collections::VecDeque::new();
+        visited[sy][sx] = true;
+        q.push_back((sx, sy));
+        let mut floors_seen = 1usize;
+        while let Some((x, y)) = q.pop_front() {
+            let dirs = [(1,0),(-1,0),(0,1),(0,-1)];
+            for (dx, dy) in dirs {
+                let nx = x as i32 + dx; let ny = y as i32 + dy;
+                if nx>=0 && ny>=0 && (ny as usize) < h && (nx as usize) < w {
+                    let ux = nx as usize; let uy = ny as usize;
+                    if !visited[uy][ux] && grid[uy][ux] == TILE_FLOOR {
+                        visited[uy][ux] = true; floors_seen += 1; q.push_back((ux, uy));
+                    }
+                }
+            }
+        }
+        let total_floors = count_chars(&lvl.tiles, TILE_FLOOR);
+        assert_eq!(floors_seen, total_floors);
+    }
+
+    #[test]
+    fn wfc_deterministic_and_valid_adjacency() {
+        let mut p = params_base();
+        p.mode = GenerationMode::Wfc;
+        p.width = 20; p.height = 10;
+        p.seed = Some(2024);
+        let a = generate(&p);
+        let b = generate(&p);
+        assert_eq!(a.tiles, b.tiles);
+
+        // Build lookup from char to edges
+        let ts = wfc_tileset();
+        let mut edges_by_char: std::collections::HashMap<char, [bool;4]> = std::collections::HashMap::new();
+        for t in &ts { edges_by_char.insert(t.ch, t.edges); }
+
+        // Validate adjacency
+        let h = a.tiles.len();
+        let w = a.tiles[0].chars().count();
+        for y in 0..h {
+            let row: Vec<char> = a.tiles[y].chars().collect();
+            for x in 0..w {
+                let ch = row[x];
+                let e = *edges_by_char.get(&ch).unwrap_or(&[false,false,false,false]);
+                // up
+                if y == 0 { assert!(!e[0]); } else {
+                    let upch = a.tiles[y-1].chars().nth(x).unwrap();
+                    let ue = *edges_by_char.get(&upch).unwrap_or(&[false,false,false,false]);
+                    assert_eq!(e[0], ue[2]);
+                }
+                // right
+                if x + 1 == w { assert!(!e[1]); } else {
+                    let rch = a.tiles[y].chars().nth(x+1).unwrap();
+                    let re = *edges_by_char.get(&rch).unwrap_or(&[false,false,false,false]);
+                    assert_eq!(e[1], re[3]);
+                }
+                // down
+                if y + 1 == h { assert!(!e[2]); } else {
+                    let dch = a.tiles[y+1].chars().nth(x).unwrap();
+                    let de = *edges_by_char.get(&dch).unwrap_or(&[false,false,false,false]);
+                    assert_eq!(e[2], de[0]);
+                }
+                // left
+                if x == 0 { assert!(!e[3]); } else {
+                    let lch = a.tiles[y].chars().nth(x-1).unwrap();
+                    let le = *edges_by_char.get(&lch).unwrap_or(&[false,false,false,false]);
+                    assert_eq!(e[3], le[1]);
+                }
+            }
+        }
+    }
+}
