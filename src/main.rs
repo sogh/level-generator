@@ -5,6 +5,7 @@ use std::path::Path;
 use level_generator::cli::Args;
 use level_generator::cli::ModeArg;
 use level_generator::dungeon::{generate, GenerationMode, GeneratorParams};
+use level_generator::isometric;
 use level_generator::visualize::to_ascii;
 
 fn main() {
@@ -24,26 +25,47 @@ fn main() {
         },
         channel_width: args.channel_width,
         corner_radius: args.corner_radius,
+        enable_elevation: args.enable_elevation,
+        max_elevation: args.max_elevation,
+        enable_obstacles: args.enable_obstacles,
+        obstacle_density: args.obstacle_density,
     };
 
     let level = generate(&params);
 
-    if !args.no_ascii {
+    // ASCII output
+    if !args.no_ascii && !args.html_only {
         let ascii = to_ascii(&level);
         println!("{}", ascii);
     }
 
-    let json = serde_json::to_string_pretty(&level).expect("serialize level");
-    if args.print_json {
-        println!("{}", json);
+    // JSON output
+    if !args.html_only {
+        let json = serde_json::to_string_pretty(&level).expect("serialize level");
+        if args.print_json {
+            println!("{}", json);
+        }
+        if let Some(path) = args.json_path.as_ref() {
+            let p: &Path = path.as_path();
+            if let Some(parent) = p.parent() {
+                if !parent.as_os_str().is_empty() {
+                    let _ = fs::create_dir_all(parent);
+                }
+            }
+            fs::write(p, json).expect("write json file");
+        }
     }
-    if let Some(path) = args.json_path.as_ref() {
-        let p: &Path = path.as_path();
+
+    // HTML isometric visualization
+    if let Some(html_path) = args.html_path.as_ref() {
+        let html = isometric::generate_html(&level);
+        let p: &Path = html_path.as_path();
         if let Some(parent) = p.parent() {
             if !parent.as_os_str().is_empty() {
                 let _ = fs::create_dir_all(parent);
             }
         }
-        fs::write(p, json).expect("write json file");
+        fs::write(p, html).expect("write html file");
+        println!("Isometric visualization written to: {}", html_path.display());
     }
 }

@@ -17,6 +17,7 @@ use rand::rngs::StdRng;
 use rand::{Rng, SeedableRng};
 use serde::Serialize;
 use std::collections::VecDeque;
+use crate::tiles::MarbleTile;
 
 /// 2D tile grid stored row-major as characters.
 pub type Grid = Vec<Vec<char>>;
@@ -38,6 +39,9 @@ pub struct Room {
     pub y: i32,
     pub w: i32,
     pub h: i32,
+    /// Elevation level of this room (0 = ground level)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elevation: Option<i32>,
 }
 
 impl Room {
@@ -77,6 +81,9 @@ pub struct Level {
     pub rooms: Vec<Room>,
     /// ASCII tiles (row-major). `'#'` is wall, `'.'` is floor
     pub tiles: Vec<String>,
+    /// Marble tile grid (optional, only for marble mode)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub marble_tiles: Option<Vec<Vec<MarbleTile>>>,
     // legend: '#' = wall, '.' = floor
 }
 
@@ -103,6 +110,18 @@ pub struct GeneratorParams {
 
     /// Marble mode: corner radius in tiles
     pub corner_radius: u32,
+
+    /// Marble mode: enable elevation variation
+    pub enable_elevation: bool,
+
+    /// Marble mode: maximum elevation difference between rooms
+    pub max_elevation: i32,
+
+    /// Marble mode: enable obstacle placement in large rooms
+    pub enable_obstacles: bool,
+
+    /// Marble mode: obstacle density (0.0 to 1.0)
+    pub obstacle_density: f32,
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -129,7 +148,7 @@ pub fn generate(params: &GeneratorParams) -> Level {
     // Early exit for WFC mode: generate a tilemap entirely via WFC
     if matches!(params.mode, GenerationMode::Wfc) {
         let tiles = generate_wfc_tilemap(width as usize, height as usize, &mut rng);
-        return Level { width, height, seed, rooms: Vec::new(), tiles };
+        return Level { width, height, seed, rooms: Vec::new(), tiles, marble_tiles: None };
     }
 
     let mut grid: Grid = vec![vec![TILE_WALL; width as usize]; height as usize];
@@ -147,7 +166,14 @@ pub fn generate(params: &GeneratorParams) -> Level {
         let x = rng.random_range(1..=(width as i32 - w - 2));
         let y = rng.random_range(1..=(height as i32 - h - 2));
 
-        let candidate = Room { x, y, w, h };
+        // Assign elevation if enabled
+        let elevation = if params.enable_elevation && matches!(params.mode, GenerationMode::Marble) {
+            Some(rng.random_range(-params.max_elevation..=params.max_elevation))
+        } else {
+            None
+        };
+
+        let candidate = Room { x, y, w, h, elevation };
 
         // ensure no overlap with margin of 1 tile
         if rooms.iter().any(|r| intersects_with_margin(r, &candidate, 1)) {
@@ -193,17 +219,231 @@ pub fn generate(params: &GeneratorParams) -> Level {
     }
 
     let tiles: Vec<String> = grid
-        .into_iter()
-        .map(|row| row.into_iter().collect())
+        .iter()
+        .map(|row| row.iter().collect())
         .collect();
 
-    Level { width, height, seed, rooms, tiles }
+    // Generate marble tile grid for marble mode
+    let marble_tiles = if matches!(params.mode, GenerationMode::Marble) {
+        let mut tiles = grid_to_marble_tiles(&grid, &rooms, params.enable_elevation);
+        
+        // Place obstacles in large rooms if enabled
+        if params.enable_obstacles {
+            place_obstacles_in_rooms(&mut tiles, &rooms, &mut rng, params.obstacle_density);
+        }
+        
+        Some(tiles)
+    } else {
+        None
+    };
+
+    Level { width, height, seed, rooms, tiles, marble_tiles }
 }
 
 /// Whether `a`, expanded by `margin` tiles on each side, intersects `b`.
 fn intersects_with_margin(a: &Room, b: &Room, margin: i32) -> bool {
-    let a_expanded = Room { x: a.x - margin, y: a.y - margin, w: a.w + 2*margin, h: a.h + 2*margin };
+    let a_expanded = Room { 
+        x: a.x - margin, 
+        y: a.y - margin, 
+        w: a.w + 2*margin, 
+        h: a.h + 2*margin,
+        elevation: a.elevation,
+    };
     a_expanded.intersects(b)
+}
+
+/// Place obstacles in large rooms
+fn place_obstacles_in_rooms(
+    marble_grid: &mut [Vec<MarbleTile>],
+    rooms: &[Room],
+    rng: &mut StdRng,
+    density: f32,
+) {
+    use crate::tiles::TileType;
+    
+    let height = marble_grid.len();
+    let width = if height > 0 { marble_grid[0].len() } else { 0 };
+    
+    for room in rooms {
+        let room_area = (room.w * room.h) as f32;
+        
+        // Only place obstacles in rooms larger than 30 tiles
+        if room_area < 30.0 {
+            continue;
+        }
+        
+        // Number of obstacles based on room size and density
+        let num_obstacles = ((room_area * density * 0.1) as i32).max(1);
+        
+        for _ in 0..num_obstacles {
+            // Try to place obstacle in a random floor position within the room
+            for _ in 0..20 {  // Max 20 attempts per obstacle
+                let ox = rng.random_range(room.x + 1..room.x + room.w - 1);
+                let oy = rng.random_range(room.y + 1..room.y + room.h - 1);
+                
+                if oy >= 0 && (oy as usize) < height && ox >= 0 && (ox as usize) < width {
+                    let tile = &marble_grid[oy as usize][ox as usize];
+                    
+                    // Only place obstacle on passable tiles that aren't already obstacles
+                    if tile.tile_type.is_passable() && tile.tile_type != TileType::Obstacle {
+                        let elevation = tile.elevation;
+                        marble_grid[oy as usize][ox as usize] = MarbleTile::with_params(
+                            TileType::Obstacle,
+                            elevation,
+                            0,
+                            false,
+                        );
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/// Convert a character grid to a marble tile grid with intelligent tile type detection
+fn grid_to_marble_tiles(grid: &Grid, rooms: &[Room], enable_elevation: bool) -> Vec<Vec<MarbleTile>> {
+    use crate::tiles::TileType;
+    
+    let height = grid.len();
+    let width = if height > 0 { grid[0].len() } else { 0 };
+    
+    let mut marble_grid = vec![vec![MarbleTile::empty(); width]; height];
+    
+    // Helper to check if a position is a floor tile
+    let is_floor = |x: i32, y: i32| -> bool {
+        if y >= 0 && (y as usize) < height && x >= 0 && (x as usize) < width {
+            grid[y as usize][x as usize] == TILE_FLOOR
+        } else {
+            false
+        }
+    };
+    
+    // Helper to find which room a point belongs to
+    let find_room_elevation = |x: i32, y: i32| -> i32 {
+        if !enable_elevation {
+            return 0;
+        }
+        for room in rooms {
+            if x >= room.x && x < room.x + room.w && y >= room.y && y < room.y + room.h {
+                return room.elevation.unwrap_or(0);
+            }
+        }
+        0 // Default to ground level for corridors
+    };
+    
+    // First pass: detect tile types based on neighbors
+    for y in 0..height {
+        for x in 0..width {
+            if grid[y][x] != TILE_FLOOR {
+                continue;
+            }
+            
+            let ix = x as i32;
+            let iy = y as i32;
+            
+            // Check all four directions
+            let north = is_floor(ix, iy - 1);
+            let south = is_floor(ix, iy + 1);
+            let east = is_floor(ix + 1, iy);
+            let west = is_floor(ix - 1, iy);
+            
+            let connection_count = [north, south, east, west].iter().filter(|&&b| b).count();
+            
+            // Determine base elevation for this tile
+            let base_elevation = find_room_elevation(ix, iy);
+            
+            let (tile_type, rotation) = match connection_count {
+                0 | 1 => (TileType::OpenPlatform, 0), // Isolated or dead-end
+                2 => {
+                    // Straight or curve
+                    if (north && south) || (east && west) {
+                        // Straight path
+                        let rot = if north && south { 0 } else { 1 };
+                        (TileType::Straight, rot)
+                    } else {
+                        // 90-degree curve
+                        let rot = if north && east {
+                            0
+                        } else if east && south {
+                            1
+                        } else if south && west {
+                            2
+                        } else {
+                            3
+                        };
+                        (TileType::Curve90, rot)
+                    }
+                }
+                3 => {
+                    // T-junction
+                    let rot = if !south {
+                        0
+                    } else if !west {
+                        1
+                    } else if !north {
+                        2
+                    } else {
+                        3
+                    };
+                    (TileType::TJunction, rot)
+                }
+                4 => (TileType::CrossJunction, 0),
+                _ => (TileType::Straight, 0),
+            };
+            
+            marble_grid[y][x] = MarbleTile::with_params(tile_type, base_elevation, rotation, true);
+        }
+    }
+    
+    // Second pass: detect and place slope tiles where elevation changes
+    if enable_elevation {
+        for y in 0..height {
+            for x in 0..width {
+                if marble_grid[y][x].tile_type == TileType::Empty {
+                    continue;
+                }
+                
+                let ix = x as i32;
+                let iy = y as i32;
+                let current_elev = marble_grid[y][x].elevation;
+                
+                // Check for elevation changes in adjacent tiles
+                for (dy, dx, dir_rot) in [((-1, 0, 0)), ((1, 0, 0)), ((0, 1, 1)), ((0, -1, 1))] {
+                    let nx = ix + dx;
+                    let ny = iy + dy;
+                    
+                    if ny >= 0 && (ny as usize) < height && nx >= 0 && (nx as usize) < width {
+                        let neighbor = &marble_grid[ny as usize][nx as usize];
+                        if neighbor.tile_type != TileType::Empty {
+                            let elev_diff = neighbor.elevation - current_elev;
+                            
+                            // If there's a +1 elevation difference, mark current as slope up
+                            if elev_diff == 1 && marble_grid[y][x].tile_type == TileType::Straight {
+                                marble_grid[y][x] = MarbleTile::with_params(
+                                    TileType::SlopeUp,
+                                    current_elev,
+                                    dir_rot,
+                                    true
+                                );
+                            }
+                            // If there's a -1 elevation difference, mark current as slope down
+                            else if elev_diff == -1 && marble_grid[y][x].tile_type == TileType::Straight {
+                                marble_grid[y][x] = MarbleTile::with_params(
+                                    TileType::SlopeDown,
+                                    current_elev,
+                                    dir_rot,
+                                    true
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    marble_grid
 }
 
 /// Fill the rectangle defined by `room` with floor tiles.
@@ -499,7 +739,6 @@ fn carve_quarter_disk(grid: &mut [Vec<char>], cx: i32, cy: i32, radius: i32, wid
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -515,6 +754,10 @@ mod tests {
             mode: GenerationMode::Classic,
             channel_width: 2,
             corner_radius: 2,
+            enable_elevation: false,
+            max_elevation: 2,
+            enable_obstacles: false,
+            obstacle_density: 0.3,
         }
     }
 

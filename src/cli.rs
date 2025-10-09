@@ -61,6 +61,22 @@ pub struct Args {
     #[arg(long = "corner-radius", default_value_t = 2, help = "Marble: corner radius in tiles")] 
     pub corner_radius: u32,
 
+    /// Marble: enable elevation variation
+    #[arg(long = "enable-elevation", default_value_t = false, help = "Marble: enable elevation variation")]
+    pub enable_elevation: bool,
+
+    /// Marble: maximum elevation difference between rooms
+    #[arg(long = "max-elevation", default_value_t = 2, help = "Marble: max elevation difference")]
+    pub max_elevation: i32,
+
+    /// Marble: enable obstacle placement in large rooms
+    #[arg(long = "enable-obstacles", default_value_t = false, help = "Marble: enable obstacles")]
+    pub enable_obstacles: bool,
+
+    /// Marble: obstacle density (0.0 to 1.0)
+    #[arg(long = "obstacle-density", default_value_t = 0.3, help = "Marble: obstacle density")]
+    pub obstacle_density: f32,
+
     /// File path to write the generated level as JSON
     #[arg(long = "json-path", short = 'o', help = "Write level to JSON file path")] 
     pub json_path: Option<PathBuf>,
@@ -72,6 +88,14 @@ pub struct Args {
     /// Disable ASCII preview in stdout
     #[arg(long = "no-ascii", default_value_t = false, help = "Disable ASCII preview")] 
     pub no_ascii: bool,
+
+    /// File path to write isometric HTML visualization
+    #[arg(long = "html-path", help = "Write isometric HTML visualization to file path")]
+    pub html_path: Option<PathBuf>,
+
+    /// Only generate HTML visualization (skip ASCII and JSON output)
+    #[arg(long = "html-only", default_value_t = false, help = "Only generate HTML visualization")]
+    pub html_only: bool,
 }
 
 

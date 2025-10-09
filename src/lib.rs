@@ -3,9 +3,13 @@
 //! Core modules:
 //! - `cli`: command-line parsing
 //! - `dungeon`: generator and data structures
+//! - `isometric`: isometric HTML/SVG visualization
+//! - `tiles`: tile type definitions for marble levels
 //! - `visualize`: ASCII rendering helpers
 pub mod cli;
 pub mod dungeon;
+pub mod isometric;
+pub mod tiles;
 pub mod visualize;
 
 
