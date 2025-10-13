@@ -17,7 +17,7 @@ use rand::rngs::StdRng;
 use rand::{Rng, SeedableRng};
 use serde::Serialize;
 use std::collections::VecDeque;
-use crate::tiles::MarbleTile;
+use crate::tiles::{MarbleTile, Direction};
 
 /// 2D tile grid stored row-major as characters.
 pub type Grid = Vec<Vec<char>>;
@@ -534,7 +534,10 @@ fn grid_to_marble_tiles(
         }
     }
     
-    // Second pass: detect and place slope tiles where elevation changes
+    // Second pass: place advanced tiles in appropriate locations (before slope conversion)
+    place_advanced_tiles(&mut marble_grid, grid, enable_elevation);
+    
+    // Third pass: detect and place slope tiles where elevation changes
     if enable_elevation {
         for y in 0..height {
             for x in 0..width {
@@ -547,7 +550,7 @@ fn grid_to_marble_tiles(
                 let iy = y as i32;
                 let current_elev = tile.elevation;
                 
-                // Only convert simple tiles to slopes (not junctions or curves which need special handling)
+                // Only convert simple tiles to slopes (not junctions, curves, or advanced tiles)
                 if !matches!(tile.tile_type, TileType::Straight | TileType::OpenPlatform | TileType::CrossJunction) {
                     continue;
                 }
@@ -579,6 +582,297 @@ fn grid_to_marble_tiles(
     }
     
     marble_grid
+}
+
+/// Place advanced tiles in appropriate locations based on context
+fn place_advanced_tiles(
+    marble_grid: &mut Vec<Vec<MarbleTile>>,
+    grid: &Grid,
+    enable_elevation: bool,
+) {
+    use crate::tiles::TileType;
+    
+    let height = marble_grid.len();
+    let width = if height > 0 { marble_grid[0].len() } else { 0 };
+    
+    // Helper to check if a position is a floor tile
+    let is_floor = |x: i32, y: i32| -> bool {
+        if y >= 0 && (y as usize) < height && x >= 0 && (x as usize) < width {
+            grid[y as usize][x as usize] == TILE_FLOOR
+        } else {
+            false
+        }
+    };
+    
+    // Place Y-junctions where we have smooth 3-way connections
+    for y in 1..height-1 {
+        for x in 1..width-1 {
+            let tile = &marble_grid[y][x];
+            if tile.tile_type != TileType::TJunction {
+                continue;
+            }
+            
+            let ix = x as i32;
+            let iy = y as i32;
+            
+            // Check if this T-junction could be a smooth Y-junction
+            // Look for diagonal connections that suggest smooth curves
+            let north = is_floor(ix, iy - 1);
+            let south = is_floor(ix, iy + 1);
+            let east = is_floor(ix + 1, iy);
+            let west = is_floor(ix - 1, iy);
+            
+            // Check for diagonal patterns that suggest Y-junction
+            let has_diagonal = (north && east && is_floor(ix + 1, iy - 1)) ||
+                              (east && south && is_floor(ix + 1, iy + 1)) ||
+                              (south && west && is_floor(ix - 1, iy + 1)) ||
+                              (west && north && is_floor(ix - 1, iy - 1));
+            
+            if has_diagonal {
+                marble_grid[y][x] = MarbleTile::with_params(
+                    TileType::YJunction,
+                    tile.elevation,
+                    tile.rotation,
+                    true
+                );
+            }
+        }
+    }
+    
+    // Place merge tiles where multiple paths converge to a single output
+    for y in 1..height-1 {
+        for x in 1..width-1 {
+            let tile = &marble_grid[y][x];
+            if tile.tile_type != TileType::CrossJunction {
+                continue;
+            }
+            
+            let ix = x as i32;
+            let iy = y as i32;
+            
+            // Check if this cross junction has a clear "output" direction
+            // (one direction with more connections downstream)
+            let north_connections = count_connections_downstream(marble_grid, grid, ix, iy - 1, Direction::North);
+            let south_connections = count_connections_downstream(marble_grid, grid, ix, iy + 1, Direction::South);
+            let east_connections = count_connections_downstream(marble_grid, grid, ix + 1, iy, Direction::East);
+            let west_connections = count_connections_downstream(marble_grid, grid, ix - 1, iy, Direction::West);
+            
+            let connections = [north_connections, south_connections, east_connections, west_connections];
+            let max_connections = connections.iter().max().unwrap_or(&0);
+            
+            // If one direction has significantly more connections, it's likely a merge
+            if *max_connections >= 3 && connections.iter().filter(|&&c| c > 0).count() >= 3 {
+                // Determine the output direction (the one with most connections)
+                let output_dir = if north_connections == *max_connections { 0 }
+                                else if east_connections == *max_connections { 1 }
+                                else if south_connections == *max_connections { 2 }
+                                else { 3 };
+                
+                marble_grid[y][x] = MarbleTile::with_params(
+                    TileType::Merge,
+                    tile.elevation,
+                    output_dir,
+                    true
+                );
+            }
+        }
+    }
+    
+    // Place one-way gates in narrow passages (relaxed conditions)
+    for y in 1..height-1 {
+        for x in 1..width-1 {
+            let tile = &marble_grid[y][x];
+            if tile.tile_type != TileType::Straight {
+                continue;
+            }
+            
+            let ix = x as i32;
+            let iy = y as i32;
+            
+            // Check if this is a narrow passage (straight line with walls on sides)
+            // Relaxed: only need walls on one side, not both
+            let is_narrow_passage = match tile.rotation {
+                0 | 2 => { // Vertical passage
+                    (!is_floor(ix - 1, iy) || !is_floor(ix + 1, iy)) &&
+                    is_floor(ix, iy - 1) && is_floor(ix, iy + 1)
+                },
+                1 | 3 => { // Horizontal passage
+                    (!is_floor(ix, iy - 1) || !is_floor(ix, iy + 1)) &&
+                    is_floor(ix - 1, iy) && is_floor(ix + 1, iy)
+                },
+                _ => false,
+            };
+            
+            if is_narrow_passage {
+                marble_grid[y][x] = MarbleTile::with_params(
+                    TileType::OneWayGate,
+                    tile.elevation,
+                    tile.rotation,
+                    true
+                );
+            }
+        }
+    }
+    
+    // Place loop-de-loops where we have elevation changes of +2 or more
+    if enable_elevation {
+        for y in 1..height-1 {
+            for x in 1..width-1 {
+                let tile = &marble_grid[y][x];
+                if tile.tile_type != TileType::Straight {
+                    continue;
+                }
+                
+                let ix = x as i32;
+                let iy = y as i32;
+                let current_elev = tile.elevation;
+                
+                // Check for large elevation changes that could support a loop
+                let has_large_elevation_change = 
+                    (is_floor(ix, iy - 1) && (get_elevation(marble_grid, ix, iy - 1) - current_elev).abs() >= 2) ||
+                    (is_floor(ix, iy + 1) && (get_elevation(marble_grid, ix, iy + 1) - current_elev).abs() >= 2) ||
+                    (is_floor(ix + 1, iy) && (get_elevation(marble_grid, ix + 1, iy) - current_elev).abs() >= 2) ||
+                    (is_floor(ix - 1, iy) && (get_elevation(marble_grid, ix - 1, iy) - current_elev).abs() >= 2);
+                
+                if has_large_elevation_change {
+                    marble_grid[y][x] = MarbleTile::with_params(
+                        TileType::LoopDeLoop,
+                        current_elev,
+                        tile.rotation,
+                        true
+                    );
+                }
+            }
+        }
+    }
+    
+    // Place half-pipes in curved sections with elevation changes
+    if enable_elevation {
+        for y in 1..height-1 {
+            for x in 1..width-1 {
+                let tile = &marble_grid[y][x];
+                if tile.tile_type != TileType::Curve90 {
+                    continue;
+                }
+                
+                let ix = x as i32;
+                let iy = y as i32;
+                let current_elev = tile.elevation;
+                
+                // Check if this curve has elevation changes
+                let has_elevation_change = 
+                    (is_floor(ix, iy - 1) && (get_elevation(marble_grid, ix, iy - 1) - current_elev).abs() == 1) ||
+                    (is_floor(ix, iy + 1) && (get_elevation(marble_grid, ix, iy + 1) - current_elev).abs() == 1) ||
+                    (is_floor(ix + 1, iy) && (get_elevation(marble_grid, ix + 1, iy) - current_elev).abs() == 1) ||
+                    (is_floor(ix - 1, iy) && (get_elevation(marble_grid, ix - 1, iy) - current_elev).abs() == 1);
+                
+                if has_elevation_change {
+                    marble_grid[y][x] = MarbleTile::with_params(
+                        TileType::HalfPipe,
+                        current_elev,
+                        tile.rotation,
+                        true
+                    );
+                }
+            }
+        }
+    }
+    
+    // Place launch pads at the start of straight sections (relaxed conditions)
+    for y in 1..height-1 {
+        for x in 1..width-1 {
+            let tile = &marble_grid[y][x];
+            if tile.tile_type != TileType::Straight {
+                continue;
+            }
+            
+            let ix = x as i32;
+            let iy = y as i32;
+            
+            // Check if this is the start of a straight section (relaxed: just need continuation)
+            let is_launch_pad = match tile.rotation {
+                0 | 2 => { // Vertical
+                    !is_floor(ix, iy - 1) && is_floor(ix, iy + 1)
+                },
+                1 | 3 => { // Horizontal
+                    !is_floor(ix - 1, iy) && is_floor(ix + 1, iy)
+                },
+                _ => false,
+            };
+            
+            if is_launch_pad {
+                marble_grid[y][x] = MarbleTile::with_params(
+                    TileType::LaunchPad,
+                    tile.elevation,
+                    tile.rotation,
+                    true
+                );
+            }
+        }
+    }
+}
+
+/// Helper function to count connections downstream from a position
+fn count_connections_downstream(
+    marble_grid: &Vec<Vec<MarbleTile>>,
+    grid: &Grid,
+    start_x: i32,
+    start_y: i32,
+    direction: Direction,
+) -> usize {
+    use crate::tiles::TileType;
+    if start_y < 0 || (start_y as usize) >= marble_grid.len() ||
+       start_x < 0 || (start_x as usize) >= marble_grid[0].len() {
+        return 0;
+    }
+    
+    let mut count = 0;
+    let mut x = start_x;
+    let mut y = start_y;
+    
+    // Follow the path in the given direction
+    for _ in 0..10 { // Limit to prevent infinite loops
+        let (dx, dy) = match direction {
+            Direction::North => (0, -1),
+            Direction::South => (0, 1),
+            Direction::East => (1, 0),
+            Direction::West => (-1, 0),
+        };
+        
+        x += dx;
+        y += dy;
+        
+        if y < 0 || (y as usize) >= marble_grid.len() ||
+           x < 0 || (x as usize) >= marble_grid[0].len() {
+            break;
+        }
+        
+        if grid[y as usize][x as usize] != TILE_FLOOR {
+            break;
+        }
+        
+        count += 1;
+        
+        // Stop if we hit a junction or dead end
+        let tile = &marble_grid[y as usize][x as usize];
+        if tile.tile_type == TileType::TJunction || 
+           tile.tile_type == TileType::CrossJunction ||
+           tile.tile_type == TileType::YJunction {
+            break;
+        }
+    }
+    
+    count
+}
+
+/// Helper function to get elevation from marble grid
+fn get_elevation(marble_grid: &Vec<Vec<MarbleTile>>, x: i32, y: i32) -> i32 {
+    if y >= 0 && (y as usize) < marble_grid.len() &&
+       x >= 0 && (x as usize) < marble_grid[0].len() {
+        marble_grid[y as usize][x as usize].elevation
+    } else {
+        0
+    }
 }
 
 /// Fill the rectangle defined by `room` with floor tiles.

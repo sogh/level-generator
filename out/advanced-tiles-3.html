@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Marble Level - Isometric View</title>
+  <style>
+    body { margin: 0; padding: 20px; background: #1a1a1a; font-family: Arial, sans-serif; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #fff; text-align: center; }
+    .info { color: #aaa; text-align: center; margin: 10px 0; }
+    svg { background: #0d0d0d; display: block; margin: 20px auto; border: 2px solid #333; }
+    .legend { color: #fff; background: #2a2a2a; padding: 15px; border-radius: 5px; margin-top: 20px; }
+    .legend-item { display: inline-block; margin: 5px 15px; }
+    .legend-color { display: inline-block; width: 20px; height: 20px; margin-right: 5px; vertical-align: middle; border: 1px solid #555; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Marble Level Generator - Isometric View</h1>
+    <div class="info">Seed: 456 | Size: 40×20 | Rooms: 4</div>
+    <svg width="1160" height="640" viewBox="0 0 1160 640">
+      <g transform="translate(580, 150)">
+  <polygon points="128,-8 144,-4 128,0 112,-4" fill="#7ee5ff" stroke="#333" stroke-width="1"/>
+  <polygon points="112,-4 128,0 128,19.999998 112,15.999998" fill="#58a0b2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,-4 128,0 128,19.999998 144,15.999998" fill="#4b8999" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,-4 160,0 144,4 128,0" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="128,0 144,4 144,23.999998 128,19.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,0 144,4 144,23.999998 160,19.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="144" y="0" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="112,-4 128,0 112,4 96,0" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="96,0 112,4 112,23.999998 96,19.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,0 112,4 112,23.999998 128,19.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="112" y="0" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="160,0 176,4 160,8 144,4" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="144,4 160,8 160,27.999998 144,23.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,4 160,8 160,27.999998 176,23.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="160" y="4" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="128,0 144,4 128,8 112,4" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="112,4 128,8 128,27.999998 112,23.999998" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,4 128,8 128,27.999998 144,23.999998" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="96,0 112,4 96,8 80,4" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="80,4 96,8 96,27.999998 80,23.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,4 96,8 96,27.999998 112,23.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="96" y="4" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="176,4 192,8 176,12 160,8" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="160,8 176,12 176,31.999998 160,27.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,8 176,12 176,31.999998 192,27.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="176" y="8" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="144,4 160,8 144,12 128,8" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="128,8 144,12 144,31.999998 128,27.999998" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,8 144,12 144,31.999998 160,27.999998" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="112,4 128,8 112,12 96,8" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="96,8 112,12 112,31.999998 96,27.999998" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,8 112,12 112,31.999998 128,27.999998" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="80,4 96,8 80,12 64,8" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="64,8 80,12 80,31.999998 64,27.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,8 80,12 80,31.999998 96,27.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="80" y="8" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="192,8 208,12 192,16 176,12" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="176,12 192,16 192,36 176,31.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,12 192,16 192,36 208,31.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="192" y="12" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="160,8 176,12 160,16 144,12" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="144,12 160,16 160,36 144,31.999998" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,12 160,16 160,36 176,31.999998" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,8 144,12 128,16 112,12" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="112,12 128,16 128,36 112,31.999998" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,12 128,16 128,36 144,31.999998" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="96,8 112,12 96,16 80,12" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="80,12 96,16 96,36 80,31.999998" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,12 96,16 96,36 112,31.999998" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,8 80,12 64,16 48,12" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="48,12 64,16 64,36 48,31.999998" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,12 64,16 64,36 80,31.999998" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="64" y="12" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="208,12 224,16 208,20 192,16" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="192,16 208,20 208,40 192,36" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,16 208,20 208,40 224,36" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="208" y="16" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="176,12 192,16 176,20 160,16" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="160,16 176,20 176,40 160,36" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,16 176,20 176,40 192,36" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,12 160,16 144,20 128,16" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="128,16 144,20 144,40 128,36" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,16 144,20 144,40 160,36" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="112,12 128,16 112,20 96,16" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="96,16 112,20 112,40 96,36" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,16 112,20 112,40 128,36" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="80,12 96,16 80,20 64,16" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="64,16 80,20 80,40 64,36" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,16 80,20 80,40 96,36" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="48,12 64,16 48,20 32,16" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="32,16 48,20 48,40 32,36" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,16 48,20 48,40 64,36" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="48" y="16" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="224,16 240,20 224,24 208,20" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="208,20 224,24 224,44 208,40" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,20 224,24 224,44 240,40" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="224" y="20" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="192,16 208,20 192,24 176,20" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="176,20 192,24 192,44 176,40" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,20 192,24 192,44 208,40" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="160,16 176,20 160,24 144,20" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="144,20 160,24 160,44 144,40" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,20 160,24 160,44 176,40" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,16 144,20 128,24 112,20" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="112,20 128,24 128,44 112,40" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,20 128,24 128,44 144,40" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="96,16 112,20 96,24 80,20" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="80,20 96,24 96,44 80,40" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,20 96,24 96,44 112,40" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,16 80,20 64,24 48,20" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="48,20 64,24 64,44 48,40" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,20 64,24 64,44 80,40" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="32,16 48,20 32,24 16,20" fill="#7ee5ff" stroke="#333" stroke-width="1"/>
+  <polygon points="16,20 32,24 32,44 16,40" fill="#58a0b2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,20 32,24 32,44 48,40" fill="#4b8999" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="240,20 256,24 240,28 224,24" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="224,24 240,28 240,48 224,44" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="256,24 240,28 240,48 256,44" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="240" y="24" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="208,20 224,24 208,28 192,24" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="192,24 208,28 208,48 192,44" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,24 208,28 208,48 224,44" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="176,20 192,24 176,28 160,24" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="160,24 176,28 176,48 160,44" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,24 176,28 176,48 192,44" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,20 160,24 144,28 128,24" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="128,24 144,28 144,48 128,44" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,24 144,28 144,48 160,44" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="112,20 128,24 112,28 96,24" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="96,24 112,28 112,48 96,44" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,24 112,28 112,48 128,44" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="80,20 96,24 80,28 64,24" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="64,24 80,28 80,48 64,44" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,24 80,28 80,48 96,44" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="48,20 64,24 48,28 32,24" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="32,24 48,28 48,48 32,44" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,24 48,28 48,48 64,44" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="48" y="24" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="256,24 272,28 256,32 240,28" fill="#7ee5ff" stroke="#333" stroke-width="1"/>
+  <polygon points="240,28 256,32 256,52 240,48" fill="#58a0b2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="272,28 256,32 256,52 272,48" fill="#4b8999" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="224,24 240,28 224,32 208,28" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="208,28 224,32 224,52 208,48" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,28 224,32 224,52 240,48" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="192,24 208,28 192,32 176,28" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="176,28 192,32 192,52 176,48" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,28 192,32 192,52 208,48" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="160,24 176,28 160,32 144,28" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="144,28 160,32 160,52 144,48" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,28 160,32 160,52 176,48" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,24 144,28 128,32 112,28" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="112,28 128,32 128,52 112,48" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,28 128,32 128,52 144,48" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="96,24 112,28 96,32 80,28" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="80,28 96,32 96,52 80,48" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,28 96,32 96,52 112,48" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,24 80,28 64,32 48,28" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="48,28 64,32 64,52 48,48" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,28 64,32 64,52 80,48" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="64" y="28" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="0,60 16,64 0,68 -16,64" fill="#63b4e9" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,64 0,68 0,88 -16,84" fill="#457ea3" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,64 0,68 0,88 16,84" fill="#3b6c8b" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="240,28 256,32 240,36 224,32" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="224,32 240,36 240,56 224,52" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="256,32 240,36 240,56 256,52" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="240" y="32" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="208,28 224,32 208,36 192,32" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="192,32 208,36 208,56 192,52" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,32 208,36 208,56 224,52" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="176,28 192,32 176,36 160,32" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="160,32 176,36 176,56 160,52" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,32 176,36 176,56 192,52" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,28 160,32 144,36 128,32" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="128,32 144,36 144,56 128,52" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,32 144,36 144,56 160,52" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="112,28 128,32 112,36 96,32" fill="#95b1ff" stroke="#333" stroke-width="1"/>
+  <polygon points="96,32 112,36 112,56 96,52" fill="#687bb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,32 112,36 112,56 128,52" fill="#596a99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="112" y="32" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">M</text>
+  <polygon points="80,28 96,32 80,36 64,32" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="64,32 80,36 80,56 64,52" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,32 80,36 80,56 96,52" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="16,64 32,68 16,72 0,68" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="0,68 16,72 16,92 0,88" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,68 16,72 16,92 32,88" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="16" y="68" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="-16,64 0,68 -16,72 -32,68" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-32,68 -16,72 -16,92 -32,88" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="0,68 -16,72 -16,92 0,88" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-16" y="68" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="224,32 240,36 224,40 208,36" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="208,36 224,40 224,60 208,56" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,36 224,40 224,60 240,56" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="224" y="36" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="192,32 208,36 192,40 176,36" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="176,36 192,40 192,60 176,56" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,36 192,40 192,60 208,56" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="160,32 176,36 160,40 144,36" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="144,36 160,40 160,60 144,56" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,36 160,40 160,60 176,56" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,32 144,36 128,40 112,36" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="112,36 128,40 128,60 112,56" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,36 128,40 128,60 144,56" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="96,32 112,36 96,40 80,36" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="80,36 96,40 96,60 80,56" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,36 96,40 96,60 112,56" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,56 80,60 64,64 48,60" fill="#5babee" stroke="#333" stroke-width="1"/>
+  <polygon points="48,60 64,64 64,84 48,80" fill="#3f77a6" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,60 64,64 64,84 80,80" fill="#36668e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="64" y="60" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="32,68 48,72 32,76 16,72" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="16,72 32,76 32,96 16,92" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,72 32,76 32,96 48,92" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="32" y="72" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="0,68 16,72 0,76 -16,72" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,72 0,76 0,96 -16,92" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,72 0,76 0,96 16,92" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-32,68 -16,72 -32,76 -48,72" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-48,72 -32,76 -32,96 -48,92" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-16,72 -32,76 -32,96 -16,92" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-32" y="72" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="208,36 224,40 208,44 192,40" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="192,40 208,44 208,64 192,60" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,40 208,44 208,64 224,60" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="208" y="40" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="176,36 192,40 176,44 160,40" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="160,40 176,44 176,64 160,60" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,40 176,44 176,64 192,60" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,36 160,40 144,44 128,40" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="128,40 144,44 144,64 128,60" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,40 144,44 144,64 160,60" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="112,36 128,40 112,44 96,40" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="96,40 112,44 112,64 96,60" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,40 112,44 112,64 128,60" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="80,60 96,64 80,68 64,64" fill="#ffc955" stroke="#333" stroke-width="1"/>
+  <polygon points="64,64 80,68 80,88 64,84" fill="#b28c3b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,64 80,68 80,88 96,84" fill="#997833" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="80" y="64" font-size="16" fill="#fff" text-anchor="middle" dominant-baseline="middle">⛰</text>
+  <polygon points="48,72 64,76 48,80 32,76" fill="#ffb84e" stroke="#333" stroke-width="1"/>
+  <polygon points="32,76 48,80 48,100 32,96" fill="#b28036" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,76 48,80 48,100 64,96" fill="#996e2e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="48" y="76" font-size="16" fill="#fff" text-anchor="middle" dominant-baseline="middle">⛰</text>
+  <polygon points="16,72 32,76 16,80 0,76" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="0,76 16,80 16,100 0,96" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,76 16,80 16,100 32,96" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-16,72 0,76 -16,80 -32,76" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-32,76 -16,80 -16,100 -32,96" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="0,76 -16,80 -16,100 0,96" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-48,72 -32,76 -48,80 -64,76" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-64,76 -48,80 -48,100 -64,96" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-32,76 -48,80 -48,100 -32,96" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-48" y="76" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="192,40 208,44 192,48 176,44" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="176,44 192,48 192,68 176,64" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,44 192,48 192,68 208,64" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="192" y="44" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="160,40 176,44 160,48 144,44" fill="#59b3ff" stroke="#333" stroke-width="1"/>
+  <polygon points="144,44 160,48 160,68 144,64" fill="#3e7db2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,44 160,48 160,68 176,64" fill="#356b99" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,40 144,44 128,48 112,44" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="112,44 128,48 128,68 112,64" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,44 128,48 128,68 144,64" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="128" y="44" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="96,64 112,68 96,72 80,68" fill="#5babee" stroke="#333" stroke-width="1"/>
+  <polygon points="80,68 96,72 96,92 80,88" fill="#3f77a6" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,68 96,72 96,92 112,88" fill="#36668e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="96" y="68" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="64,76 80,80 64,84 48,80" fill="#ffb84e" stroke="#333" stroke-width="1"/>
+  <polygon points="48,80 64,84 64,104 48,100" fill="#b28036" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,80 64,84 64,104 80,100" fill="#996e2e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="64" y="80" font-size="16" fill="#fff" text-anchor="middle" dominant-baseline="middle">⛰</text>
+  <polygon points="32,76 48,80 32,84 16,80" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="16,80 32,84 32,104 16,100" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,80 32,84 32,104 48,100" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="0,76 16,80 0,84 -16,80" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,80 0,84 0,104 -16,100" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,80 0,84 0,104 16,100" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-32,76 -16,80 -32,84 -48,80" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-48,80 -32,84 -32,104 -48,100" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-16,80 -32,84 -32,104 -16,100" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-64,76 -48,80 -64,84 -80,80" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-80,80 -64,84 -64,104 -80,100" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-48,80 -64,84 -64,104 -48,100" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-64" y="80" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="176,44 192,48 176,52 160,48" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="160,48 176,52 176,72 160,68" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,48 176,52 176,72 192,68" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="176" y="48" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="144,44 160,48 144,52 128,48" fill="#6ac8ff" stroke="#333" stroke-width="1"/>
+  <polygon points="128,48 144,52 144,72 128,68" fill="#4a8cb2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,48 144,52 144,72 160,68" fill="#3f7899" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="144" y="48" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="80,80 96,84 80,88 64,84" fill="#ffb84e" stroke="#333" stroke-width="1"/>
+  <polygon points="64,84 80,88 80,108 64,104" fill="#b28036" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,84 80,88 80,108 96,104" fill="#996e2e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="80" y="84" font-size="16" fill="#fff" text-anchor="middle" dominant-baseline="middle">⛰</text>
+  <polygon points="48,80 64,84 48,88 32,84" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="32,84 48,88 48,108 32,104" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,84 48,88 48,108 64,104" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="16,80 32,84 16,88 0,84" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="0,84 16,88 16,108 0,104" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,84 16,88 16,108 32,104" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-16,80 0,84 -16,88 -32,84" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-32,84 -16,88 -16,108 -32,104" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="0,84 -16,88 -16,108 0,104" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-48,80 -32,84 -48,88 -64,84" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-64,84 -48,88 -48,108 -64,104" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-32,84 -48,88 -48,108 -32,104" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-80,80 -64,84 -80,88 -96,84" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-96,84 -80,88 -80,108 -96,104" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-64,84 -80,88 -80,108 -64,104" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-80" y="84" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="160,48 176,52 160,56 144,52" fill="#7ee5ff" stroke="#333" stroke-width="1"/>
+  <polygon points="144,52 160,56 160,76 144,72" fill="#58a0b2" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,52 160,56 160,76 176,72" fill="#4b8999" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="96,84 112,88 96,92 80,88" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="80,88 96,92 96,112 80,108" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,88 96,92 96,112 112,108" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="96" y="88" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="64,84 80,88 64,92 48,88" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="48,88 64,92 64,112 48,108" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,88 64,92 64,112 80,108" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="32,84 48,88 32,92 16,88" fill="#758bda" stroke="#333" stroke-width="1"/>
+  <polygon points="16,88 32,92 32,112 16,108" fill="#516198" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,88 32,92 32,112 48,108" fill="#465382" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="32" y="88" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">M</text>
+  <polygon points="0,84 16,88 0,92 -16,88" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,88 0,92 0,112 -16,108" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,88 0,92 0,112 16,108" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-32,84 -16,88 -32,92 -48,88" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-48,88 -32,92 -32,112 -48,108" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-16,88 -32,92 -32,112 -16,108" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-64,84 -48,88 -64,92 -80,88" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-80,88 -64,92 -64,112 -80,108" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-48,88 -64,92 -64,112 -48,108" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-96,84 -80,88 -96,92 -112,88" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-112,88 -96,92 -96,112 -112,108" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-80,88 -96,92 -96,112 -80,108" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-96" y="88" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="112,88 128,92 112,96 96,92" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="96,92 112,96 112,116 96,112" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,92 112,96 112,116 128,112" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="112" y="92" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="80,88 96,92 80,96 64,92" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="64,92 80,96 80,116 64,112" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,92 80,96 80,116 96,112" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="48,88 64,92 48,96 32,92" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="32,92 48,96 48,116 32,112" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,92 48,96 48,116 64,112" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="16,88 32,92 16,96 0,92" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="0,92 16,96 16,116 0,112" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,92 16,96 16,116 32,112" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-16,88 0,92 -16,96 -32,92" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-32,92 -16,96 -16,116 -32,112" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="0,92 -16,96 -16,116 0,112" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-48,88 -32,92 -48,96 -64,92" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-64,92 -48,96 -48,116 -64,112" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-32,92 -48,96 -48,116 -32,112" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-80,88 -64,92 -80,96 -96,92" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-96,92 -80,96 -80,116 -96,112" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-64,92 -80,96 -80,116 -64,112" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-112,88 -96,92 -112,96 -128,92" fill="#63b4e9" stroke="#333" stroke-width="1"/>
+  <polygon points="-128,92 -112,96 -112,116 -128,112" fill="#457ea3" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-96,92 -112,96 -112,116 -96,112" fill="#3b6c8b" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,92 144,96 128,100 112,96" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="112,96 128,100 128,120 112,116" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,96 128,100 128,120 144,116" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="128" y="96" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="96,92 112,96 96,100 80,96" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="80,96 96,100 96,120 80,116" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,96 96,100 96,120 112,116" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,92 80,96 64,100 48,96" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="48,96 64,100 64,120 48,116" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,96 64,100 64,120 80,116" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="32,92 48,96 32,100 16,96" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="16,96 32,100 32,120 16,116" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,96 32,100 32,120 48,116" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="0,92 16,96 0,100 -16,96" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,96 0,100 0,120 -16,116" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,96 0,100 0,120 16,116" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-32,92 -16,96 -32,100 -48,96" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-48,96 -32,100 -32,120 -48,116" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-16,96 -32,100 -32,120 -16,116" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-64,92 -48,96 -64,100 -80,96" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-80,96 -64,100 -64,120 -80,116" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-48,96 -64,100 -64,120 -48,116" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-96,92 -80,96 -96,100 -112,96" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-112,96 -96,100 -96,120 -112,116" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-80,96 -96,100 -96,120 -80,116" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-96" y="96" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="336,108 352,112 336,116 320,112" fill="#a6a6a6" stroke="#333" stroke-width="1"/>
+  <polygon points="320,112 336,116 336,136 320,132" fill="#747474" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="352,112 336,116 336,136 352,132" fill="#636363" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="272,108 288,112 272,116 256,112" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="256,112 272,116 272,136 256,132" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="288,112 272,116 272,136 288,132" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,96 160,100 144,104 128,100" fill="#63b4e9" stroke="#333" stroke-width="1"/>
+  <polygon points="128,100 144,104 144,124 128,120" fill="#457ea3" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,100 144,104 144,124 160,120" fill="#3b6c8b" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="112,96 128,100 112,104 96,100" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="96,100 112,104 112,124 96,120" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,100 112,104 112,124 128,120" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="80,96 96,100 80,104 64,100" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="64,100 80,104 80,124 64,120" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,100 80,104 80,124 96,120" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="48,96 64,100 48,104 32,100" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="32,100 48,104 48,124 32,120" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,100 48,104 48,124 64,120" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="16,96 32,100 16,104 0,100" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="0,100 16,104 16,124 0,120" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,100 16,104 16,124 32,120" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-16,96 0,100 -16,104 -32,100" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-32,100 -16,104 -16,124 -32,120" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="0,100 -16,104 -16,124 0,120" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-48,96 -32,100 -48,104 -64,100" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-64,100 -48,104 -48,124 -64,120" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-32,100 -48,104 -48,124 -32,120" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-80,96 -64,100 -80,104 -96,100" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-96,100 -80,104 -80,124 -96,120" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-64,100 -80,104 -80,124 -64,120" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-80" y="100" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="320,112 336,116 320,120 304,116" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="304,116 320,120 320,140 304,136" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="336,116 320,120 320,140 336,136" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="320" y="116" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="288,112 304,116 288,120 272,116" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="272,116 288,120 288,140 272,136" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="304,116 288,120 288,140 304,136" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="288" y="116" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="256,112 272,116 256,120 240,116" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="240,116 256,120 256,140 240,136" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="272,116 256,120 256,140 272,136" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="256" y="116" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="128,100 144,104 128,108 112,104" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="112,104 128,108 128,128 112,124" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,104 128,108 128,128 144,124" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="128" y="104" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="96,100 112,104 96,108 80,104" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="80,104 96,108 96,128 80,124" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,104 96,108 96,128 112,124" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,100 80,104 64,108 48,104" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="48,104 64,108 64,128 48,124" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,104 64,108 64,128 80,124" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="32,100 48,104 32,108 16,104" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="16,104 32,108 32,128 16,124" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,104 32,108 32,128 48,124" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="0,100 16,104 0,108 -16,104" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,104 0,108 0,128 -16,124" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,104 0,108 0,128 16,124" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-32,100 -16,104 -32,108 -48,104" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-48,104 -32,108 -32,128 -48,124" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-16,104 -32,108 -32,128 -16,124" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-64,100 -48,104 -64,108 -80,104" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-80,104 -64,108 -64,128 -80,124" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-48,104 -64,108 -64,128 -48,124" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-64" y="104" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="336,116 352,120 336,124 320,120" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="320,120 336,124 336,144 320,140" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="352,120 336,124 336,144 352,140" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="336" y="120" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="304,116 320,120 304,124 288,120" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="288,120 304,124 304,144 288,140" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="320,120 304,124 304,144 320,140" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="272,116 288,120 272,124 256,120" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="256,120 272,124 272,144 256,140" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="288,120 272,124 272,144 288,140" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="240,116 256,120 240,124 224,120" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="224,120 240,124 240,144 224,140" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="256,120 240,124 240,144 256,140" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="240" y="120" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="112,104 128,108 112,112 96,108" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="96,108 112,112 112,132 96,128" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,108 112,112 112,132 128,128" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="112" y="108" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="80,104 96,108 80,112 64,108" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="64,108 80,112 80,132 64,128" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,108 80,112 80,132 96,128" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="48,104 64,108 48,112 32,108" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="32,108 48,112 48,132 32,128" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,108 48,112 48,132 64,128" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="16,104 32,108 16,112 0,108" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="0,108 16,112 16,132 0,128" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,108 16,112 16,132 32,128" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-16,104 0,108 -16,112 -32,108" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-32,108 -16,112 -16,132 -32,128" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="0,108 -16,112 -16,132 0,128" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-48,104 -32,108 -48,112 -64,108" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-64,108 -48,112 -48,132 -64,128" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-32,108 -48,112 -48,132 -32,128" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-48" y="108" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="352,120 368,124 352,128 336,124" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="336,124 352,128 352,148 336,144" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="368,124 352,128 352,148 368,144" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="320,120 336,124 320,128 304,124" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="304,124 320,128 320,148 304,144" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="336,124 320,128 320,148 336,144" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="288,120 304,124 288,128 272,124" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="272,124 288,128 288,148 272,144" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="304,124 288,128 288,148 304,144" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="256,120 272,124 256,128 240,124" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="240,124 256,128 256,148 240,144" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="272,124 256,128 256,148 272,144" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="224,120 240,124 224,128 208,124" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="208,124 224,128 224,148 208,144" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,124 224,128 224,148 240,144" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="224" y="124" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="96,108 112,112 96,116 80,112" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="80,112 96,116 96,136 80,132" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,112 96,116 96,136 112,132" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,108 80,112 64,116 48,112" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="48,112 64,116 64,136 48,132" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,112 64,116 64,136 80,132" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="32,108 48,112 32,116 16,112" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="16,112 32,116 32,136 16,132" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,112 32,116 32,136 48,132" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="0,108 16,112 0,116 -16,112" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,112 0,116 0,136 -16,132" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,112 0,116 0,136 16,132" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-32,108 -16,112 -32,116 -48,112" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-48,112 -32,116 -32,136 -48,132" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="-16,112 -32,116 -32,136 -16,132" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-32" y="112" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="336,124 352,128 336,132 320,128" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="320,128 336,132 336,152 320,148" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="352,128 336,132 336,152 352,148" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="304,124 320,128 304,132 288,128" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="288,128 304,132 304,152 288,148" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="320,128 304,132 304,152 320,148" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="272,124 288,128 272,132 256,128" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="256,128 272,132 272,152 256,148" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="288,128 272,132 272,152 288,148" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="240,124 256,128 240,132 224,128" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="224,128 240,132 240,152 224,148" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="256,128 240,132 240,152 256,148" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="208,124 224,128 208,132 192,128" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="192,128 208,132 208,152 192,148" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,128 208,132 208,152 224,148" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="208" y="128" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="112,112 128,116 112,120 96,116" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="96,116 112,120 112,140 96,136" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,116 112,120 112,140 128,136" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="112" y="116" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="80,112 96,116 80,120 64,116" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="64,116 80,120 80,140 64,136" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,116 80,120 80,140 96,136" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="48,112 64,116 48,120 32,116" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="32,116 48,120 48,140 32,136" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,116 48,120 48,140 64,136" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="16,112 32,116 16,120 0,116" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="0,116 16,120 16,140 0,136" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,116 16,120 16,140 32,136" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="-16,112 0,116 -16,120 -32,116" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-32,116 -16,120 -16,140 -32,136" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="0,116 -16,120 -16,140 0,136" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="-16" y="116" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="384,128 400,132 384,136 368,132" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="368,132 384,136 384,156 368,152" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="400,132 384,136 384,156 400,152" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="352,128 368,132 352,136 336,132" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="336,132 352,136 352,156 336,152" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="368,132 352,136 352,156 368,152" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="352" y="132" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="320,128 336,132 320,136 304,132" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="304,132 320,136 320,156 304,152" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="336,132 320,136 320,156 336,152" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="288,128 304,132 288,136 272,132" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="272,132 288,136 288,156 272,152" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="304,132 288,136 288,156 304,152" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="256,128 272,132 256,136 240,132" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="240,132 256,136 256,156 240,152" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="272,132 256,136 256,156 272,152" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="224,128 240,132 224,136 208,132" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="208,132 224,136 224,156 208,152" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,132 224,136 224,156 240,152" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="192,128 208,132 192,136 176,132" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="176,132 192,136 192,156 176,152" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,132 192,136 192,156 208,152" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="192" y="132" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="128,116 144,120 128,124 112,120" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="112,120 128,124 128,144 112,140" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,120 128,124 128,144 144,140" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="128" y="120" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="96,116 112,120 96,124 80,120" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="80,120 96,124 96,144 80,140" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,120 96,124 96,144 112,140" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="64,116 80,120 64,124 48,120" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="48,120 64,124 64,144 48,140" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="80,120 64,124 64,144 80,140" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="32,116 48,120 32,124 16,120" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="16,120 32,124 32,144 16,140" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,120 32,124 32,144 48,140" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="0,116 16,120 0,124 -16,120" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="-16,120 0,124 0,144 -16,140" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="16,120 0,124 0,144 16,140" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="0" y="120" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="400,132 416,136 400,140 384,136" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="384,136 400,140 400,160 384,156" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="416,136 400,140 400,160 416,156" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="400" y="136" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="368,132 384,136 368,140 352,136" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="352,136 368,140 368,160 352,156" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="384,136 368,140 368,160 384,156" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="336,132 352,136 336,140 320,136" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="320,136 336,140 336,160 320,156" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="352,136 336,140 336,160 352,156" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="304,132 320,136 304,140 288,136" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="288,136 304,140 304,160 288,156" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="320,136 304,140 304,160 320,156" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="272,132 288,136 272,140 256,136" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="256,136 272,140 272,160 256,156" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="288,136 272,140 272,160 288,156" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="240,132 256,136 240,140 224,136" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="224,136 240,140 240,160 224,156" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="256,136 240,140 240,160 256,156" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="208,132 224,136 208,140 192,136" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="192,136 208,140 208,160 192,156" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,136 208,140 208,160 224,156" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="176,132 192,136 176,140 160,136" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="160,136 176,140 176,160 160,156" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,136 176,140 176,160 192,156" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="176" y="136" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="144,132 160,136 144,140 128,136" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="128,136 144,140 144,160 128,156" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,136 144,140 144,160 160,156" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="144" y="136" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="112,120 128,124 112,128 96,124" fill="#468cca" stroke="#333" stroke-width="1"/>
+  <polygon points="96,124 112,128 112,148 96,144" fill="#31628d" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,124 112,128 112,148 128,144" fill="#2a5479" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="80,120 96,124 80,128 64,124" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="64,124 80,128 80,148 64,144" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="96,124 80,128 80,148 96,144" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="80" y="124" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="48,120 64,124 48,128 32,124" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="32,124 48,128 48,148 32,144" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="64,124 48,128 48,148 64,144" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="48" y="124" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="16,120 32,124 16,128 0,124" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="0,124 16,128 16,148 0,144" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="32,124 16,128 16,148 32,144" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="16" y="124" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="416,136 432,140 416,144 400,140" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="400,140 416,144 416,164 400,160" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="432,140 416,144 416,164 432,160" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="416" y="140" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="384,136 400,140 384,144 368,140" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="368,140 384,144 384,164 368,160" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="400,140 384,144 384,164 400,160" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="352,136 368,140 352,144 336,140" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="336,140 352,144 352,164 336,160" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="368,140 352,144 352,164 368,160" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="320,136 336,140 320,144 304,140" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="304,140 320,144 320,164 304,160" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="336,140 320,144 320,164 336,160" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="320" y="140" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="288,136 304,140 288,144 272,140" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="272,140 288,144 288,164 272,160" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="304,140 288,144 288,164 304,160" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="288" y="140" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="256,136 272,140 256,144 240,140" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="240,140 256,144 256,164 240,160" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="272,140 256,144 256,164 272,160" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="224,136 240,140 224,144 208,140" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="208,140 224,144 224,164 208,160" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,140 224,144 224,164 240,160" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="192,136 208,140 192,144 176,140" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="176,140 192,144 192,164 176,160" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,140 192,144 192,164 208,160" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="160,136 176,140 160,144 144,140" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="144,140 160,144 160,164 144,160" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,140 160,144 160,164 176,160" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,124 144,128 128,132 112,128" fill="#ffb84e" stroke="#333" stroke-width="1"/>
+  <polygon points="112,128 128,132 128,152 112,148" fill="#b28036" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,128 128,132 128,152 144,148" fill="#996e2e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="128" y="128" font-size="16" fill="#fff" text-anchor="middle" dominant-baseline="middle">⛰</text>
+  <polygon points="96,124 112,128 96,132 80,128" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="80,128 96,132 96,152 80,148" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="112,128 96,132 96,152 112,148" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="96" y="128" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="32,124 48,128 32,132 16,128" fill="#63b4e9" stroke="#333" stroke-width="1"/>
+  <polygon points="16,128 32,132 32,152 16,148" fill="#457ea3" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="48,128 32,132 32,152 48,148" fill="#3b6c8b" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="432,140 448,144 432,148 416,144" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="416,144 432,148 432,168 416,164" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="448,144 432,148 432,168 448,164" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="432" y="144" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="400,140 416,144 400,148 384,144" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="384,144 400,148 400,168 384,164" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="416,144 400,148 400,168 416,164" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="368,140 384,144 368,148 352,144" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="352,144 368,148 368,168 352,164" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="384,144 368,148 368,168 384,164" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="336,140 352,144 336,148 320,144" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="320,144 336,148 336,168 320,164" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="352,144 336,148 336,168 352,164" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="272,140 288,144 272,148 256,144" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="256,144 272,148 272,168 256,164" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="288,144 272,148 272,168 288,164" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="272" y="144" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="240,140 256,144 240,148 224,144" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="224,144 240,148 240,168 224,164" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="256,144 240,148 240,168 256,164" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="208,140 224,144 208,148 192,144" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="192,144 208,148 208,168 192,164" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,144 208,148 208,168 224,164" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="176,140 192,144 176,148 160,144" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="160,144 176,148 176,168 160,164" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,144 176,148 176,168 192,164" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,140 160,144 144,148 128,144" fill="#e8a847" stroke="#333" stroke-width="1"/>
+  <polygon points="128,144 144,148 144,168 128,164" fill="#a27531" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,144 144,148 144,168 160,164" fill="#8b642a" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="144" y="144" font-size="16" fill="#fff" text-anchor="middle" dominant-baseline="middle">⛰</text>
+  <polygon points="112,128 128,132 112,136 96,132" fill="#539dda" stroke="#333" stroke-width="1"/>
+  <polygon points="96,132 112,136 112,156 96,152" fill="#3a6d98" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,132 112,136 112,156 128,152" fill="#315e82" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="112" y="132" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="448,144 464,148 448,152 432,148" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="432,148 448,152 448,172 432,168" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="464,148 448,152 448,172 464,168" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="448" y="148" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="416,144 432,148 416,152 400,148" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="400,148 416,152 416,172 400,168" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="432,148 416,152 416,172 432,168" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="384,144 400,148 384,152 368,148" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="368,148 384,152 384,172 368,168" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="400,148 384,152 384,172 400,168" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="352,144 368,148 352,152 336,148" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="336,148 352,152 352,172 336,168" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="368,148 352,152 352,172 368,168" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="320,144 336,148 320,152 304,148" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="304,148 320,152 320,172 304,168" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="336,148 320,152 320,172 336,168" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="256,144 272,148 256,152 240,148" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="240,148 256,152 256,172 240,168" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="272,148 256,152 256,172 272,168" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="256" y="148" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="224,144 240,148 224,152 208,148" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="208,148 224,152 224,172 208,168" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,148 224,152 224,172 240,168" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="192,144 208,148 192,152 176,148" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="176,148 192,152 192,172 176,168" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,148 192,152 192,172 208,168" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="160,144 176,148 160,152 144,148" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="144,148 160,152 160,172 144,168" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,148 160,152 160,172 176,168" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,144 144,148 128,152 112,148" fill="#e8a847" stroke="#333" stroke-width="1"/>
+  <polygon points="112,148 128,152 128,172 112,168" fill="#a27531" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,148 128,152 128,172 144,168" fill="#8b642a" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="128" y="148" font-size="16" fill="#fff" text-anchor="middle" dominant-baseline="middle">⛰</text>
+  <polygon points="464,148 480,152 464,156 448,152" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="448,152 464,156 464,176 448,172" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="480,152 464,156 464,176 480,172" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="432,148 448,152 432,156 416,152" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="416,152 432,156 432,176 416,172" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="448,152 432,156 432,176 448,172" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="400,148 416,152 400,156 384,152" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="384,152 400,156 400,176 384,172" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="416,152 400,156 400,176 416,172" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="368,148 384,152 368,156 352,152" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="352,152 368,156 368,176 352,172" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="384,152 368,156 368,176 384,172" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="336,148 352,152 336,156 320,152" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="320,152 336,156 336,176 320,172" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="352,152 336,156 336,176 352,172" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="336" y="152" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="240,148 256,152 240,156 224,152" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="224,152 240,156 240,176 224,172" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="256,152 240,156 240,176 256,172" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="208,148 224,152 208,156 192,152" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="192,152 208,156 208,176 192,172" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,152 208,156 208,176 224,172" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="208" y="152" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="176,148 192,152 176,156 160,152" fill="#6b7fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="160,152 176,156 176,176 160,172" fill="#4a588b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,152 176,156 176,176 192,172" fill="#404c77" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="176" y="152" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">M</text>
+  <polygon points="144,148 160,152 144,156 128,152" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="128,152 144,156 144,176 128,172" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,152 144,156 144,176 160,172" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="112,148 128,152 112,156 96,152" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="96,152 112,156 112,176 96,172" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="128,152 112,156 112,176 128,172" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="448,152 464,156 448,160 432,156" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="432,156 448,160 448,180 432,176" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="464,156 448,160 448,180 464,176" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="448" y="156" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="416,152 432,156 416,160 400,156" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="400,156 416,160 416,180 400,176" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="432,156 416,160 416,180 432,176" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="384,152 400,156 384,160 368,156" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="368,156 384,160 384,180 368,176" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="400,156 384,160 384,180 400,176" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="352,152 368,156 352,160 336,156" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="336,156 352,160 352,180 336,176" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="368,156 352,160 352,180 368,176" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="352" y="156" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="192,152 208,156 192,160 176,156" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="176,156 192,160 192,180 176,176" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,156 192,160 192,180 208,176" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="160,152 176,156 160,160 144,156" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="144,156 160,160 160,180 144,176" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,156 160,160 160,180 176,176" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="128,152 144,156 128,160 112,156" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="112,156 128,160 128,180 112,176" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,156 128,160 128,180 144,176" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="128" y="156" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="432,156 448,160 432,164 416,160" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="416,160 432,164 432,184 416,180" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="448,160 432,164 432,184 448,180" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="432" y="160" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="400,156 416,160 400,164 384,160" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="384,160 400,164 400,184 384,180" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="416,160 400,164 400,184 416,180" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="368,156 384,160 368,164 352,160" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="352,160 368,164 368,184 352,180" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="384,160 368,164 368,184 384,180" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="368" y="160" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="208,156 224,160 208,164 192,160" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="192,160 208,164 208,184 192,180" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="224,160 208,164 208,184 224,180" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="208" y="160" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="176,156 192,160 176,164 160,160" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="160,160 176,164 176,184 160,180" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,160 176,164 176,184 192,180" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="144,156 160,160 144,164 128,160" fill="#4080b8" stroke="#333" stroke-width="1"/>
+  <polygon points="128,160 144,164 144,184 128,180" fill="#2c5980" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="160,160 144,164 144,184 160,180" fill="#264c6e" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="416,160 432,164 416,168 400,164" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="400,164 416,168 416,188 400,184" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="432,164 416,168 416,188 432,184" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="416" y="164" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="384,160 400,164 384,168 368,164" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="368,164 384,168 384,188 368,184" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="400,164 384,168 384,188 400,184" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="384" y="164" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="224,160 240,164 224,168 208,164" fill="#a6a6a6" stroke="#333" stroke-width="1"/>
+  <polygon points="208,164 224,168 224,188 208,184" fill="#747474" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="240,164 224,168 224,188 240,184" fill="#636363" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="192,160 208,164 192,168 176,164" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="176,164 192,168 192,188 176,184" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="208,164 192,168 192,188 208,184" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="192" y="164" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="160,160 176,164 160,168 144,164" fill="#4c8fc7" stroke="#333" stroke-width="1"/>
+  <polygon points="144,164 160,168 160,188 144,184" fill="#35648b" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="176,164 160,168 160,188 176,184" fill="#2d5577" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <text x="160" y="164" font-size="14" fill="#fff" text-anchor="middle" dominant-baseline="middle">Y</text>
+  <polygon points="128,160 144,164 128,168 112,164" fill="#a6a6a6" stroke="#333" stroke-width="1"/>
+  <polygon points="112,164 128,168 128,188 112,184" fill="#747474" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="144,164 128,168 128,188 144,184" fill="#636363" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="400,164 416,168 400,172 384,168" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="384,168 400,172 400,192 384,188" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="416,168 400,172 400,192 416,188" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+  <polygon points="176,164 192,168 176,172 160,168" fill="#5aa4d4" stroke="#333" stroke-width="1"/>
+  <polygon points="160,168 176,172 176,192 160,188" fill="#3f7294" stroke="#222" stroke-width="0.5" opacity="0.9"/>
+  <polygon points="192,168 176,172 176,192 192,188" fill="#36627f" stroke="#222" stroke-width="0.5" opacity="0.8"/>
+      </g>
+    </svg>
+    <div class="legend">
+      <strong>Legend:</strong><br>
+      <div class="legend-item"><span class="legend-color" style="background: #5a9fd4"></span>Straight Path</div>
+      <div class="legend-item"><span class="legend-color" style="background: #5aa4d4"></span>Curve</div>
+      <div class="legend-item"><span class="legend-color" style="background: #4c8fc7"></span>T-Junction</div>
+      <div class="legend-item"><span class="legend-color" style="background: #4c8fc7"></span>Y-Junction Y</div>
+      <div class="legend-item"><span class="legend-color" style="background: #4080b8"></span>Cross Junction</div>
+      <div class="legend-item"><span class="legend-color" style="background: #e8a847"></span>Slope ⛰</div>
+      <div class="legend-item"><span class="legend-color" style="background: #a6a6a6"></span>Open Platform</div>
+      <div class="legend-item"><span class="legend-color" style="background: #8b4513"></span>Obstacle</div>
+      <div class="legend-item"><span class="legend-color" style="background: #6b7fc7"></span>Merge M</div>
+      <div class="legend-item"><span class="legend-color" style="background: #c74c8f"></span>One-Way Gate →</div>
+      <div class="legend-item"><span class="legend-color" style="background: #c7478f"></span>Loop-de-Loop ∞</div>
+      <div class="legend-item"><span class="legend-color" style="background: #8f47c7"></span>Half-Pipe ∪</div>
+      <div class="legend-item"><span class="legend-color" style="background: #ff4444"></span>Launch Pad ⚡</div>
+      <div class="legend-item"><span class="legend-color" style="background: #7fc76b"></span>Bridge 🌉</div>
+      <div class="legend-item"><span class="legend-color" style="background: #4c6bc7"></span>Tunnel 🚇</div>
+      <div style="margin-top: 10px;"><em>Note: Lighter shades indicate higher elevation</em></div>
+    </div>
+  </div>
+</body>
+</html>
