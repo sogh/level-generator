@@ -225,7 +225,14 @@ pub fn generate(params: &GeneratorParams) -> Level {
 
     // Generate marble tile grid for marble mode
     let marble_tiles = if matches!(params.mode, GenerationMode::Marble) {
-        let mut tiles = grid_to_marble_tiles(&grid, &rooms, params.enable_elevation);
+        // Create elevation map for corridors if elevation is enabled
+        let elevation_map = if params.enable_elevation {
+            create_corridor_elevation_map(&grid, &rooms, width as usize, height as usize)
+        } else {
+            vec![vec![0; width as usize]; height as usize]
+        };
+        
+        let mut tiles = grid_to_marble_tiles(&grid, &rooms, params.enable_elevation, &elevation_map);
         
         // Place obstacles in large rooms if enabled
         if params.enable_obstacles {
@@ -250,6 +257,136 @@ fn intersects_with_margin(a: &Room, b: &Room, margin: i32) -> bool {
         elevation: a.elevation,
     };
     a_expanded.intersects(b)
+}
+
+/// Create elevation map for corridors between rooms with different elevations
+/// This creates smooth transitions with slope tiles where elevation changes
+fn create_corridor_elevation_map(
+    grid: &Grid,
+    rooms: &[Room],
+    width: usize,
+    height: usize,
+) -> Vec<Vec<i32>> {
+    use std::collections::{VecDeque, HashMap};
+    
+    let mut elevation_map = vec![vec![0i32; width]; height];
+    let mut distance_map = vec![vec![i32::MAX; width]; height];
+    
+    // First, assign elevations and distances to all room tiles
+    for room in rooms {
+        let room_elev = room.elevation.unwrap_or(0);
+        for y in room.y..room.y + room.h {
+            for x in room.x..room.x + room.w {
+                if y >= 0 && (y as usize) < height && x >= 0 && (x as usize) < width {
+                    elevation_map[y as usize][x as usize] = room_elev;
+                    distance_map[y as usize][x as usize] = 0; // Room tiles have distance 0
+                }
+            }
+        }
+    }
+    
+    // Multi-source BFS to find nearest room for each corridor tile
+    let mut queue: VecDeque<(usize, usize, i32, i32)> = VecDeque::new(); // (x, y, distance, elevation)
+    
+    // Start from all room tiles
+    for room in rooms {
+        let room_elev = room.elevation.unwrap_or(0);
+        for y in room.y..room.y + room.h {
+            for x in room.x..room.x + room.w {
+                if y >= 0 && (y as usize) < height && x >= 0 && (x as usize) < width {
+                    if grid[y as usize][x as usize] == TILE_FLOOR {
+                        queue.push_back((x as usize, y as usize, 0, room_elev));
+                    }
+                }
+            }
+        }
+    }
+    
+    // BFS to propagate elevations from rooms to corridors
+    while let Some((x, y, dist, elev)) = queue.pop_front() {
+        // Skip if we've already found a shorter path to this tile
+        if dist > distance_map[y][x] {
+            continue;
+        }
+        
+        for (dx, dy) in [(0i32, 1i32), (0, -1), (1, 0), (-1, 0)] {
+            let nx = x as i32 + dx;
+            let ny = y as i32 + dy;
+            
+            if ny >= 0 && ny < height as i32 && nx >= 0 && nx < width as i32 {
+                let nux = nx as usize;
+                let nuy = ny as usize;
+                
+                if grid[nuy][nux] == TILE_FLOOR {
+                    let new_dist = dist + 1;
+                    if new_dist < distance_map[nuy][nux] {
+                        distance_map[nuy][nux] = new_dist;
+                        elevation_map[nuy][nux] = elev;
+                        queue.push_back((nux, nuy, new_dist, elev));
+                    }
+                }
+            }
+        }
+    }
+    
+    // Second pass: smooth out large elevation jumps iteratively
+    // Keep smoothing until no tile has a neighbor with elevation difference > 1
+    let max_iterations = 50;
+    for _iter in 0..max_iterations {
+        let mut changes_made = false;
+        let mut new_elevations: HashMap<(usize, usize), i32> = HashMap::new();
+        
+        for y in 0..height {
+            for x in 0..width {
+                if grid[y][x] != TILE_FLOOR {
+                    continue;
+                }
+                
+                let current_elev = elevation_map[y][x];
+                let current_dist = distance_map[y][x];
+                
+                // Check all neighbors for large jumps
+                for (dx, dy) in [(0i32, 1i32), (0, -1), (1, 0), (-1, 0)] {
+                    let nx = x as i32 + dx;
+                    let ny = y as i32 + dy;
+                    
+                    if ny >= 0 && (ny as usize) < height && nx >= 0 && (nx as usize) < width {
+                        if grid[ny as usize][nx as usize] == TILE_FLOOR {
+                            let neighbor_elev = elevation_map[ny as usize][nx as usize];
+                            let neighbor_dist = distance_map[ny as usize][nx as usize];
+                            let diff = neighbor_elev - current_elev;
+                            
+                            // If there's a jump > 1, we need to insert intermediate elevations
+                            if diff.abs() > 1 {
+                                // Adjust this tile if it's farther from a room OR same distance
+                                if current_dist >= neighbor_dist {
+                                    let dir = diff.signum();
+                                    let new_elev = current_elev + dir;
+                                    // Only update if we haven't already scheduled a change
+                                    if !new_elevations.contains_key(&(x, y)) {
+                                        new_elevations.insert((x, y), new_elev);
+                                        changes_made = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Apply all changes
+        for ((x, y), new_elev) in &new_elevations {
+            elevation_map[*y][*x] = *new_elev;
+        }
+        
+        if !changes_made {
+            break; // No more large jumps, we're done
+        }
+    }
+    
+    elevation_map
 }
 
 /// Place obstacles in large rooms
@@ -302,7 +439,12 @@ fn place_obstacles_in_rooms(
 }
 
 /// Convert a character grid to a marble tile grid with intelligent tile type detection
-fn grid_to_marble_tiles(grid: &Grid, rooms: &[Room], enable_elevation: bool) -> Vec<Vec<MarbleTile>> {
+fn grid_to_marble_tiles(
+    grid: &Grid, 
+    _rooms: &[Room], 
+    enable_elevation: bool,
+    elevation_map: &[Vec<i32>]
+) -> Vec<Vec<MarbleTile>> {
     use crate::tiles::TileType;
     
     let height = grid.len();
@@ -319,17 +461,13 @@ fn grid_to_marble_tiles(grid: &Grid, rooms: &[Room], enable_elevation: bool) -> 
         }
     };
     
-    // Helper to find which room a point belongs to
-    let find_room_elevation = |x: i32, y: i32| -> i32 {
-        if !enable_elevation {
-            return 0;
+    // Get elevation from the map
+    let get_elevation = |x: i32, y: i32| -> i32 {
+        if y >= 0 && (y as usize) < height && x >= 0 && (x as usize) < width {
+            elevation_map[y as usize][x as usize]
+        } else {
+            0
         }
-        for room in rooms {
-            if x >= room.x && x < room.x + room.w && y >= room.y && y < room.y + room.h {
-                return room.elevation.unwrap_or(0);
-            }
-        }
-        0 // Default to ground level for corridors
     };
     
     // First pass: detect tile types based on neighbors
@@ -350,8 +488,8 @@ fn grid_to_marble_tiles(grid: &Grid, rooms: &[Room], enable_elevation: bool) -> 
             
             let connection_count = [north, south, east, west].iter().filter(|&&b| b).count();
             
-            // Determine base elevation for this tile
-            let base_elevation = find_room_elevation(ix, iy);
+            // Determine base elevation for this tile from the elevation map
+            let base_elevation = get_elevation(ix, iy);
             
             let (tile_type, rotation) = match connection_count {
                 0 | 1 => (TileType::OpenPlatform, 0), // Isolated or dead-end
@@ -400,44 +538,41 @@ fn grid_to_marble_tiles(grid: &Grid, rooms: &[Room], enable_elevation: bool) -> 
     if enable_elevation {
         for y in 0..height {
             for x in 0..width {
-                if marble_grid[y][x].tile_type == TileType::Empty {
+                let tile = &marble_grid[y][x];
+                if tile.tile_type == TileType::Empty {
                     continue;
                 }
                 
                 let ix = x as i32;
                 let iy = y as i32;
-                let current_elev = marble_grid[y][x].elevation;
+                let current_elev = tile.elevation;
                 
-                // Check for elevation changes in adjacent tiles
-                for (dy, dx, dir_rot) in [((-1, 0, 0)), ((1, 0, 0)), ((0, 1, 1)), ((0, -1, 1))] {
-                    let nx = ix + dx;
-                    let ny = iy + dy;
-                    
-                    if ny >= 0 && (ny as usize) < height && nx >= 0 && (nx as usize) < width {
-                        let neighbor = &marble_grid[ny as usize][nx as usize];
-                        if neighbor.tile_type != TileType::Empty {
-                            let elev_diff = neighbor.elevation - current_elev;
-                            
-                            // If there's a +1 elevation difference, mark current as slope up
-                            if elev_diff == 1 && marble_grid[y][x].tile_type == TileType::Straight {
-                                marble_grid[y][x] = MarbleTile::with_params(
-                                    TileType::SlopeUp,
-                                    current_elev,
-                                    dir_rot,
-                                    true
-                                );
-                            }
-                            // If there's a -1 elevation difference, mark current as slope down
-                            else if elev_diff == -1 && marble_grid[y][x].tile_type == TileType::Straight {
-                                marble_grid[y][x] = MarbleTile::with_params(
-                                    TileType::SlopeDown,
-                                    current_elev,
-                                    dir_rot,
-                                    true
-                                );
-                            }
-                        }
-                    }
+                // Only convert simple tiles to slopes (not junctions or curves which need special handling)
+                if !matches!(tile.tile_type, TileType::Straight | TileType::OpenPlatform | TileType::CrossJunction) {
+                    continue;
+                }
+                
+                // Check each direction for elevation changes (±1)
+                // North/South (vertical)
+                if (is_floor(ix, iy - 1) && (get_elevation(ix, iy - 1) - current_elev).abs() == 1) ||
+                   (is_floor(ix, iy + 1) && (get_elevation(ix, iy + 1) - current_elev).abs() == 1) {
+                    marble_grid[y][x] = MarbleTile::with_params(
+                        TileType::Slope,
+                        current_elev,
+                        0, // Vertical orientation
+                        true
+                    );
+                    continue;
+                }
+                // East/West (horizontal)
+                if (is_floor(ix + 1, iy) && (get_elevation(ix + 1, iy) - current_elev).abs() == 1) ||
+                   (is_floor(ix - 1, iy) && (get_elevation(ix - 1, iy) - current_elev).abs() == 1) {
+                    marble_grid[y][x] = MarbleTile::with_params(
+                        TileType::Slope,
+                        current_elev,
+                        1, // Horizontal orientation
+                        true
+                    );
                 }
             }
         }

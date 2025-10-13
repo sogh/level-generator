@@ -28,8 +28,7 @@ fn tile_color(tile_type: &TileType) -> &'static str {
         TileType::TJunction => "#4c8fc7",
         TileType::YJunction => "#4c8fc7",
         TileType::CrossJunction => "#4080b8",
-        TileType::SlopeUp => "#e88d14",
-        TileType::SlopeDown => "#e8a847",
+        TileType::Slope => "#e8a847",
         TileType::OpenPlatform => "#a6a6a6",
         TileType::Obstacle => "#8b4513",
         TileType::Merge => "#6b7fc7",
@@ -111,12 +110,12 @@ fn render_tile_svg(tile: &MarbleTile, x: usize, y: usize, svg: &mut String) {
     }
     
     // Add tile type indicator for special tiles
-    if matches!(tile.tile_type, TileType::SlopeUp | TileType::SlopeDown) {
+    if matches!(tile.tile_type, TileType::Slope) {
         let (cx, cy) = to_isometric(fx + 0.5, fy + 0.5, fz);
-        let arrow = if tile.tile_type == TileType::SlopeUp { "↗" } else { "↘" };
+        // Show a slope indicator (⛰ or ⇅)
         svg.push_str(&format!(
-            "  <text x=\"{}\" y=\"{}\" font-size=\"16\" fill=\"#fff\" text-anchor=\"middle\" dominant-baseline=\"middle\">{}</text>\n",
-            cx, cy, arrow
+            "  <text x=\"{}\" y=\"{}\" font-size=\"16\" fill=\"#fff\" text-anchor=\"middle\" dominant-baseline=\"middle\">⛰</text>\n",
+            cx, cy
         ));
     }
 }
@@ -199,8 +198,7 @@ pub fn generate_html(level: &Level) -> String {
     html.push_str(&format!("      <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Straight Path</div>\n", tile_color(&TileType::Straight)));
     html.push_str(&format!("      <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Curve</div>\n", tile_color(&TileType::Curve90)));
     html.push_str(&format!("      <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Junction</div>\n", tile_color(&TileType::TJunction)));
-    html.push_str(&format!("      <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Slope Up ↗</div>\n", tile_color(&TileType::SlopeUp)));
-    html.push_str(&format!("      <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Slope Down ↘</div>\n", tile_color(&TileType::SlopeDown)));
+    html.push_str(&format!("      <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Slope ⛰</div>\n", tile_color(&TileType::Slope)));
     html.push_str(&format!("      <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Open Platform</div>\n", tile_color(&TileType::OpenPlatform)));
     html.push_str("      <div style=\"margin-top: 10px;\"><em>Note: Lighter shades indicate higher elevation</em></div>\n");
     html.push_str("    </div>\n");

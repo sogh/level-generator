@@ -20,10 +20,8 @@ pub enum TileType {
     YJunction,
     /// Cross-shaped junction (4-way)
     CrossJunction,
-    /// Upward slope (increases elevation by 1)
-    SlopeUp,
-    /// Downward slope (decreases elevation by 1)
-    SlopeDown,
+    /// Slope (connects two elevations differing by 1)
+    Slope,
     /// Open platform with no walls
     OpenPlatform,
     /// Static obstacle (pillar, bumper)
@@ -59,8 +57,7 @@ impl TileType {
                 | TileType::TJunction
                 | TileType::YJunction
                 | TileType::CrossJunction
-                | TileType::SlopeUp
-                | TileType::SlopeDown
+                | TileType::Slope
                 | TileType::Merge
                 | TileType::LoopDeLoop
         )
@@ -184,8 +181,7 @@ impl MarbleTile {
                 Direction::South,
                 Direction::West,
             ],
-            TileType::SlopeUp => vec![Direction::North, Direction::South],
-            TileType::SlopeDown => vec![Direction::North, Direction::South],
+            TileType::Slope => vec![Direction::North, Direction::South],
             TileType::OpenPlatform => vec![
                 Direction::North,
                 Direction::East,
@@ -223,12 +219,11 @@ impl MarbleTile {
         if !other.connects(direction.opposite()) {
             return false;
         }
-        // For slopes, check elevation compatibility
-        match (&self.tile_type, &other.tile_type, direction) {
-            (TileType::SlopeUp, _, _) => other.elevation == self.elevation + 1,
-            (TileType::SlopeDown, _, _) => other.elevation == self.elevation - 1,
-            (_, TileType::SlopeUp, _) => self.elevation == other.elevation - 1,
-            (_, TileType::SlopeDown, _) => self.elevation == other.elevation + 1,
+        // For slopes, check elevation compatibility (diff of ±1)
+        match (&self.tile_type, &other.tile_type) {
+            (TileType::Slope, _) | (_, TileType::Slope) => {
+                (self.elevation - other.elevation).abs() <= 1
+            }
             _ => self.elevation == other.elevation,
         }
     }
@@ -288,12 +283,12 @@ mod tests {
     #[test]
     fn test_slope_compatibility() {
         let ground = MarbleTile::with_params(TileType::Straight, 0, 0, true);
-        let slope_up = MarbleTile::with_params(TileType::SlopeUp, 0, 0, true);
+        let slope = MarbleTile::with_params(TileType::Slope, 0, 0, true);
         let elevated = MarbleTile::with_params(TileType::Straight, 1, 0, true);
 
-        // Slope should connect ground (0) to elevated (1)
-        assert!(slope_up.compatible_with(&elevated, Direction::North));
-        assert!(!slope_up.compatible_with(&ground, Direction::North));
+        // Slope at elevation 0 should connect to both ground (0) and elevated (1)
+        assert!(slope.compatible_with(&ground, Direction::North));
+        assert!(slope.compatible_with(&elevated, Direction::North));
     }
 }
 

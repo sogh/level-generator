@@ -1,75 +1,69 @@
 {
   "width": 50,
   "height": 25,
-  "seed": 12345,
+  "seed": 3,
   "rooms": [
     {
-      "x": 2,
+      "x": 7,
+      "y": 8,
+      "w": 8,
+      "h": 5
+    },
+    {
+      "x": 14,
+      "y": 16,
+      "w": 4,
+      "h": 7
+    },
+    {
+      "x": 20,
       "y": 9,
-      "w": 8,
-      "h": 10,
-      "elevation": 1
-    },
-    {
-      "x": 12,
-      "y": 10,
       "w": 7,
-      "h": 8,
-      "elevation": 0
+      "h": 7
     },
     {
-      "x": 22,
-      "y": 10,
-      "w": 8,
-      "h": 8,
-      "elevation": -2
+      "x": 29,
+      "y": 15,
+      "w": 6,
+      "h": 7
     },
     {
       "x": 31,
-      "y": 7,
+      "y": 8,
       "w": 4,
-      "h": 4,
-      "elevation": 0
+      "h": 5
     },
     {
-      "x": 39,
-      "y": 16,
-      "w": 7,
-      "h": 6,
-      "elevation": 1
-    },
-    {
-      "x": 42,
-      "y": 2,
-      "w": 5,
-      "h": 9,
-      "elevation": -2
+      "x": 40,
+      "y": 7,
+      "w": 8,
+      "h": 4
     }
   ],
   "tiles": [
     "##################################################",
     "##################################################",
-    "##########################################.....###",
-    "##########################################.....###",
-    "##########################################.....###",
-    "##########################################.....###",
-    "##########################.##############......###",
-    "##########################...##....######......###",
-    "##########################.....................###",
-    "##........###############......................###",
-    "##........##.......###.........................###",
-    "##........##.......###........##########.....#####",
-    "##........##.......###........###########...######",
-    "##............................###########...######",
-    "##............................###########...######",
-    "##............................###########...######",
-    "##........##.......###........#########.......####",
-    "##........##.......###........#########.......####",
-    "##........#############################.......####",
-    "#######################################.......####",
-    "#######################################.......####",
-    "#######################################.......####",
     "##################################################",
+    "##################################################",
+    "##################################################",
+    "##################################################",
+    "#################################.################",
+    "################################....####........##",
+    "#######........################.................##",
+    "#######..........###.......####.................##",
+    "#######....................####.................##",
+    "#######....................####.....##############",
+    "#######....................####....###############",
+    "###############............####...################",
+    "###############....#.......####...################",
+    "###############...##.......##......###############",
+    "##############....####....###......###############",
+    "##############....####.............###############",
+    "##############....####.............###############",
+    "##############....#####............###############",
+    "##############....#####...###......###############",
+    "##############....#####.#####......###############",
+    "##############....################################",
     "##################################################",
     "##################################################"
   ],
@@ -1074,38 +1068,38 @@
         "metadata": ""
       },
       {
-        "tile_type": "Curve90",
-        "elevation": -2,
-        "rotation": 1,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 2,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 2,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 2,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "Curve90",
-        "elevation": -2,
-        "rotation": 2,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -1426,38 +1420,38 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -1778,38 +1772,38 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -2130,38 +2124,38 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -2187,6 +2181,55 @@
       }
     ],
     [
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
       {
         "tile_type": "Empty",
         "elevation": 0,
@@ -2475,55 +2518,6 @@
         "metadata": ""
       },
       {
-        "tile_type": "Curve90",
-        "elevation": 0,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
         "tile_type": "Empty",
         "elevation": 0,
         "rotation": 0,
@@ -2722,9 +2716,58 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
         "elevation": 0,
         "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
@@ -2757,6 +2800,20 @@
         "metadata": ""
       },
       {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
         "tile_type": "Curve90",
         "elevation": 0,
         "rotation": 1,
@@ -2778,101 +2835,38 @@
         "metadata": ""
       },
       {
-        "tile_type": "Curve90",
+        "tile_type": "TJunction",
         "elevation": 0,
         "rotation": 2,
         "has_walls": true,
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
+        "tile_type": "TJunction",
         "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
+        "rotation": 2,
+        "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "TJunction",
         "elevation": 0,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
+        "rotation": 2,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
+        "elevation": 0,
+        "rotation": 2,
         "has_walls": true,
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
+        "tile_type": "Curve90",
         "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
+        "rotation": 2,
+        "has_walls": true,
         "metadata": ""
       },
       {
@@ -2941,140 +2935,175 @@
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
+        "tile_type": "Curve90",
         "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
+        "rotation": 1,
+        "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
         "elevation": 0,
         "rotation": 1,
         "has_walls": true,
@@ -3095,34 +3124,6 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
         "tile_type": "CrossJunction",
         "elevation": 0,
         "rotation": 0,
@@ -3165,16 +3166,9 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
+        "tile_type": "CrossJunction",
         "elevation": 0,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 2,
+        "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
@@ -3187,44 +3181,44 @@
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
-        "tile_type": "Obstacle",
-        "elevation": -2,
+        "tile_type": "CrossJunction",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": false,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "TJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 3,
         "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
         "metadata": ""
       },
       {
@@ -3258,168 +3252,42 @@
         "metadata": ""
       },
       {
-        "tile_type": "Curve90",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
         "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
         "elevation": 0,
         "rotation": 1,
         "has_walls": true,
@@ -3475,100 +3343,16 @@
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
         "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 2,
         "has_walls": true,
         "metadata": ""
       },
@@ -3577,92 +3361,6 @@
         "elevation": 0,
         "rotation": 0,
         "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      }
-    ],
-    [
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Obstacle",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 3,
-        "has_walls": true,
         "metadata": ""
       },
       {
@@ -3750,281 +3448,6 @@
         "metadata": ""
       },
       {
-        "tile_type": "Curve90",
-        "elevation": -2,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      }
-    ],
-    [
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
         "tile_type": "Empty",
         "elevation": 0,
         "rotation": 0,
@@ -4074,167 +3497,6 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Obstacle",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
         "tile_type": "CrossJunction",
         "elevation": 0,
         "rotation": 0,
@@ -4252,486 +3514,6 @@
         "tile_type": "CrossJunction",
         "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 0,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      }
-    ],
-    [
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      }
-    ],
-    [
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 2,
         "has_walls": true,
         "metadata": ""
       },
@@ -4787,204 +3569,8 @@
       {
         "tile_type": "TJunction",
         "elevation": 0,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
         "rotation": 3,
         "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
         "metadata": ""
       },
       {
@@ -5018,244 +3604,6 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Obstacle",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
         "tile_type": "Empty",
         "elevation": 0,
         "rotation": 0,
@@ -5305,6 +3653,125 @@
         "metadata": ""
       },
       {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
         "tile_type": "TJunction",
         "elevation": 0,
         "rotation": 3,
@@ -5337,6 +3804,125 @@
         "elevation": 0,
         "rotation": 0,
         "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
         "metadata": ""
       },
       {
@@ -5370,202 +3956,6 @@
         "metadata": ""
       },
       {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Obstacle",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
         "tile_type": "Empty",
         "elevation": 0,
         "rotation": 0,
@@ -5584,197 +3974,6 @@
         "elevation": 0,
         "rotation": 0,
         "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      }
-    ],
-    [
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 3,
-        "has_walls": true,
         "metadata": ""
       },
       {
@@ -5834,6 +4033,97 @@
         "metadata": ""
       },
       {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
         "tile_type": "TJunction",
         "elevation": 0,
         "rotation": 3,
@@ -5862,57 +4152,43 @@
         "metadata": ""
       },
       {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
         "tile_type": "TJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 1,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": -2,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
+        "tile_type": "Curve90",
+        "elevation": 0,
         "rotation": 3,
         "has_walls": true,
         "metadata": ""
@@ -5981,52 +4257,10 @@
         "metadata": ""
       },
       {
-        "tile_type": "Curve90",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
+        "tile_type": "Empty",
+        "elevation": 0,
         "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 1,
-        "rotation": 2,
-        "has_walls": true,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -6074,77 +4308,168 @@
         "metadata": ""
       },
       {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
         "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
+        "elevation": 0,
+        "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "Obstacle",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": false,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
         "elevation": 0,
         "rotation": 0,
         "has_walls": true,
@@ -6153,118 +4478,6 @@
       {
         "tile_type": "TJunction",
         "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 0,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": -2,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": -2,
         "rotation": 3,
         "has_walls": true,
         "metadata": ""
@@ -6298,185 +4511,29 @@
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
         "tile_type": "TJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 1,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 3,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
         "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      }
-    ],
-    [
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "Curve90",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 3,
         "has_walls": true,
         "metadata": ""
@@ -6556,181 +4613,6 @@
         "elevation": 0,
         "rotation": 0,
         "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 1,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 3,
-        "has_walls": true,
         "metadata": ""
       },
       {
@@ -6869,6 +4751,188 @@
         "metadata": ""
       },
       {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
         "tile_type": "Empty",
         "elevation": 0,
         "rotation": 0,
@@ -6930,7 +4994,9 @@
         "rotation": 0,
         "has_walls": false,
         "metadata": ""
-      },
+      }
+    ],
+    [
       {
         "tile_type": "Empty",
         "elevation": 0,
@@ -7038,51 +5104,1275 @@
       },
       {
         "tile_type": "TJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 1,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      }
+    ],
+    [
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      }
+    ],
+    [
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      }
+    ],
+    [
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 2,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "Obstacle",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": false,
         "metadata": ""
       },
       {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
         "tile_type": "TJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 3,
         "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -7214,227 +6504,227 @@
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
         "tile_type": "TJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 1,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "CrossJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "TJunction",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 3,
         "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -7566,227 +6856,227 @@
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
+        "tile_type": "TJunction",
         "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
+        "rotation": 1,
+        "has_walls": true,
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
+        "tile_type": "CrossJunction",
         "elevation": 0,
         "rotation": 0,
-        "has_walls": false,
+        "has_walls": true,
         "metadata": ""
       },
       {
-        "tile_type": "Empty",
+        "tile_type": "CrossJunction",
         "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Empty",
-        "elevation": 0,
-        "rotation": 0,
-        "has_walls": false,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 1,
         "rotation": 0,
         "has_walls": true,
         "metadata": ""
       },
       {
         "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "TJunction",
-        "elevation": 1,
-        "rotation": 0,
-        "has_walls": true,
-        "metadata": ""
-      },
-      {
-        "tile_type": "Curve90",
-        "elevation": 1,
+        "elevation": 0,
         "rotation": 3,
         "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
         "metadata": ""
       },
       {
@@ -7918,6 +7208,167 @@
         "metadata": ""
       },
       {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
         "tile_type": "Empty",
         "elevation": 0,
         "rotation": 0,
@@ -7943,6 +7394,549 @@
         "elevation": 0,
         "rotation": 0,
         "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      }
+    ],
+    [
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 1,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "CrossJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "OpenPlatform",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      }
+    ],
+    [
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Empty",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": false,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "TJunction",
+        "elevation": 0,
+        "rotation": 0,
+        "has_walls": true,
+        "metadata": ""
+      },
+      {
+        "tile_type": "Curve90",
+        "elevation": 0,
+        "rotation": 3,
+        "has_walls": true,
         "metadata": ""
       },
       {

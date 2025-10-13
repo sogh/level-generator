@@ -120,8 +120,7 @@ The marble mode supports the following tile types:
 - `TJunction` - T-shaped 3-way junction
 - `YJunction` - Y-shaped smooth 3-way split
 - `CrossJunction` - 4-way intersection
-- `SlopeUp` - Upward incline (+1 elevation)
-- `SlopeDown` - Downward decline (-1 elevation)
+- `Slope` - Incline connecting two elevations (±1 level difference)
 - `OpenPlatform` - Open area with no walls
 - `Obstacle` - Static obstacle (pillar, bumper)
 - `Merge` - Multiple inputs converge to one output
@@ -138,7 +137,7 @@ The `--html-path` option generates an interactive isometric HTML/SVG visualizati
 - **3D perspective** of the level with proper depth sorting
 - **Elevation shading** - lighter tiles are higher
 - **Wall rendering** - vertical faces show enclosed paths
-- **Tile indicators** - arrows for slopes (↗ ↘)
+- **Tile indicators** - slope icon (⛰) for inclines
 - **Color coding** by tile type (straight paths, curves, junctions, slopes, obstacles)
 - **Legend** explaining tile types and visual elements
 
