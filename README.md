@@ -22,7 +22,76 @@ Requires Rust and Cargo.
 cargo build
 ```
 
-## Usage
+## Library Usage
+
+Add to your `Cargo.toml`:
+
+```toml
+[dependencies]
+level-generator = "0.1.0"
+```
+
+### Basic Example
+
+```rust
+use level_generator::{generate, GeneratorParams, GenerationMode};
+
+let params = GeneratorParams {
+    width: 60,
+    height: 30,
+    rooms: 10,
+    mode: GenerationMode::Classic,
+    seed: Some(42),
+    ..Default::default()
+};
+
+let level = generate(&params);
+```
+
+### Marble Track with Elevation
+
+```rust
+use level_generator::{generate, GeneratorParams, GenerationMode};
+
+let params = GeneratorParams {
+    width: 80,
+    height: 40,
+    rooms: 12,
+    mode: GenerationMode::Marble,
+    enable_elevation: true,
+    max_elevation: 3,
+    enable_obstacles: true,
+    obstacle_density: 0.5,
+    ..Default::default()
+};
+
+let level = generate(&params);
+
+// Access marble tiles
+if let Some(tiles) = &level.marble_tiles {
+    for (y, row) in tiles.iter().enumerate() {
+        for (x, tile) in row.iter().enumerate() {
+            println!("Tile at ({}, {}): {:?} at elevation {}", 
+                     x, y, tile.tile_type, tile.elevation);
+        }
+    }
+}
+```
+
+### Generate Visualization
+
+```rust
+use level_generator::{generate, generate_html, GeneratorParams};
+use std::fs;
+
+let level = generate(&GeneratorParams::default());
+let html = generate_html(&level);
+fs::write("level.html", html)?;
+```
+
+See the `examples/` directory for more complete examples.
+
+## CLI Usage (as installed binary)
 
 ```bash
 # Show ASCII preview only

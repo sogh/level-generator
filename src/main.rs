@@ -1,3 +1,6 @@
+#[cfg(not(feature = "cli"))]
+compile_error!("The binary requires the 'cli' feature. Run with: cargo build --features cli");
+
 use clap::Parser;
 use std::fs;
 use std::path::Path;

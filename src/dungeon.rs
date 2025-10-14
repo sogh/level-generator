@@ -124,6 +124,26 @@ pub struct GeneratorParams {
     pub obstacle_density: f32,
 }
 
+impl Default for GeneratorParams {
+    fn default() -> Self {
+        Self {
+            width: 80,
+            height: 25,
+            rooms: 12,
+            min_room: 4,
+            max_room: 10,
+            seed: None,
+            mode: GenerationMode::Classic,
+            channel_width: 2,
+            corner_radius: 2,
+            enable_elevation: false,
+            max_elevation: 2,
+            enable_obstacles: false,
+            obstacle_density: 0.3,
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy)]
 pub enum GenerationMode {
     Classic,
