@@ -658,6 +658,109 @@ fn draw_tunnel(fx: f32, fy: f32, fz: f32, _rotation: u8, color: &str, svg: &mut 
     ));
 }
 
+/// Generate SVG for a tile in the legend (smaller scale)
+fn generate_legend_tile_svg(tile_type: &TileType) -> String {
+    let size = 24.0; // Smaller size for legend
+    let center = size / 2.0;
+    let size_i = size as i32;
+    let center_i = center as i32;
+    
+    let mut svg = String::new();
+    svg.push_str(&format!("<svg width=\"{}\" height=\"{}\" style=\"display: inline-block; vertical-align: middle;\">", size, size));
+    
+    // Base tile background
+    let color = tile_color(tile_type);
+    svg.push_str(&format!("<rect x=\"2\" y=\"2\" width=\"{}\" height=\"{}\" fill=\"{}\" stroke=\"#444\" stroke-width=\"1\"/>", size_i-4, size_i-4, color));
+    
+    match tile_type {
+        TileType::Straight => {
+            // Horizontal line
+            svg.push_str(&format!("<line x1=\"4\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, size_i-4, center_i));
+        },
+        TileType::Curve90 => {
+            // Curved path
+            svg.push_str(&format!("<path d=\"M 4 {} Q {} 4 {} {}\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/>", center_i, center_i, size_i-4, center_i));
+        },
+        TileType::TJunction => {
+            // T shape
+            svg.push_str(&format!("<line x1=\"4\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, size_i-4, center_i));
+            svg.push_str(&format!("<line x1=\"{}\" y1=\"4\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, center_i, size_i-4));
+        },
+        TileType::YJunction => {
+            // Y shape with central hub
+            svg.push_str(&format!("<circle cx=\"{}\" cy=\"{}\" r=\"2\" fill=\"#fff\"/>", center_i, center_i));
+            svg.push_str(&format!("<line x1=\"4\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, center_i-4, center_i));
+            svg.push_str(&format!("<line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, center_i+4, center_i+8, center_i+4));
+            svg.push_str(&format!("<line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, center_i+4, center_i+8, center_i+8));
+        },
+        TileType::CrossJunction => {
+            // Cross with central hub
+            svg.push_str(&format!("<circle cx=\"{}\" cy=\"{}\" r=\"2\" fill=\"#fff\"/>", center_i, center_i));
+            svg.push_str(&format!("<line x1=\"4\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, size_i-4, center_i));
+            svg.push_str(&format!("<line x1=\"{}\" y1=\"4\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, center_i, size_i-4));
+        },
+        TileType::Slope => {
+            // Slope indicator
+            svg.push_str(&format!("<line x1=\"4\" y1=\"{}\" x2=\"{}\" y2=\"4\" stroke=\"#fff\" stroke-width=\"2\"/>", size_i-4, size_i-4));
+            svg.push_str(&format!("<text x=\"{}\" y=\"{}\" font-size=\"8\" fill=\"#fff\" text-anchor=\"middle\">⛰</text>", center_i, center_i+2));
+        },
+        TileType::OpenPlatform => {
+            // Open area
+            svg.push_str(&format!("<rect x=\"6\" y=\"6\" width=\"{}\" height=\"{}\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1\" stroke-dasharray=\"2,2\"/>", size_i-12, size_i-12));
+        },
+        TileType::Obstacle => {
+            // Cylindrical obstacle
+            svg.push_str(&format!("<circle cx=\"{}\" cy=\"{}\" r=\"6\" fill=\"#666\" stroke=\"#fff\" stroke-width=\"1\"/>", center_i, center_i));
+            svg.push_str(&format!("<circle cx=\"{}\" cy=\"{}\" r=\"4\" fill=\"#888\"/>", center_i, center_i));
+        },
+        TileType::Merge => {
+            // Merge with funnel shape
+            svg.push_str(&format!("<circle cx=\"{}\" cy=\"{}\" r=\"3\" fill=\"#fff\"/>", center_i, center_i));
+            svg.push_str(&format!("<path d=\"M 4 {} L {} {} L {} {}\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/>", center_i, center_i-2, center_i+2, center_i+2, center_i+2));
+            svg.push_str(&format!("<text x=\"{}\" y=\"{}\" font-size=\"6\" fill=\"#000\" text-anchor=\"middle\">M</text>", center_i, center_i+2));
+        },
+        TileType::OneWayGate => {
+            // Gate with arrow
+            svg.push_str(&format!("<line x1=\"4\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, size_i-4, center_i));
+            svg.push_str(&format!("<line x1=\"{}\" y1=\"6\" x2=\"{}\" y2=\"6\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i-4, center_i+4));
+            svg.push_str(&format!("<line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i-2, center_i-2, center_i+2, center_i+2));
+        },
+        TileType::LoopDeLoop => {
+            // Loop indicator
+            svg.push_str(&format!("<circle cx=\"{}\" cy=\"{}\" r=\"6\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, center_i));
+            svg.push_str(&format!("<text x=\"{}\" y=\"{}\" font-size=\"8\" fill=\"#fff\" text-anchor=\"middle\">∞</text>", center_i, center_i+2));
+        },
+        TileType::HalfPipe => {
+            // Half pipe curve
+            svg.push_str(&format!("<path d=\"M 4 {} Q {} {} {} {}\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\"/>", center_i, center_i, center_i+4, size_i-4, center_i));
+            svg.push_str(&format!("<text x=\"{}\" y=\"{}\" font-size=\"6\" fill=\"#fff\" text-anchor=\"middle\">∪</text>", center_i, center_i+2));
+        },
+        TileType::LaunchPad => {
+            // Launch pad with speed lines
+            svg.push_str(&format!("<line x1=\"4\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#fff\" stroke-width=\"2\"/>", center_i, size_i-4, center_i));
+            svg.push_str(&format!("<line x1=\"6\" y1=\"6\" x2=\"8\" y2=\"4\" stroke=\"#fff\" stroke-width=\"1\"/>"));
+            svg.push_str(&format!("<line x1=\"6\" y1=\"8\" x2=\"8\" y2=\"6\" stroke=\"#fff\" stroke-width=\"1\"/>"));
+            svg.push_str(&format!("<text x=\"{}\" y=\"{}\" font-size=\"6\" fill=\"#fff\" text-anchor=\"middle\">⚡</text>", center_i, center_i+2));
+        },
+        TileType::Bridge => {
+            // Bridge deck
+            svg.push_str(&format!("<rect x=\"4\" y=\"{}\" width=\"{}\" height=\"4\" fill=\"#fff\"/>", center_i-2, size_i-8));
+            svg.push_str(&format!("<text x=\"{}\" y=\"{}\" font-size=\"6\" fill=\"#000\" text-anchor=\"middle\">🌉</text>", center_i, center_i+2));
+        },
+        TileType::Tunnel => {
+            // Tunnel entrance
+            svg.push_str(&format!("<path d=\"M 4 {} Q {} 4 {} {}\" stroke=\"#fff\" stroke-width=\"2\" fill=\"#333\"/>", center_i, center_i, size_i-4, center_i));
+            svg.push_str(&format!("<text x=\"{}\" y=\"{}\" font-size=\"6\" fill=\"#fff\" text-anchor=\"middle\">🚇</text>", center_i, center_i+2));
+        },
+        TileType::Empty => {
+            // Empty tile - just background
+        }
+    }
+    
+    svg.push_str("</svg>");
+    svg
+}
+
 /// Generate HTML with embedded SVG for isometric visualization
 pub fn generate_html(level: &Level) -> String {
     let mut html = String::new();
@@ -666,9 +769,9 @@ pub fn generate_html(level: &Level) -> String {
     html.push_str("<!DOCTYPE html>\n");
     html.push_str("<html>\n<head>\n");
     html.push_str("  <meta charset=\"UTF-8\">\n");
-    html.push_str("  <title>Marble Level - Isometric View</title>\n");
+    html.push_str("  <title>Marble Level - Interactive 3D View</title>\n");
     html.push_str("  <style>\n");
-    html.push_str("    body { margin: 0; padding: 20px; background: #1a1a1a; font-family: Arial, sans-serif; }\n");
+    html.push_str("    body { margin: 0; padding: 20px; background: #1a1a1a; font-family: Arial, sans-serif; overflow-x: hidden; }\n");
     html.push_str("    .container { max-width: 1400px; margin: 0 auto; }\n");
     html.push_str("    h1 { color: #fff; text-align: center; }\n");
     html.push_str("    .info { color: #aaa; text-align: center; margin: 10px 0; }\n");
@@ -676,10 +779,51 @@ pub fn generate_html(level: &Level) -> String {
     html.push_str("    .legend { color: #fff; background: #2a2a2a; padding: 15px; border-radius: 5px; margin-top: 20px; }\n");
     html.push_str("    .legend-item { display: inline-block; margin: 5px 15px; }\n");
     html.push_str("    .legend-color { display: inline-block; width: 20px; height: 20px; margin-right: 5px; vertical-align: middle; border: 1px solid #555; }\n");
+    html.push_str("    \n");
+    html.push_str("    /* Interactive Controls */\n");
+    html.push_str("    .controls { position: fixed; top: 20px; right: 20px; background: #2a2a2a; padding: 15px; border-radius: 8px; border: 1px solid #444; z-index: 1000; }\n");
+    html.push_str("    .controls h3 { color: #fff; margin: 0 0 10px 0; font-size: 14px; }\n");
+    html.push_str("    .control-group { margin-bottom: 15px; }\n");
+    html.push_str("    .control-group label { color: #aaa; font-size: 12px; display: block; margin-bottom: 5px; }\n");
+    html.push_str("    .control-group input[type=\"range\"] { width: 100%; margin: 5px 0; }\n");
+    html.push_str("    .control-group button { background: #444; color: #fff; border: 1px solid #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin: 2px; }\n");
+    html.push_str("    .control-group button:hover { background: #555; }\n");
+    html.push_str("    .control-group button:active { background: #333; }\n");
+    html.push_str("    .help-text { color: #666; font-size: 11px; margin-top: 10px; line-height: 1.4; }\n");
+    html.push_str("    \n");
+    html.push_str("    /* SVG Container */\n");
+    html.push_str("    .svg-container { overflow: hidden; border: 2px solid #333; border-radius: 8px; background: #0d0d0d; margin: 20px auto; cursor: grab; }\n");
+    html.push_str("    .svg-container:active { cursor: grabbing; }\n");
+    html.push_str("    .svg-container svg { display: block; margin: 0; border: none; transition: transform 0.1s ease-out; }\n");
     html.push_str("  </style>\n");
     html.push_str("</head>\n<body>\n");
+    
+    // Interactive Controls Panel
+    html.push_str("  <div class=\"controls\">\n");
+    html.push_str("    <h3>3D Navigation</h3>\n");
+    html.push_str("    \n");
+    html.push_str("    <div class=\"control-group\">\n");
+    html.push_str("      <label>Zoom: <span id=\"zoom-value\">100%</span></label>\n");
+    html.push_str("      <input type=\"range\" id=\"zoom-slider\" min=\"25\" max=\"400\" value=\"100\">\n");
+    html.push_str("      <button onclick=\"resetZoom()\">Reset Zoom</button>\n");
+    html.push_str("    </div>\n");
+    html.push_str("    \n");
+    html.push_str("    <div class=\"control-group\">\n");
+    html.push_str("      <button onclick=\"resetView()\">Reset View</button>\n");
+    html.push_str("    </div>\n");
+    html.push_str("    \n");
+    html.push_str("    <div class=\"help-text\">\n");
+    html.push_str("      <strong>Controls:</strong><br>\n");
+    html.push_str("      • <strong>Mouse:</strong> Drag to pan<br>\n");
+    html.push_str("      • <strong>Wheel:</strong> Zoom in/out<br>\n");
+    html.push_str("      • <strong>Keyboard:</strong> Arrow keys to pan<br>\n");
+    html.push_str("      • <strong>+/-:</strong> Zoom in/out<br>\n");
+    html.push_str("      • <strong>R:</strong> Reset view\n");
+    html.push_str("    </div>\n");
+    html.push_str("  </div>\n");
+    
     html.push_str("  <div class=\"container\">\n");
-    html.push_str(&format!("    <h1>Marble Level Generator - Isometric View</h1>\n"));
+    html.push_str(&format!("    <h1>Marble Level Generator - Interactive 3D View</h1>\n"));
     html.push_str(&format!("    <div class=\"info\">Seed: {} | Size: {}×{} | Rooms: {}</div>\n", 
         level.seed, level.width, level.height, level.rooms.len()));
     
@@ -696,9 +840,10 @@ pub fn generate_html(level: &Level) -> String {
         let offset_x = svg_width / 2.0;
         let offset_y = 150.0;
         
-        html.push_str(&format!("    <svg width=\"{}\" height=\"{}\" viewBox=\"0 0 {} {}\">\n",
+        html.push_str("    <div class=\"svg-container\" id=\"svg-container\">\n");
+        html.push_str(&format!("    <svg id=\"level-svg\" width=\"{}\" height=\"{}\" viewBox=\"0 0 {} {}\">\n",
             svg_width, svg_height, svg_width, svg_height));
-        html.push_str(&format!("      <g transform=\"translate({}, {})\">\n", offset_x, offset_y));
+        html.push_str(&format!("      <g id=\"level-group\" transform=\"translate({}, {})\">\n", offset_x, offset_y));
         
         // Render tiles from back to front (isometric painter's algorithm)
         // Sort by y + x to render in correct order
@@ -713,48 +858,49 @@ pub fn generate_html(level: &Level) -> String {
         
         html.push_str("      </g>\n");
         html.push_str("    </svg>\n");
+        html.push_str("    </div>\n");
     } else {
         html.push_str("    <p style=\"color: #fff; text-align: center;\">No marble tile data available. Use --mode marble to generate.</p>\n");
     }
     
-    // Legend with accurate visual representations
+    // Legend with actual tile representations
     html.push_str("    <div class=\"legend\">\n");
-    html.push_str("      <strong>Legend - Accurate Visual Representations:</strong><br>\n");
-    html.push_str("      <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px;\">\n");
+    html.push_str("      <strong>Legend - Tile Representations:</strong><br>\n");
+    html.push_str("      <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;\">\n");
     
     // Basic Path Tiles
-    html.push_str("        <div style=\"border: 1px solid #444; padding: 8px; border-radius: 4px;\">\n");
-    html.push_str("          <strong style=\"color: #fff;\">Basic Paths:</strong><br>\n");
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Straight Path</div>\n", tile_color(&TileType::Straight)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Curved Path</div>\n", tile_color(&TileType::Curve90)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Open Platform</div>\n", tile_color(&TileType::OpenPlatform)));
+    html.push_str("        <div style=\"border: 1px solid #444; padding: 12px; border-radius: 6px;\">\n");
+    html.push_str("          <strong style=\"color: #fff; margin-bottom: 10px; display: block;\">Basic Paths:</strong>\n");
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Straight Path</span></div>\n", generate_legend_tile_svg(&TileType::Straight)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Curved Path</span></div>\n", generate_legend_tile_svg(&TileType::Curve90)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Open Platform</span></div>\n", generate_legend_tile_svg(&TileType::OpenPlatform)));
     html.push_str("        </div>\n");
     
     // Junction Tiles
-    html.push_str("        <div style=\"border: 1px solid #444; padding: 8px; border-radius: 4px;\">\n");
-    html.push_str("          <strong style=\"color: #fff;\">Junctions:</strong><br>\n");
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>T-Junction (3-way)</div>\n", tile_color(&TileType::TJunction)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Y-Junction (smooth)</div>\n", tile_color(&TileType::YJunction)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Cross Junction (4-way)</div>\n", tile_color(&TileType::CrossJunction)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Merge Junction</div>\n", tile_color(&TileType::Merge)));
+    html.push_str("        <div style=\"border: 1px solid #444; padding: 12px; border-radius: 6px;\">\n");
+    html.push_str("          <strong style=\"color: #fff; margin-bottom: 10px; display: block;\">Junctions:</strong>\n");
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">T-Junction (3-way)</span></div>\n", generate_legend_tile_svg(&TileType::TJunction)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Y-Junction (smooth)</span></div>\n", generate_legend_tile_svg(&TileType::YJunction)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Cross Junction (4-way)</span></div>\n", generate_legend_tile_svg(&TileType::CrossJunction)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Merge Junction</span></div>\n", generate_legend_tile_svg(&TileType::Merge)));
     html.push_str("        </div>\n");
     
     // Elevation & Movement
-    html.push_str("        <div style=\"border: 1px solid #444; padding: 8px; border-radius: 4px;\">\n");
-    html.push_str("          <strong style=\"color: #fff;\">Elevation & Movement:</strong><br>\n");
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Slope ⛰</div>\n", tile_color(&TileType::Slope)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Half-Pipe ∪</div>\n", tile_color(&TileType::HalfPipe)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Loop-de-Loop ∞</div>\n", tile_color(&TileType::LoopDeLoop)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Launch Pad ⚡</div>\n", tile_color(&TileType::LaunchPad)));
+    html.push_str("        <div style=\"border: 1px solid #444; padding: 12px; border-radius: 6px;\">\n");
+    html.push_str("          <strong style=\"color: #fff; margin-bottom: 10px; display: block;\">Elevation & Movement:</strong>\n");
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Slope ⛰</span></div>\n", generate_legend_tile_svg(&TileType::Slope)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Half-Pipe ∪</span></div>\n", generate_legend_tile_svg(&TileType::HalfPipe)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Loop-de-Loop ∞</span></div>\n", generate_legend_tile_svg(&TileType::LoopDeLoop)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Launch Pad ⚡</span></div>\n", generate_legend_tile_svg(&TileType::LaunchPad)));
     html.push_str("        </div>\n");
     
     // Control & Structure
-    html.push_str("        <div style=\"border: 1px solid #444; padding: 8px; border-radius: 4px;\">\n");
-    html.push_str("          <strong style=\"color: #fff;\">Control & Structure:</strong><br>\n");
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>One-Way Gate →</div>\n", tile_color(&TileType::OneWayGate)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Obstacle</div>\n", tile_color(&TileType::Obstacle)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Bridge 🌉</div>\n", tile_color(&TileType::Bridge)));
-    html.push_str(&format!("          <div class=\"legend-item\"><span class=\"legend-color\" style=\"background: {}\"></span>Tunnel 🚇</div>\n", tile_color(&TileType::Tunnel)));
+    html.push_str("        <div style=\"border: 1px solid #444; padding: 12px; border-radius: 6px;\">\n");
+    html.push_str("          <strong style=\"color: #fff; margin-bottom: 10px; display: block;\">Control & Structure:</strong>\n");
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">One-Way Gate →</span></div>\n", generate_legend_tile_svg(&TileType::OneWayGate)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Obstacle</span></div>\n", generate_legend_tile_svg(&TileType::Obstacle)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Bridge 🌉</span></div>\n", generate_legend_tile_svg(&TileType::Bridge)));
+    html.push_str(&format!("          <div class=\"legend-item\">{}<span style=\"color: #fff; margin-left: 8px;\">Tunnel 🚇</span></div>\n", generate_legend_tile_svg(&TileType::Tunnel)));
     html.push_str("        </div>\n");
     
     html.push_str("      </div>\n");
@@ -770,6 +916,135 @@ pub fn generate_html(level: &Level) -> String {
     html.push_str("    </div>\n");
     
     html.push_str("  </div>\n");
+    
+    // Interactive JavaScript
+    html.push_str("  <script>\n");
+    html.push_str("    // Global state\n");
+    html.push_str("    let zoom = 1.0;\n");
+    html.push_str("    let panX = 0;\n");
+    html.push_str("    let panY = 0;\n");
+    html.push_str("    let isDragging = false;\n");
+    html.push_str("    let lastMouseX = 0;\n");
+    html.push_str("    let lastMouseY = 0;\n");
+    html.push_str("    \n");
+    html.push_str("    // Get elements\n");
+    html.push_str("    const svg = document.getElementById('level-svg');\n");
+    html.push_str("    const levelGroup = document.getElementById('level-group');\n");
+    html.push_str("    const container = document.getElementById('svg-container');\n");
+    html.push_str("    const zoomSlider = document.getElementById('zoom-slider');\n");
+    html.push_str("    const zoomValue = document.getElementById('zoom-value');\n");
+    html.push_str("    \n");
+    html.push_str("    // Update transform\n");
+    html.push_str("    function updateTransform() {\n");
+    html.push_str("      levelGroup.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;\n");
+    html.push_str("    }\n");
+    html.push_str("    \n");
+    html.push_str("    // Zoom controls\n");
+    html.push_str("    function updateZoom(value) {\n");
+    html.push_str("      zoom = value / 100;\n");
+    html.push_str("      zoomValue.textContent = value + '%';\n");
+    html.push_str("      updateTransform();\n");
+    html.push_str("    }\n");
+    html.push_str("    \n");
+    html.push_str("    function resetZoom() {\n");
+    html.push_str("      zoom = 1.0;\n");
+    html.push_str("      zoomSlider.value = 100;\n");
+    html.push_str("      updateZoom(100);\n");
+    html.push_str("    }\n");
+    html.push_str("    \n");
+    html.push_str("    function resetView() {\n");
+    html.push_str("      zoom = 1.0;\n");
+    html.push_str("      panX = 0;\n");
+    html.push_str("      panY = 0;\n");
+    html.push_str("      zoomSlider.value = 100;\n");
+    html.push_str("      updateZoom(100);\n");
+    html.push_str("      updateTransform();\n");
+    html.push_str("    }\n");
+    html.push_str("    \n");
+    html.push_str("    // Mouse controls\n");
+    html.push_str("    container.addEventListener('mousedown', (e) => {\n");
+    html.push_str("      isDragging = true;\n");
+    html.push_str("      lastMouseX = e.clientX;\n");
+    html.push_str("      lastMouseY = e.clientY;\n");
+    html.push_str("      container.style.cursor = 'grabbing';\n");
+    html.push_str("    });\n");
+    html.push_str("    \n");
+    html.push_str("    document.addEventListener('mousemove', (e) => {\n");
+    html.push_str("      if (!isDragging) return;\n");
+    html.push_str("      \n");
+    html.push_str("      const deltaX = e.clientX - lastMouseX;\n");
+    html.push_str("      const deltaY = e.clientY - lastMouseY;\n");
+    html.push_str("      \n");
+    html.push_str("      panX += deltaX;\n");
+    html.push_str("      panY += deltaY;\n");
+    html.push_str("      \n");
+    html.push_str("      lastMouseX = e.clientX;\n");
+    html.push_str("      lastMouseY = e.clientY;\n");
+    html.push_str("      \n");
+    html.push_str("      updateTransform();\n");
+    html.push_str("    });\n");
+    html.push_str("    \n");
+    html.push_str("    document.addEventListener('mouseup', () => {\n");
+    html.push_str("      isDragging = false;\n");
+    html.push_str("      container.style.cursor = 'grab';\n");
+    html.push_str("    });\n");
+    html.push_str("    \n");
+    html.push_str("    // Wheel zoom\n");
+    html.push_str("    container.addEventListener('wheel', (e) => {\n");
+    html.push_str("      e.preventDefault();\n");
+    html.push_str("      const delta = e.deltaY > 0 ? 0.9 : 1.1;\n");
+    html.push_str("      const newZoom = Math.max(0.25, Math.min(4.0, zoom * delta));\n");
+    html.push_str("      const newZoomPercent = Math.round(newZoom * 100);\n");
+    html.push_str("      zoomSlider.value = newZoomPercent;\n");
+    html.push_str("      updateZoom(newZoomPercent);\n");
+    html.push_str("    });\n");
+    html.push_str("    \n");
+    html.push_str("    // Keyboard controls\n");
+    html.push_str("    document.addEventListener('keydown', (e) => {\n");
+    html.push_str("      const panSpeed = 20;\n");
+    html.push_str("      const zoomSpeed = 10;\n");
+    html.push_str("      \n");
+    html.push_str("      switch(e.key.toLowerCase()) {\n");
+    html.push_str("        case 'ArrowLeft':\n");
+    html.push_str("          panX -= panSpeed;\n");
+    html.push_str("          updateTransform();\n");
+    html.push_str("          break;\n");
+    html.push_str("        case 'ArrowRight':\n");
+    html.push_str("          panX += panSpeed;\n");
+    html.push_str("          updateTransform();\n");
+    html.push_str("          break;\n");
+    html.push_str("        case 'ArrowUp':\n");
+    html.push_str("          panY -= panSpeed;\n");
+    html.push_str("          updateTransform();\n");
+    html.push_str("          break;\n");
+    html.push_str("        case 'ArrowDown':\n");
+    html.push_str("          panY += panSpeed;\n");
+    html.push_str("          updateTransform();\n");
+    html.push_str("          break;\n");
+    html.push_str("        case '+':\n");
+    html.push_str("        case '=':\n");
+    html.push_str("          const zoomIn = Math.min(400, Math.round(zoom * 100) + zoomSpeed);\n");
+    html.push_str("          zoomSlider.value = zoomIn;\n");
+    html.push_str("          updateZoom(zoomIn);\n");
+    html.push_str("          break;\n");
+    html.push_str("        case '-':\n");
+    html.push_str("          const zoomOut = Math.max(25, Math.round(zoom * 100) - zoomSpeed);\n");
+    html.push_str("          zoomSlider.value = zoomOut;\n");
+    html.push_str("          updateZoom(zoomOut);\n");
+    html.push_str("          break;\n");
+    html.push_str("        case 'r':\n");
+    html.push_str("          resetView();\n");
+    html.push_str("          break;\n");
+    html.push_str("      }\n");
+    html.push_str("    });\n");
+    html.push_str("    \n");
+    html.push_str("    // Event listeners\n");
+    html.push_str("    zoomSlider.addEventListener('input', (e) => updateZoom(e.target.value));\n");
+    html.push_str("    \n");
+    html.push_str("    // Initialize\n");
+    html.push_str("    updateTransform();\n");
+    html.push_str("  </script>\n");
+    
     html.push_str("</body>\n</html>");
     
     html
