@@ -458,10 +458,28 @@ fn place_obstacles_in_rooms(
     }
 }
 
+/// Check if a position is on the edge of any room
+fn is_on_room_edge(x: i32, y: i32, rooms: &[Room]) -> bool {
+    for room in rooms {
+        // Check if this position is adjacent to a room (within 1 tile of room boundary)
+        let room_left = room.x - 1;
+        let room_right = room.x + room.w;
+        let room_top = room.y - 1;
+        let room_bottom = room.y + room.h;
+        
+        // Check if position is on the edge of this room
+        if (x >= room_left && x <= room_right && (y == room_top || y == room_bottom)) ||
+           (y >= room_top && y <= room_bottom && (x == room_left || x == room_right)) {
+            return true;
+        }
+    }
+    false
+}
+
 /// Convert a character grid to a marble tile grid with intelligent tile type detection
 fn grid_to_marble_tiles(
     grid: &Grid, 
-    _rooms: &[Room], 
+    rooms: &[Room], 
     enable_elevation: bool,
     elevation_map: &[Vec<i32>]
 ) -> Vec<Vec<MarbleTile>> {
@@ -575,25 +593,34 @@ fn grid_to_marble_tiles(
                     continue;
                 }
                 
+                // Check if this tile is on the edge of a room
+                let is_on_edge = is_on_room_edge(ix, iy, rooms);
+                
                 // Check each direction for elevation changes (±1)
-                // North/South (vertical)
-                if (is_floor(ix, iy - 1) && (get_elevation(ix, iy - 1) - current_elev).abs() == 1) ||
-                   (is_floor(ix, iy + 1) && (get_elevation(ix, iy + 1) - current_elev).abs() == 1) {
+                let has_elevation_change = 
+                    (is_floor(ix, iy - 1) && (get_elevation(ix, iy - 1) - current_elev).abs() == 1) ||
+                    (is_floor(ix, iy + 1) && (get_elevation(ix, iy + 1) - current_elev).abs() == 1) ||
+                    (is_floor(ix + 1, iy) && (get_elevation(ix + 1, iy) - current_elev).abs() == 1) ||
+                    (is_floor(ix - 1, iy) && (get_elevation(ix - 1, iy) - current_elev).abs() == 1);
+                
+                // Only place slopes when connecting different elevations OR on room edges
+                if has_elevation_change || is_on_edge {
+                    // Determine orientation based on the elevation change direction
+                    let vertical_change = 
+                        (is_floor(ix, iy - 1) && (get_elevation(ix, iy - 1) - current_elev).abs() == 1) ||
+                        (is_floor(ix, iy + 1) && (get_elevation(ix, iy + 1) - current_elev).abs() == 1);
+                    
+                    let horizontal_change = 
+                        (is_floor(ix + 1, iy) && (get_elevation(ix + 1, iy) - current_elev).abs() == 1) ||
+                        (is_floor(ix - 1, iy) && (get_elevation(ix - 1, iy) - current_elev).abs() == 1);
+                    
+                    // Prefer vertical orientation if there's a vertical elevation change
+                    let orientation = if vertical_change { 0 } else if horizontal_change { 1 } else { 0 };
+                    
                     marble_grid[y][x] = MarbleTile::with_params(
                         TileType::Slope,
                         current_elev,
-                        0, // Vertical orientation
-                        true
-                    );
-                    continue;
-                }
-                // East/West (horizontal)
-                if (is_floor(ix + 1, iy) && (get_elevation(ix + 1, iy) - current_elev).abs() == 1) ||
-                   (is_floor(ix - 1, iy) && (get_elevation(ix - 1, iy) - current_elev).abs() == 1) {
-                    marble_grid[y][x] = MarbleTile::with_params(
-                        TileType::Slope,
-                        current_elev,
-                        1, // Horizontal orientation
+                        orientation,
                         true
                     );
                 }
