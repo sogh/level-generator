@@ -14,6 +14,18 @@ use level_generator::visualize::to_ascii;
 fn main() {
     let args = Args::parse();
 
+    // Build trend vector if all components are provided
+    let trend_vector = match (args.trend_x, args.trend_y, args.trend_z) {
+        (Some(x), Some(y), Some(z)) => Some((x, y, z)),
+        _ => None,
+    };
+
+    // Build start point if all components are provided
+    let start_point = match (args.start_x, args.start_y, args.start_z) {
+        (Some(x), Some(y), Some(z)) => Some((x, y, z)),
+        _ => None,
+    };
+
     let params = GeneratorParams {
         width: args.width,
         height: args.height,
@@ -32,6 +44,10 @@ fn main() {
         max_elevation: args.max_elevation,
         enable_obstacles: args.enable_obstacles,
         obstacle_density: args.obstacle_density,
+        trend_vector,
+        trend_strength: args.trend_strength,
+        start_point,
+        max_elevation_change: args.max_elevation_change,
     };
 
     let level = generate(&params);

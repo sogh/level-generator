@@ -761,6 +761,424 @@ fn generate_legend_tile_svg(tile_type: &TileType) -> String {
     svg
 }
 
+// ============================================================================
+// PIPE VISUALIZATION FUNCTIONS
+// ============================================================================
+
+/// Pipe rendering constants
+const PIPE_OUTER_RADIUS: f32 = 0.3; // 60% of tile width
+const PIPE_INNER_RADIUS: f32 = 0.2; // 40% of tile width
+
+/// Render a single tile as pipe visualization with proper connectivity
+fn render_tile_svg_pipe(tile: &MarbleTile, x: usize, y: usize, svg: &mut String) {
+    if tile.tile_type == TileType::Empty {
+        return;
+    }
+    
+    let fx = x as f32;
+    let fy = y as f32;
+    let fz = tile.elevation as f32;
+    
+    // Get base color and adjust for elevation
+    let base_color = tile_color(&tile.tile_type);
+    let color = adjust_color_for_elevation(base_color, tile.elevation);
+    
+    // Draw tile-specific pipe shapes with proper connectivity
+    match tile.tile_type {
+        TileType::Straight => {
+            draw_connected_straight_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::Curve90 => {
+            draw_connected_curve_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::TJunction => {
+            draw_connected_t_junction_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::YJunction => {
+            draw_connected_y_junction_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::CrossJunction => {
+            draw_connected_cross_junction_pipe(fx, fy, fz, &color, svg);
+        },
+        TileType::Slope => {
+            draw_connected_slope_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::OpenPlatform => {
+            draw_open_platform_pipe(fx, fy, fz, &color, svg);
+        },
+        TileType::Obstacle => {
+            draw_obstacle_pipe(fx, fy, fz, &color, svg);
+        },
+        TileType::Merge => {
+            draw_connected_merge_junction_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::OneWayGate => {
+            draw_connected_one_way_gate_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::LoopDeLoop => {
+            draw_loop_de_loop_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::HalfPipe => {
+            draw_half_pipe_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::LaunchPad => {
+            draw_launch_pad_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::Bridge => {
+            draw_bridge_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::Tunnel => {
+            draw_tunnel_pipe(fx, fy, fz, tile.rotation, &color, svg);
+        },
+        TileType::Empty => {
+            // Empty tiles are handled by the early return
+        },
+    }
+}
+
+/// Draw a pipe segment from point A to point B with hollow interior
+fn draw_pipe_segment(start_x: f32, start_y: f32, start_z: f32, 
+                    end_x: f32, end_y: f32, end_z: f32, 
+                    color: &str, svg: &mut String) {
+    // Outer pipe walls
+    let (sx_outer, sy_outer) = to_isometric(start_x, start_y, start_z);
+    let (ex_outer, ey_outer) = to_isometric(end_x, end_y, end_z);
+
+    // Inner hollow area
+    let (sx_inner, sy_inner) = to_isometric(start_x, start_y, start_z + 0.1); // Slightly elevated to be visible
+    let (ex_inner, ey_inner) = to_isometric(end_x, end_y, end_z + 0.1);
+
+    // Draw outer pipe walls as thick lines
+    svg.push_str(&format!(
+        "  <line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"{}\" stroke-width=\"{}\" stroke-linecap=\"round\"/>\n",
+        sx_outer, sy_outer, ex_outer, ey_outer, color, TILE_WIDTH * PIPE_OUTER_RADIUS * 2.0
+    ));
+
+    // Draw inner hollow area as a slightly thinner line
+    svg.push_str(&format!(
+        "  <line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" stroke=\"#1a1a1a\" stroke-width=\"{}\" stroke-linecap=\"round\"/>\n",
+        sx_inner, sy_inner, ex_inner, ey_inner, TILE_WIDTH * PIPE_INNER_RADIUS * 2.0
+    ));
+}
+
+/// Draw a connected straight pipe that extends to tile edges
+fn draw_connected_straight_pipe(fx: f32, fy: f32, fz: f32, rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+    
+    match rotation {
+        0 | 2 => { // Vertical - connects to tiles above and below
+            draw_pipe_segment(
+                center_x, center_y - 0.5, center_z,  // From top edge
+                center_x, center_y + 0.5, center_z,    // To bottom edge
+                color, svg
+            );
+        },
+        1 | 3 => { // Horizontal - connects to tiles left and right
+            draw_pipe_segment(
+                center_x - 0.5, center_y, center_z,  // From left edge
+                center_x + 0.5, center_y, center_z,  // To right edge
+                color, svg
+            );
+        },
+        _ => {}
+    }
+}
+
+/// Draw a connected curved pipe (90-degree bend) that extends to tile edges
+fn draw_connected_curve_pipe(fx: f32, fy: f32, fz: f32, rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+
+    // Draw the curved pipe using a path with two arcs
+    let outer_radius = TILE_WIDTH * PIPE_OUTER_RADIUS;
+    let inner_radius = TILE_WIDTH * PIPE_INNER_RADIUS;
+
+    let (start_x, start_y, end_x, end_y, sweep_flag) = match rotation {
+        0 => (center_x, center_y - 0.5, center_x + 0.5, center_y, 1),
+        1 => (center_x + 0.5, center_y, center_x, center_y + 0.5, 1),
+        2 => (center_x, center_y + 0.5, center_x - 0.5, center_y, 1),
+        3 => (center_x - 0.5, center_y, center_x, center_y - 0.5, 1),
+        _ => (center_x, center_y, center_x, center_y, 0),
+    };
+
+    let (start_iso_x, start_iso_y) = to_isometric(start_x, start_y, center_z);
+    let (end_iso_x, end_iso_y) = to_isometric(end_x, end_y, center_z);
+
+    // Outer arc
+    svg.push_str(&format!(
+        "  <path d=\"M {},{} A {},{} 0 0,{} {},{}\" fill=\"none\" stroke=\"{}\" stroke-width=\"{}\" stroke-linecap=\"round\"/>\n",
+        start_iso_x, start_iso_y, outer_radius, outer_radius, sweep_flag, end_iso_x, end_iso_y, color, outer_radius - inner_radius
+    ));
+
+    // Inner arc (hollow part)
+    svg.push_str(&format!(
+        "  <path d=\"M {},{} A {},{} 0 0,{} {},{}\" fill=\"none\" stroke=\"#1a1a1a\" stroke-width=\"{}\" stroke-linecap=\"round\"/>\n",
+        start_iso_x, start_iso_y, inner_radius, inner_radius, sweep_flag, end_iso_x, end_iso_y, inner_radius
+    ));
+}
+
+/// Draw connected T-junction pipe that extends to tile edges
+fn draw_connected_t_junction_pipe(fx: f32, fy: f32, fz: f32, rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+
+    // Draw connecting pipes that extend to tile edges based on rotation
+    match rotation {
+        0 => { // North, East, West
+            draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x + 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+        },
+        1 => { // East, South, North
+            draw_pipe_segment(center_x + 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y + 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y, center_z, color, svg);
+        },
+        2 => { // South, West, East
+            draw_pipe_segment(center_x, center_y + 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x + 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+        },
+        3 => { // West, North, South
+            draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y + 0.5, center_z, center_x, center_y, center_z, color, svg);
+        },
+        _ => {}
+    }
+}
+
+/// Draw connected Y-junction pipe (smooth 3-way split) that extends to tile edges
+fn draw_connected_y_junction_pipe(fx: f32, fy: f32, fz: f32, rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+
+    // Y-shaped connections that extend to tile edges
+    match rotation {
+        0 => { // North to East/West
+            draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x + 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+        },
+        1 => { // East to South/North
+            draw_pipe_segment(center_x + 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y + 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y, center_z, color, svg);
+        },
+        2 => { // South to West/East
+            draw_pipe_segment(center_x, center_y + 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x + 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+        },
+        3 => { // West to North/South
+            draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y, center_z, color, svg);
+            draw_pipe_segment(center_x, center_y + 0.5, center_z, center_x, center_y, center_z, color, svg);
+        },
+        _ => {}
+    }
+}
+
+/// Draw connected cross junction pipe (4-way intersection) that extends to tile edges
+fn draw_connected_cross_junction_pipe(fx: f32, fy: f32, fz: f32, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+
+    // Four connecting pipes that extend to tile edges
+    draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y, center_z, color, svg);
+    draw_pipe_segment(center_x + 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+    draw_pipe_segment(center_x, center_y + 0.5, center_z, center_x, center_y, center_z, color, svg);
+    draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x, center_y, center_z, color, svg);
+}
+
+/// Draw connected slope pipe (angled for elevation change) that extends to tile edges
+fn draw_connected_slope_pipe(fx: f32, fy: f32, fz: f32, rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let start_z = fz + 0.1;
+    let end_z = fz + 0.3; // Higher elevation at end
+
+    let (start_x, start_y, end_x, end_y) = match rotation {
+        0 => (center_x, center_y - 0.5, center_x, center_y + 0.5),
+        1 => (center_x - 0.5, center_y, center_x + 0.5, center_y),
+        2 => (center_x, center_y + 0.5, center_x, center_y - 0.5),
+        3 => (center_x + 0.5, center_y, center_x - 0.5, center_y),
+        _ => (center_x, center_y, center_x, center_y),
+    };
+
+    draw_pipe_segment(start_x, start_y, start_z, end_x, end_y, end_z, color, svg);
+}
+
+/// Draw open platform pipe (floor with pipe openings)
+fn draw_open_platform_pipe(fx: f32, fy: f32, fz: f32, color: &str, svg: &mut String) {
+    let center_z = fz + 0.1;
+    
+    // Draw floor surface
+    let (x0, y0) = to_isometric(fx + 0.1, fy + 0.1, center_z);
+    let (x1, y1) = to_isometric(fx + 0.9, fy + 0.1, center_z);
+    let (x2, y2) = to_isometric(fx + 0.9, fy + 0.9, center_z);
+    let (x3, y3) = to_isometric(fx + 0.1, fy + 0.9, center_z);
+    
+    svg.push_str(&format!(
+        "  <polygon points=\"{},{} {},{} {},{} {},{}\" fill=\"{}\" stroke=\"#333\" stroke-width=\"0.5\" opacity=\"0.8\"/>\n",
+        x0, y0, x1, y1, x2, y2, x3, y3, lighten_color(color, 0.3)
+    ));
+}
+
+/// Draw obstacle pipe (small cylinder inside pipe)
+fn draw_obstacle_pipe(fx: f32, fy: f32, fz: f32, _color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+    
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    let obstacle_radius = PIPE_INNER_RADIUS * TILE_WIDTH * 0.6;
+    
+    svg.push_str(&format!(
+        "  <circle cx=\"{}\" cy=\"{}\" r=\"{}\" fill=\"#8b4513\" stroke=\"#654321\" stroke-width=\"0.3\"/>\n",
+        cx, cy, obstacle_radius
+    ));
+}
+
+/// Draw connected merge junction pipe that extends to tile edges
+fn draw_connected_merge_junction_pipe(fx: f32, fy: f32, fz: f32, _rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+    
+    // Central hub
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    svg.push_str(&format!(
+        "  <circle cx=\"{}\" cy=\"{}\" r=\"{}\" fill=\"url(#pipeGradient)\" stroke=\"#333\" stroke-width=\"0.5\"/>\n",
+        cx, cy, PIPE_OUTER_RADIUS * TILE_WIDTH
+    ));
+    svg.push_str(&format!(
+        "  <circle cx=\"{}\" cy=\"{}\" r=\"{}\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.3\"/>\n",
+        cx, cy, PIPE_INNER_RADIUS * TILE_WIDTH
+    ));
+    
+    // Merge connections that extend to tile edges (multiple inputs to one output)
+    draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x - 0.1, center_y, center_z, color, svg);
+    draw_pipe_segment(center_x, center_y - 0.5, center_z, center_x, center_y - 0.1, center_z, color, svg);
+    draw_pipe_segment(center_x + 0.1, center_y, center_z, center_x + 0.5, center_y, center_z, color, svg);
+}
+
+/// Draw connected one-way gate pipe that extends to tile edges
+fn draw_connected_one_way_gate_pipe(fx: f32, fy: f32, fz: f32, _rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+    
+    // Draw pipe that extends to tile edges with directional indicator
+    draw_pipe_segment(center_x - 0.5, center_y, center_z, center_x + 0.5, center_y, center_z, color, svg);
+    
+    // Add directional arrow
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    svg.push_str(&format!(
+        "  <polygon points=\"{},{} {},{} {},{}\" fill=\"#ff4444\" stroke=\"#cc0000\" stroke-width=\"0.2\"/>\n",
+        cx - 2.0, cy - 1.0, cx + 2.0, cy, cx - 2.0, cy + 1.0
+    ));
+}
+
+/// Draw loop-de-loop pipe
+fn draw_loop_de_loop_pipe(fx: f32, fy: f32, fz: f32, _rotation: u8, _color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+    
+    // Draw vertical loop as SVG path
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    let loop_radius = PIPE_OUTER_RADIUS * TILE_WIDTH * 1.5;
+    
+    svg.push_str(&format!(
+        "  <path d=\"M {},{} A {},{} 0 0,1 {},{} A {},{} 0 0,1 {},{} Z\" fill=\"url(#pipeGradient)\" stroke=\"#333\" stroke-width=\"0.5\"/>\n",
+        cx - loop_radius, cy,
+        loop_radius, loop_radius,
+        cx + loop_radius, cy,
+        loop_radius, loop_radius,
+        cx - loop_radius, cy
+    ));
+}
+
+/// Draw half-pipe pipe
+fn draw_half_pipe_pipe(fx: f32, fy: f32, fz: f32, _rotation: u8, _color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+    
+    // Draw U-shaped pipe
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    let half_pipe_radius = PIPE_OUTER_RADIUS * TILE_WIDTH;
+    
+    svg.push_str(&format!(
+        "  <path d=\"M {},{} A {},{} 0 0,1 {},{} A {},{} 0 0,1 {},{} Z\" fill=\"url(#pipeGradient)\" stroke=\"#333\" stroke-width=\"0.5\"/>\n",
+        cx - half_pipe_radius, cy - half_pipe_radius,
+        half_pipe_radius, half_pipe_radius,
+        cx + half_pipe_radius, cy - half_pipe_radius,
+        half_pipe_radius, half_pipe_radius,
+        cx - half_pipe_radius, cy + half_pipe_radius
+    ));
+}
+
+/// Draw launch pad pipe
+fn draw_launch_pad_pipe(fx: f32, fy: f32, fz: f32, _rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.1;
+    
+    // Draw pipe with launch ramp
+    draw_pipe_segment(center_x - 0.4, center_y, center_z, center_x + 0.4, center_y, center_z, color, svg);
+    
+    // Add launch ramp indicator
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    svg.push_str(&format!(
+        "  <polygon points=\"{},{} {},{} {},{}\" fill=\"#ff4444\" stroke=\"#cc0000\" stroke-width=\"0.2\"/>\n",
+        cx - 3.0, cy - 2.0, cx + 3.0, cy - 2.0, cx, cy + 2.0
+    ));
+}
+
+/// Draw bridge pipe
+fn draw_bridge_pipe(fx: f32, fy: f32, fz: f32, _rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz + 0.2; // Elevated
+    
+    // Draw elevated pipe
+    draw_pipe_segment(center_x - 0.4, center_y, center_z, center_x + 0.4, center_y, center_z, color, svg);
+    
+    // Draw support pillars
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    svg.push_str(&format!(
+        "  <rect x=\"{}\" y=\"{}\" width=\"{}\" height=\"{}\" fill=\"#666\" stroke=\"#333\" stroke-width=\"0.3\"/>\n",
+        cx - 1.0, cy + 2.0, 2.0, 4.0
+    ));
+}
+
+/// Draw tunnel pipe
+fn draw_tunnel_pipe(fx: f32, fy: f32, fz: f32, _rotation: u8, color: &str, svg: &mut String) {
+    let center_x = fx + 0.5;
+    let center_y = fy + 0.5;
+    let center_z = fz - 0.1; // Lowered
+    
+    // Draw underground pipe
+    draw_pipe_segment(center_x - 0.4, center_y, center_z, center_x + 0.4, center_y, center_z, color, svg);
+    
+    // Draw tunnel entrance/exit
+    let (cx, cy) = to_isometric(center_x, center_y, center_z);
+    svg.push_str(&format!(
+        "  <ellipse cx=\"{}\" cy=\"{}\" rx=\"{}\" ry=\"{}\" fill=\"#333\" stroke=\"#000\" stroke-width=\"0.3\"/>\n",
+        cx, cy, PIPE_OUTER_RADIUS * TILE_WIDTH, PIPE_OUTER_RADIUS * TILE_WIDTH * 0.5
+    ));
+}
+
 /// Generate HTML with embedded SVG for isometric visualization
 pub fn generate_html(level: &Level) -> String {
     let mut html = String::new();
@@ -812,13 +1230,20 @@ pub fn generate_html(level: &Level) -> String {
     html.push_str("      <button onclick=\"resetView()\">Reset View</button>\n");
     html.push_str("    </div>\n");
     html.push_str("    \n");
+    html.push_str("    <div class=\"control-group\">\n");
+    html.push_str("      <label>Visualization Mode:</label>\n");
+    html.push_str("      <button id=\"cube-mode-btn\" onclick=\"switchToCubeMode()\" style=\"background: #555; color: #fff;\">Cube Mode</button>\n");
+    html.push_str("      <button id=\"pipe-mode-btn\" onclick=\"switchToPipeMode()\" style=\"background: #444; color: #aaa;\">Pipe Mode</button>\n");
+    html.push_str("    </div>\n");
+    html.push_str("    \n");
     html.push_str("    <div class=\"help-text\">\n");
     html.push_str("      <strong>Controls:</strong><br>\n");
     html.push_str("      • <strong>Mouse:</strong> Drag to pan<br>\n");
     html.push_str("      • <strong>Wheel:</strong> Zoom in/out<br>\n");
     html.push_str("      • <strong>Keyboard:</strong> Arrow keys to pan<br>\n");
     html.push_str("      • <strong>+/-:</strong> Zoom in/out<br>\n");
-    html.push_str("      • <strong>R:</strong> Reset view\n");
+    html.push_str("      • <strong>R:</strong> Reset view<br>\n");
+    html.push_str("      • <strong>Modes:</strong> Toggle between cube and pipe views\n");
     html.push_str("    </div>\n");
     html.push_str("  </div>\n");
     
@@ -843,10 +1268,28 @@ pub fn generate_html(level: &Level) -> String {
         html.push_str("    <div class=\"svg-container\" id=\"svg-container\">\n");
         html.push_str(&format!("    <svg id=\"level-svg\" width=\"{}\" height=\"{}\" viewBox=\"0 0 {} {}\">\n",
             svg_width, svg_height, svg_width, svg_height));
+        
+        // Add SVG gradient definitions for pipe rendering
+        html.push_str("      <defs>\n");
+        html.push_str("        <radialGradient id=\"pipeGradient\" cx=\"50%\" cy=\"30%\" r=\"70%\">\n");
+        html.push_str("          <stop offset=\"0%\" style=\"stop-color:#666;stop-opacity:1\" />\n");
+        html.push_str("          <stop offset=\"70%\" style=\"stop-color:#444;stop-opacity:1\" />\n");
+        html.push_str("          <stop offset=\"100%\" style=\"stop-color:#222;stop-opacity:1\" />\n");
+        html.push_str("        </radialGradient>\n");
+        html.push_str("        <linearGradient id=\"pipeWallGradient\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n");
+        html.push_str("          <stop offset=\"0%\" style=\"stop-color:#777;stop-opacity:1\" />\n");
+        html.push_str("          <stop offset=\"50%\" style=\"stop-color:#555;stop-opacity:1\" />\n");
+        html.push_str("          <stop offset=\"100%\" style=\"stop-color:#333;stop-opacity:1\" />\n");
+        html.push_str("        </linearGradient>\n");
+        html.push_str("      </defs>\n");
+        
         html.push_str(&format!("      <g id=\"level-group\" transform=\"translate({}, {})\">\n", offset_x, offset_y));
         
-        // Render tiles from back to front (isometric painter's algorithm)
-        // Sort by y + x to render in correct order
+        // Create two rendering layers: cube mode and pipe mode
+        html.push_str("        <!-- Cube Mode Layer -->\n");
+        html.push_str("        <g id=\"cube-layer\" style=\"display: block;\">\n");
+        
+        // Render cube tiles from back to front (isometric painter's algorithm)
         for sum in 0..(width + height) {
             for y in 0..height {
                 let x = sum.saturating_sub(y);
@@ -855,6 +1298,24 @@ pub fn generate_html(level: &Level) -> String {
                 }
             }
         }
+        
+        html.push_str("        </g>\n");
+        
+        // Pipe Mode Layer
+        html.push_str("        <!-- Pipe Mode Layer -->\n");
+        html.push_str("        <g id=\"pipe-layer\" style=\"display: none;\">\n");
+        
+        // Render pipe tiles from back to front (isometric painter's algorithm)
+        for sum in 0..(width + height) {
+            for y in 0..height {
+                let x = sum.saturating_sub(y);
+                if x < width {
+                    render_tile_svg_pipe(&marble_tiles[y][x], x, y, &mut html);
+                }
+            }
+        }
+        
+        html.push_str("        </g>\n");
         
         html.push_str("      </g>\n");
         html.push_str("    </svg>\n");
@@ -959,6 +1420,25 @@ pub fn generate_html(level: &Level) -> String {
     html.push_str("      zoomSlider.value = 100;\n");
     html.push_str("      updateZoom(100);\n");
     html.push_str("      updateTransform();\n");
+    html.push_str("    }\n");
+    html.push_str("    \n");
+    html.push_str("    // Visualization mode switching\n");
+    html.push_str("    function switchToCubeMode() {\n");
+    html.push_str("      document.getElementById('cube-layer').style.display = 'block';\n");
+    html.push_str("      document.getElementById('pipe-layer').style.display = 'none';\n");
+    html.push_str("      document.getElementById('cube-mode-btn').style.background = '#555';\n");
+    html.push_str("      document.getElementById('cube-mode-btn').style.color = '#fff';\n");
+    html.push_str("      document.getElementById('pipe-mode-btn').style.background = '#444';\n");
+    html.push_str("      document.getElementById('pipe-mode-btn').style.color = '#aaa';\n");
+    html.push_str("    }\n");
+    html.push_str("    \n");
+    html.push_str("    function switchToPipeMode() {\n");
+    html.push_str("      document.getElementById('cube-layer').style.display = 'none';\n");
+    html.push_str("      document.getElementById('pipe-layer').style.display = 'block';\n");
+    html.push_str("      document.getElementById('pipe-mode-btn').style.background = '#555';\n");
+    html.push_str("      document.getElementById('pipe-mode-btn').style.color = '#fff';\n");
+    html.push_str("      document.getElementById('cube-mode-btn').style.background = '#444';\n");
+    html.push_str("      document.getElementById('cube-mode-btn').style.color = '#aaa';\n");
     html.push_str("    }\n");
     html.push_str("    \n");
     html.push_str("    // Mouse controls\n");

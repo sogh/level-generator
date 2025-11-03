@@ -122,6 +122,23 @@ pub struct GeneratorParams {
 
     /// Marble mode: obstacle density (0.0 to 1.0)
     pub obstacle_density: f32,
+
+    /// Optional 3D trend vector (x, y, z) in world coordinates for directional bias
+    /// x, z: Horizontal direction (map to grid x, y)
+    /// y: Vertical direction (influences elevation bias)
+    pub trend_vector: Option<(f32, f32, f32)>,
+
+    /// Bias strength from 0.0 (no bias) to 1.0 (strong bias)
+    pub trend_strength: f32,
+
+    /// Optional starting point in world coordinates (x, y, z)
+    /// If provided, room placement bias is calculated relative to this point
+    /// If not provided, use first placed room or grid center as reference
+    pub start_point: Option<(i32, i32, i32)>,
+
+    /// Maximum elevation change between adjacent rooms (only used when elevation is enabled)
+    /// This constrains how much the elevation can differ between consecutive rooms
+    pub max_elevation_change: i32,
 }
 
 impl Default for GeneratorParams {
@@ -140,6 +157,10 @@ impl Default for GeneratorParams {
             max_elevation: 2,
             enable_obstacles: false,
             obstacle_density: 0.3,
+            trend_vector: None,
+            trend_strength: 0.5,
+            start_point: None,
+            max_elevation_change: 1,
         }
     }
 }
@@ -149,6 +170,163 @@ pub enum GenerationMode {
     Classic,
     Marble,
     Wfc,
+}
+
+/// Normalize a 3D vector, returning (0, 0, 0) if the vector is zero or too small
+fn normalize_vector(v: (f32, f32, f32)) -> (f32, f32, f32) {
+    let length = (v.0 * v.0 + v.1 * v.1 + v.2 * v.2).sqrt();
+    if length < 1e-6 {
+        (0.0, 0.0, 0.0)
+    } else {
+        (v.0 / length, v.1 / length, v.2 / length)
+    }
+}
+
+/// Calculate bias weight for a candidate room position based on trend vector
+/// Returns a weight multiplier (higher = more likely to be selected)
+/// - reference_point: reference point in grid coordinates (x, y)
+/// - candidate_center: candidate room center in grid coordinates (x, y)
+/// - trend_vector: normalized trend vector (x, y, z) in world coordinates
+/// - trend_strength: strength of bias (0.0 to 1.0)
+/// Note: Grid (x, y) maps to world (x, z), so we use (trend_x, trend_z) for horizontal bias
+fn calculate_position_bias(
+    reference_point: (i32, i32),
+    candidate_center: (i32, i32),
+    trend_vector: (f32, f32, f32),
+    trend_strength: f32,
+) -> f32 {
+    // Calculate direction vector from reference to candidate (in grid coords)
+    let dx = (candidate_center.0 - reference_point.0) as f32;
+    let dy = (candidate_center.1 - reference_point.1) as f32;
+    
+    // Normalize direction vector
+    let dir_length = (dx * dx + dy * dy).sqrt();
+    if dir_length < 1e-6 {
+        return 1.0; // Same position, neutral weight
+    }
+    
+    let dir_normalized = (dx / dir_length, dy / dir_length);
+    
+    // Map grid coordinates to world coordinates: grid (x, y) -> world (x, z)
+    // Trend vector horizontal components are (trend_x, trend_z)
+    let trend_horizontal = (trend_vector.0, trend_vector.2);
+    let trend_horiz_length = (trend_horizontal.0 * trend_horizontal.0 + trend_horizontal.1 * trend_horizontal.1).sqrt();
+    
+    if trend_horiz_length < 1e-6 {
+        return 1.0; // No horizontal trend, neutral weight
+    }
+    
+    let trend_horiz_normalized = (trend_horizontal.0 / trend_horiz_length, trend_horizontal.1 / trend_horiz_length);
+    
+    // Dot product gives alignment (-1 to 1)
+    let alignment = dir_normalized.0 * trend_horiz_normalized.0 + dir_normalized.1 * trend_horiz_normalized.1;
+    
+    // Convert alignment to weight: alignment of 1.0 -> weight of (1.0 + trend_strength)
+    // alignment of -1.0 -> weight of (1.0 - trend_strength)
+    // alignment of 0.0 -> weight of 1.0
+    1.0 + alignment * trend_strength
+}
+
+/// Calculate bias for elevation selection based on trend vector
+/// Returns a bias value that can be used to shift elevation selection
+fn calculate_elevation_bias(
+    trend_vector: (f32, f32, f32),
+    trend_strength: f32,
+    max_elevation: i32,
+) -> i32 {
+    // Use the y component of trend vector to bias elevation
+    // trend_vector.y > 0 means bias toward positive elevation
+    // trend_vector.y < 0 means bias toward negative elevation
+    let elevation_bias = trend_vector.1 * trend_strength;
+    (elevation_bias * max_elevation as f32) as i32
+}
+
+/// Calculate which L-shape connection orientation aligns better with trend
+/// Returns true for horizontal-then-vertical, false for vertical-then-horizontal
+/// Returns None if no trend vector is provided (use random)
+fn calculate_connection_bias(
+    from: (i32, i32),
+    to: (i32, i32),
+    trend_vector: Option<(f32, f32, f32)>,
+    trend_strength: f32,
+    rng: &mut impl Rng,
+) -> bool {
+    let Some(trend) = trend_vector else {
+        return rng.random_bool(0.5);
+    };
+    
+    // Connection direction vector (in grid coordinates)
+    let dx = (to.0 - from.0) as f32;
+    let dy = (to.1 - from.1) as f32;
+    
+    // Normalize connection direction
+    let conn_length = (dx * dx + dy * dy).sqrt();
+    if conn_length < 1e-6 {
+        return rng.random_bool(0.5); // Same position, random choice
+    }
+    
+    let conn_normalized = (dx / conn_length, dy / conn_length);
+    
+    // Map grid to world: grid (x, y) -> world (x, z)
+    // Trend horizontal components are (trend_x, trend_z)
+    let trend_horizontal = (trend.0, trend.2);
+    let trend_horiz_length = (trend_horizontal.0 * trend_horizontal.0 + trend_horizontal.1 * trend_horizontal.1).sqrt();
+    
+    if trend_horiz_length < 1e-6 {
+        return rng.random_bool(0.5); // No horizontal trend, random choice
+    }
+    
+    let trend_horiz_normalized = (trend_horizontal.0 / trend_horiz_length, trend_horizontal.1 / trend_horiz_length);
+    
+    // For horizontal-then-vertical: prefer when horizontal component aligns with trend
+    // For vertical-then-horizontal: prefer when vertical component aligns with trend
+    // We'll use the dominant component of the connection direction
+    let horizontal_dominance = conn_normalized.0.abs();
+    let vertical_dominance = conn_normalized.1.abs();
+    
+    // Bias probability based on alignment and trend strength
+    let horizontal_preference = if horizontal_dominance > vertical_dominance {
+        // Horizontal component is dominant, check if it aligns with trend
+        let horiz_alignment = (conn_normalized.0.signum() * trend_horiz_normalized.0).max(0.0);
+        0.5 + horiz_alignment * trend_strength * 0.5
+    } else {
+        // Vertical component is dominant, check if it aligns with trend
+        let vert_alignment = (conn_normalized.1.signum() * trend_horiz_normalized.1).max(0.0);
+        0.5 - vert_alignment * trend_strength * 0.5
+    };
+    
+    rng.random_bool(horizontal_preference as f64)
+}
+
+/// Select a candidate from a weighted list using weighted random selection
+/// Returns None if the list is empty
+fn select_weighted_candidate<R: Rng>(rng: &mut R, candidates: &[(Room, f32)]) -> Option<Room> {
+    if candidates.is_empty() {
+        return None;
+    }
+    
+    // Calculate total weight
+    let total_weight: f32 = candidates.iter().map(|(_, weight)| *weight).sum();
+    
+    if total_weight <= 0.0 {
+        // Fallback to uniform selection if all weights are non-positive
+        return candidates.first().map(|(room, _)| *room);
+    }
+    
+    // Pick random value in [0, total_weight)
+    let random_value = rng.random_range(0.0f32..total_weight);
+    
+    // Find the candidate corresponding to this random value
+    let mut cumulative_weight = 0.0;
+    for (room, weight) in candidates {
+        cumulative_weight += weight;
+        if random_value < cumulative_weight {
+            return Some(*room);
+        }
+    }
+    
+    // Fallback (shouldn't happen, but safety)
+    candidates.first().map(|(room, _)| *room)
 }
 
 /// Generate a new `Level` using basic room placement and corridor connectivity.
@@ -174,6 +352,18 @@ pub fn generate(params: &GeneratorParams) -> Level {
     let mut grid: Grid = vec![vec![TILE_WALL; width as usize]; height as usize];
     let mut rooms: Vec<Room> = Vec::new();
 
+    // Pre-calculate normalized trend vector if provided
+    let normalized_trend = params.trend_vector.map(|v| normalize_vector(v));
+    
+    // Determine initial reference point for bias calculation
+    let initial_reference = if let Some((sx, _sy, sz)) = params.start_point {
+        // Convert world coordinates to grid: world (x, z) -> grid (x, y)
+        (sx, sz)
+    } else {
+        // Use grid center as reference
+        (width as i32 / 2, height as i32 / 2)
+    };
+
     let attempts = (params.rooms * 10).max(100);
     for _ in 0..attempts {
         if rooms.len() as u32 >= params.rooms { break; }
@@ -183,25 +373,80 @@ pub fn generate(params: &GeneratorParams) -> Level {
 
         if w >= width as i32 - 4 || h >= height as i32 - 4 { continue; }
 
-        let x = rng.random_range(1..=(width as i32 - w - 2));
-        let y = rng.random_range(1..=(height as i32 - h - 2));
+        // Generate multiple candidates and pick one with weighted selection
+        let candidate_pool_size = if normalized_trend.is_some() { 5 } else { 1 };
+        let mut candidates: Vec<(Room, f32)> = Vec::new();
 
-        // Assign elevation if enabled
-        let elevation = if params.enable_elevation && matches!(params.mode, GenerationMode::Marble) {
-            Some(rng.random_range(-params.max_elevation..=params.max_elevation))
-        } else {
-            None
-        };
+        for _ in 0..candidate_pool_size {
+            let x = rng.random_range(1..=(width as i32 - w - 2));
+            let y = rng.random_range(1..=(height as i32 - h - 2));
 
-        let candidate = Room { x, y, w, h, elevation };
+            // Assign elevation if enabled, with bias if trend vector provided
+            // Constrain elevation change relative to the last placed room
+            let elevation = if params.enable_elevation && matches!(params.mode, GenerationMode::Marble) {
+                // Get the elevation of the last placed room, or 0 if this is the first room
+                let last_elevation = rooms.last()
+                    .and_then(|r| r.elevation)
+                    .unwrap_or(0);
+                
+                // Calculate the allowed elevation range based on max_elevation_change
+                let min_allowed_elev = (last_elevation - params.max_elevation_change)
+                    .max(-params.max_elevation);
+                let max_allowed_elev = (last_elevation + params.max_elevation_change)
+                    .min(params.max_elevation);
+                
+                // Generate base elevation within the constrained range
+                let base_elev = if min_allowed_elev <= max_allowed_elev {
+                    rng.random_range(min_allowed_elev..=max_allowed_elev)
+                } else {
+                    // Fallback if range is invalid (shouldn't happen, but safety check)
+                    last_elevation
+                };
+                
+                // Apply trend bias if provided
+                if let Some(trend) = normalized_trend {
+                    let elev_bias = calculate_elevation_bias(trend, params.trend_strength, params.max_elevation);
+                    let biased_elev = (base_elev + elev_bias)
+                        .clamp(min_allowed_elev, max_allowed_elev);
+                    Some(biased_elev)
+                } else {
+                    Some(base_elev)
+                }
+            } else {
+                None
+            };
 
-        // ensure no overlap with margin of 1 tile
-        if rooms.iter().any(|r| intersects_with_margin(r, &candidate, 1)) {
-            continue;
+            let candidate = Room { x, y, w, h, elevation };
+
+            // Check for overlap
+            if rooms.iter().any(|r| intersects_with_margin(r, &candidate, 1)) {
+                continue;
+            }
+
+            // Calculate bias weight
+            let weight = if let Some(trend) = normalized_trend {
+                // Determine reference point: use start_point if provided, otherwise last room or grid center
+                let reference = if let Some((sx, _sy, sz)) = params.start_point {
+                    (sx, sz)
+                } else if let Some(last_room) = rooms.last() {
+                    last_room.center()
+                } else {
+                    initial_reference
+                };
+                let candidate_center = candidate.center();
+                calculate_position_bias(reference, candidate_center, trend, params.trend_strength)
+            } else {
+                1.0
+            };
+
+            candidates.push((candidate, weight));
         }
 
-        carve_room(&mut grid, &candidate);
-        rooms.push(candidate);
+        // Select from candidates using weighted random selection
+        if let Some(selected) = select_weighted_candidate(&mut rng, &candidates) {
+            carve_room(&mut grid, &selected);
+            rooms.push(selected);
+        }
     }
 
     // connect rooms depending on the chosen mode
@@ -211,7 +456,14 @@ pub fn generate(params: &GeneratorParams) -> Level {
             for i in 1..rooms.len() {
                 let (x1, y1) = rooms[i - 1].center();
                 let (x2, y2) = rooms[i].center();
-                if rng.random_bool(0.5) {
+                let use_horizontal_first = calculate_connection_bias(
+                    (x1, y1),
+                    (x2, y2),
+                    normalized_trend,
+                    params.trend_strength,
+                    &mut rng,
+                );
+                if use_horizontal_first {
                     carve_horizontal_tunnel(&mut grid, x1, x2, y1);
                     carve_vertical_tunnel(&mut grid, y1, y2, x2);
                 } else {
@@ -226,7 +478,14 @@ pub fn generate(params: &GeneratorParams) -> Level {
             for i in 1..rooms.len() {
                 let (x1, y1) = rooms[i - 1].center();
                 let (x2, y2) = rooms[i].center();
-                if rng.random_bool(0.5) {
+                let use_horizontal_first = calculate_connection_bias(
+                    (x1, y1),
+                    (x2, y2),
+                    normalized_trend,
+                    params.trend_strength,
+                    &mut rng,
+                );
+                if use_horizontal_first {
                     carve_wide_horizontal_with_rounded_turn(&mut grid, x1, x2, y1, w, r, true);
                     carve_wide_vertical(&mut grid, y1, y2, x2, w);
                 } else {

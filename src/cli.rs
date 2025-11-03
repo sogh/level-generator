@@ -77,6 +77,38 @@ pub struct Args {
     #[arg(long = "obstacle-density", default_value_t = 0.3, help = "Marble: obstacle density")]
     pub obstacle_density: f32,
 
+    /// X component of trend vector (horizontal direction for level generation)
+    #[arg(long = "trend-x", help = "X component of trend vector (horizontal direction)")]
+    pub trend_x: Option<f32>,
+
+    /// Y component of trend vector (vertical/elevation direction for level generation)
+    #[arg(long = "trend-y", help = "Y component of trend vector (vertical/elevation direction)")]
+    pub trend_y: Option<f32>,
+
+    /// Z component of trend vector (horizontal direction for level generation)
+    #[arg(long = "trend-z", help = "Z component of trend vector (horizontal direction)")]
+    pub trend_z: Option<f32>,
+
+    /// Bias strength for trend vector (0.0 = no bias, 1.0 = strong bias)
+    #[arg(long = "trend-strength", default_value_t = 0.5, help = "Bias strength for trend vector (0.0-1.0)")]
+    pub trend_strength: f32,
+
+    /// Starting point X coordinate in world space
+    #[arg(long = "start-x", help = "Starting point X coordinate in world space")]
+    pub start_x: Option<i32>,
+
+    /// Starting point Y coordinate (elevation) in world space
+    #[arg(long = "start-y", help = "Starting point Y coordinate (elevation) in world space")]
+    pub start_y: Option<i32>,
+
+    /// Starting point Z coordinate in world space
+    #[arg(long = "start-z", help = "Starting point Z coordinate in world space")]
+    pub start_z: Option<i32>,
+
+    /// Maximum elevation change between adjacent rooms (only when elevation is enabled)
+    #[arg(long = "max-elevation-change", default_value_t = 1, help = "Maximum elevation change between adjacent rooms")]
+    pub max_elevation_change: i32,
+
     /// File path to write the generated level as JSON
     #[arg(long = "json-path", short = 'o', help = "Write level to JSON file path")] 
     pub json_path: Option<PathBuf>,

@@ -7,20 +7,44 @@ A procedural level generator written in Rust with multiple generation modes:
 
 Exports levels as ASCII, JSON (with detailed tile metadata), and isometric HTML/SVG visualizations.
 
+## Prerequisites
+
+- **Rust 1.70+** and Cargo (install from [rustup.rs](https://rustup.rs/))
+- **Git** (for cloning the repository)
+
+## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/sogh/level-generator.git
+cd level-generator
+
+# Build the project
+cargo build --release
+
+# Generate a simple dungeon
+cargo run -- --width 40 --height 20 --rooms 8
+
+# Generate a marble track with visualization
+cargo run -- --mode marble --width 60 --height 30 --rooms 10 --html-path level.html
+```
+
+## Install
+
+```bash
+# Build the project
+cargo build --release
+
+# Or install globally (optional)
+cargo install --path .
+```
+
 ## Overview
 
 - Rooms are placed randomly (sizes in `[min_room, max_room]`) and rejected if overlapping an existing room expanded by a margin.
 - Rooms are sorted by center `x` and connected pairwise with L-shaped tunnels.
 - Tiles: `#` is wall, `.` is floor.
 - Generation is reproducible via `--seed`.
-
-## Install
-
-Requires Rust and Cargo.
-
-```bash
-cargo build
-```
 
 ## Library Usage
 
@@ -78,6 +102,30 @@ if let Some(tiles) = &level.marble_tiles {
 }
 ```
 
+### Directional Generation Example
+
+```rust
+use level_generator::{generate, GeneratorParams, GenerationMode};
+
+let params = GeneratorParams {
+    width: 60,
+    height: 30,
+    rooms: 10,
+    mode: GenerationMode::Marble,
+    enable_elevation: true,
+    max_elevation: 2,
+    max_elevation_change: 1, // Constrain elevation changes between rooms
+    // Trend vector: extend northeast with upward bias
+    trend_vector: Some((1.0, 0.5, 1.0)),
+    trend_strength: 0.7,
+    // Optional starting point in world coordinates
+    start_point: Some((10, 0, 10)),
+    ..Default::default()
+};
+
+let level = generate(&params);
+```
+
 ### Generate Visualization
 
 ```rust
@@ -91,32 +139,96 @@ fs::write("level.html", html)?;
 
 See the `examples/` directory for more complete examples.
 
-## CLI Usage (as installed binary)
+### Running Examples
 
 ```bash
-# Show ASCII preview only
+# Basic dungeon generation
+cargo run --example basic_usage
+
+# Custom marble track generation
+cargo run --example custom_generation
+
+# Complete marble track with HTML export
+cargo run --example marble_track
+```
+
+## CLI Usage
+
+### Basic Examples
+
+```bash
+# Generate a simple dungeon (ASCII preview)
 cargo run -- --width 60 --height 25 --rooms 10
 
-# Export JSON (also prints to stdout)
-cargo run -- --width 60 --height 25 --rooms 10 --no-ascii --print-json --json-path out/level.json
+# Generate with specific seed for reproducibility
+cargo run -- --seed 42 --width 40 --height 20 --rooms 8
 
-# Reproducible output
-cargo run -- --seed 42 --print-json --no-ascii
+# Export to JSON file
+cargo run -- --width 60 --height 25 --rooms 10 --json-path dungeon.json
 
-# Marble mode with rounded channels (width=3, radius=3)
-cargo run -- --mode marble --channel-width 3 --corner-radius 3 --width 60 --height 25 --rooms 10 --print-json --no-ascii
+# Generate HTML visualization
+cargo run -- --width 60 --height 25 --rooms 10 --html-path dungeon.html
+```
 
-# Marble mode with elevation changes and slopes
-cargo run -- --mode marble --width 60 --height 30 --rooms 8 --enable-elevation --max-elevation 3 --html-path out/level.html
+### Marble Track Examples
 
-# Marble mode with obstacles and isometric visualization
-cargo run -- --mode marble --width 80 --height 40 --rooms 10 --enable-obstacles --obstacle-density 0.5 --html-path out/level.html
+```bash
+# Basic marble track
+cargo run -- --mode marble --width 60 --height 30 --rooms 10 --html-path track.html
 
-# Complete marble mode with all features
-cargo run -- --mode marble --enable-elevation --max-elevation 2 --enable-obstacles --obstacle-density 0.3 --channel-width 3 --html-path out/level.html --json-path out/level.json
+# Marble track with elevation changes
+cargo run -- --mode marble --width 60 --height 30 --rooms 8 --enable-elevation --max-elevation 3 --html-path track.html
 
-# Wave Function Collapse (WFC) mode with a simple pipe tileset
-cargo run -- --mode wfc --width 60 --height 25 --print-json --no-ascii
+# Marble track with constrained elevation changes (smooth transitions)
+cargo run -- --mode marble --width 60 --height 30 --rooms 8 --enable-elevation --max-elevation 3 --max-elevation-change 1 --html-path smooth-track.html
+
+# Marble track with obstacles
+cargo run -- --mode marble --width 80 --height 40 --rooms 10 --enable-obstacles --obstacle-density 0.5 --html-path track.html
+
+# Complete marble track with all features
+cargo run -- --mode marble --enable-elevation --max-elevation 2 --enable-obstacles --obstacle-density 0.3 --channel-width 3 --html-path track.html --json-path track.json
+```
+
+### WFC Maze Examples
+
+```bash
+# Generate a WFC maze
+cargo run -- --mode wfc --width 60 --height 25 --html-path maze.html
+
+# WFC maze with JSON export
+cargo run -- --mode wfc --width 60 --height 25 --json-path maze.json --html-path maze.html
+```
+
+### Directional Generation Examples
+
+```bash
+# Generate level extending northeast (trend vector: 1, 0, 1)
+cargo run -- --width 60 --height 30 --rooms 10 --trend-x 1.0 --trend-y 0.0 --trend-z 1.0 --html-path northeast.html
+
+# Generate level with upward elevation trend
+cargo run -- --mode marble --width 60 --height 30 --rooms 8 --enable-elevation --trend-x 0.0 --trend-y 1.0 --trend-z 1.0 --trend-strength 0.7 --html-path upward.html
+
+# Generate level from a specific starting point extending east
+cargo run -- --width 80 --height 40 --rooms 12 --trend-x 1.0 --trend-y 0.0 --trend-z 0.0 --start-x 10 --start-y 0 --start-z 20 --html-path from-start.html
+
+# Classic dungeon with strong directional bias
+cargo run -- --mode classic --width 60 --height 25 --rooms 10 --trend-x 1.0 --trend-y 0.0 --trend-z 0.5 --trend-strength 0.8 --html-path directional.html
+```
+
+### Advanced Usage
+
+```bash
+# Custom room sizes
+cargo run -- --width 80 --height 40 --rooms 15 --min-room 6 --max-room 12
+
+# Wide marble channels
+cargo run -- --mode marble --channel-width 4 --corner-radius 3 --width 60 --height 30 --rooms 8
+
+# Export only HTML (skip ASCII and JSON)
+cargo run -- --mode marble --html-only --html-path track.html
+
+# Print JSON to stdout
+cargo run -- --width 40 --height 20 --rooms 8 --print-json --no-ascii
 ```
 
 ### Options
@@ -135,8 +247,24 @@ cargo run -- --mode wfc --width 60 --height 25 --print-json --no-ascii
 - `--corner-radius` corner radius for rounded turns (default: 2)
 - `--enable-elevation` enable elevation variation between rooms
 - `--max-elevation` maximum elevation difference (default: 2)
+- `--max-elevation-change` maximum elevation change between adjacent rooms (default: 1)
 - `--enable-obstacles` place obstacles in large rooms
 - `--obstacle-density` obstacle density 0.0-1.0 (default: 0.3)
+
+#### Directional Generation
+- `--trend-x <f32>` X component of trend vector (horizontal direction)
+- `--trend-y <f32>` Y component of trend vector (vertical/elevation direction)
+- `--trend-z <f32>` Z component of trend vector (horizontal direction)
+- `--trend-strength <f32>` bias strength for trend vector, 0.0-1.0 (default: 0.5)
+- `--start-x <i32>` starting point X coordinate in world space
+- `--start-y <i32>` starting point Y coordinate (elevation) in world space
+- `--start-z <i32>` starting point Z coordinate in world space
+
+The trend vector provides a general direction in which the level should extend. Room placement and connections are biased toward this direction with configurable strength. The trend vector uses 3D world coordinates where:
+- X and Z components control horizontal direction (map to grid x and y)
+- Y component influences elevation bias when elevation is enabled
+
+All trend vector components must be provided together for the feature to activate. The starting point is optional - if not provided, the generator uses the grid center or last placed room as reference.
 
 #### Output
 - `--no-ascii` disable ASCII preview
@@ -227,6 +355,50 @@ Perfect for previewing marble levels before importing into a game engine!
 4. Insert slope tiles where elevation changes occur.
 5. Place obstacles randomly in large rooms based on `obstacle_density`.
 6. Export as both ASCII and detailed tile grid with metadata.
+
+## Troubleshooting
+
+### Common Issues
+
+**Build fails with "feature 'cli' not found"**
+```bash
+# Make sure you're building with the cli feature
+cargo build --features cli
+# Or use the default features
+cargo build
+```
+
+**HTML visualization doesn't display properly**
+- Ensure you're opening the HTML file in a modern web browser
+- Check that the file path is correct and the file was created successfully
+- Try a different browser if the visualization appears broken
+
+**No rooms generated**
+- Try increasing the `--rooms` parameter
+- Reduce `--min-room` and `--max-room` sizes
+- Increase the map size with `--width` and `--height`
+
+**Marble mode produces empty levels**
+- Ensure you're using `--mode marble` (not `--mode classic`)
+- Try different `--channel-width` and `--corner-radius` values
+- Check that room count and sizes are reasonable for the map size
+
+**JSON output is too large**
+- Use `--no-ascii` to skip ASCII preview
+- Use `--html-only` to skip JSON output entirely
+- Consider smaller map dimensions
+
+### Performance Tips
+
+- For large maps (100x100+), consider using `--html-only` to skip ASCII generation
+- Marble mode with elevation and obstacles is more computationally intensive
+- Use specific seeds (`--seed`) for reproducible results during development
+
+### Getting Help
+
+- Check the examples in the `examples/` directory
+- Run `cargo run -- --help` to see all available options
+- Open an issue on GitHub if you encounter bugs
 
 ## License
 
