@@ -1493,6 +1493,10 @@ mod tests {
             max_elevation: 2,
             enable_obstacles: false,
             obstacle_density: 0.3,
+            trend_vector: None,
+            trend_strength: 0.5,
+            start_point: None,
+            max_elevation_change: 1,
         }
     }
 

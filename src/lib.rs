@@ -14,7 +14,12 @@
 //!     min_room: 4,
 //!     max_room: 10,
 //!     seed: Some(42),
-//!     mode: GenerationMode::Classic,
+//!     mode: GenerationMode::Marble,
+//!     // Optional: bias generation in a specific direction
+//!     trend_vector: Some((1.0, 0.0, 1.0)), 
+//!     trend_strength: 0.7,
+//!     // Optional: start generation from a specific point
+//!     start_point: Some((10, 0, 10)),
 //!     ..Default::default()
 //! };
 //!
